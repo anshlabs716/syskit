@@ -39,13 +39,13 @@ Linux (apt/dnf/pacman/zypper/xbps/apk/nix/emerge), macOS (Homebrew), Termux (pkg
 fastfetch, curl, wget, jq, git, tar, unzip, zip, tree, lshw, dmidecode, smartctl, sensors, iftop, nmcli, lspci, hostname, uuidgen
 
 🎯 MENU
-text
 1. 🖥️ System    2. 📊 Monitoring    3. 🌐 Network
 4. 🔋 Power      5. 📦 Packages      6. 🧹 Cleaner
 7. 💾 Storage    8. 🔐 Security      9. 📂 Files
 10. 🗜️ Archive  11. 🔑 Utilities    12. 🌤️ Internet
 13. 💾 Backup    14. ⚙️ Settings     15. ❓ Help
 0. Exit
+
 🐛 TROUBLESHOOTING
 Issue	Solution
 Won't run	chmod +x syskit.sh
