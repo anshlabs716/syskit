@@ -12,7 +12,7 @@
 git clone https://github.com/anshlabs716/syskit.git 
 
 # how to run
-cd (your directory) chmod +x syskit.sh then bash syskit.sh
+cd syskit chmod +x syskit.sh then bash syskit.sh
 
 
 ✨ FEATURES
