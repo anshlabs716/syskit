@@ -1,0 +1,26 @@
+# SysKit .gitignore
+
+# Backup files
+*.bak
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Config files
+.config/
+*.conf
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE
+.vscode/
+.idea/
+*.iml
