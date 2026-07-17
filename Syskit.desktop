@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=SysKit
+Comment=Universal Unix Toolkit
+Exec=/usr/local/bin/syskit
+Terminal=true
+Type=Application
+Icon=utilities-terminal
+Categories=System;Utility;
