@@ -62,17 +62,15 @@ fastfetch, curl, wget, jq, git, tar, unzip, zip, tree, lshw, dmidecode, smartctl
 13. 💾 Backup    14. ⚙️ Settings     15. ❓ Help
 0. Exit
 
-## 🐛 TROUBLESHOOTING
-#### Issue	 #### Solution
+## Troubleshooting
 
-	
-	
-Permission	sudo ./syskit.sh
-📜 LICENSE
-MIT — free for personal and commercial use.
-
-SysKit v2.0.0 | © 2026 AnshLabs716
 | Issue                | Solution                  |
 | -------------------- | ------------------------- |
 | Won't run            | chmod +x syskit.sh        |
 | Colours not visible  | ./syskit.sh --color=always|
+| Permission           | sudo ./syskit.sh          |
+
+## 📜 LICENSE
+MIT — free for personal and commercial use.
+
+SysKit v2.0.0 | © 2026 AnshLabs716
