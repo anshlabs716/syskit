@@ -4,7 +4,7 @@
 
 ---
 
-## ⚡ **Cloning the repo** (not recomended to do unless you're planning to contribute-or want the latest versions every time, jsut downlaod latest from releases)
+## ⚡ **Cloning the repo** (not recomended to do unless you're planning to contribute-or want the latest versions every time, just download latest from releases)
 
 
 ```bash
