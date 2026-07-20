@@ -8,22 +8,31 @@
 
 
 ```bash
-# how to clone
-git clone https://github.com/anshlabs716/syskit.git 
+# ========================================
+# 1. CLONE
+# ========================================
+git clone https://github.com/anshlabs716/syskit.git
 
-# how to run
+# ========================================
+# 2. RUN BASH VERSION
+# ========================================
 cd syskit && chmod +x syskit.sh && bash syskit.sh
 
-# how to run C version
-cd syskit gcc -o syskit syskit.c
-./syskit
+# ========================================
+# 3. RUN FULL C VERSION (Linux/macOS/BSD)
+# ========================================
+cd syskit && gcc -o syskit syskit.c && ./syskit
 
-# how to run lite C version (if on termux follow the pkg steps)
-pkg update
-pkg install clang
-pkg install fastfetch
-cd syskit gcc -o syskit-lite.c
-./syskit-lite
+# ========================================
+# 4. RUN LITE C VERSION (Termux)
+# ========================================
+pkg update && pkg install clang fastfetch
+cd syskit && gcc -o syskit-lite syskit-lite.c && ./syskit-lite
+
+# ========================================
+# 5. RUN LITE BASH VERSION (Termux)
+# ========================================
+cd syskit && chmod +x syskit-lite.sh && ./syskit-lite.sh
 ```
 ## ✨ FEATURES
 ### System: 
@@ -83,4 +92,4 @@ fastfetch, curl, wget, jq, git, tar, unzip, zip, tree, lshw, dmidecode, smartctl
 ## 📜 LICENSE
 MIT — free for personal and commercial use.
 
-SysKit v2.0.0 | © 2026 AnshLabs716
+SysKit v2.0.0 | © 2026 AnshLabs716 and shozanthebozan
