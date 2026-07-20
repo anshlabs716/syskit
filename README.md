@@ -14,11 +14,14 @@ git clone https://github.com/anshlabs716/syskit.git
 # how to run
 cd syskit && chmod +x syskit.sh && bash syskit.sh
 
-#how to run c version
+# how to run C version
 cd syskit gcc -o syskit syskit.c
 ./syskit
-```
 
+# how to run lite C version
+cd syskit gcc -o syskit-termux syskit-lite.c
+./syskit-lite
+```
 ## ✨ FEATURES
 ### System: 
 Fastfetch, System Info, Hardware, CPU, GPU, RAM, Motherboard, Disk, Kernel, Uptime, Environment
