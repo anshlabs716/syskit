@@ -24,7 +24,7 @@ cd syskit && chmod +x syskit.sh && bash syskit.sh
 cd syskit && gcc -o syskit syskit.c && ./syskit
 
 # ========================================
-# 4. RUN LITE C VERSION (Termux)
+# 4. RUN LITE C VERSION (skip pkg if not on termux)
 # ========================================
 pkg update && pkg install clang fastfetch
 cd syskit && gcc -o syskit-lite syskit-lite.c && ./syskit-lite
