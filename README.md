@@ -19,7 +19,7 @@ cd syskit gcc -o syskit syskit.c
 ./syskit
 
 # how to run lite C version
-cd syskit gcc -o syskit-lite syskit-lite.c
+cd syskit gcc -o syskit-lite.c
 ./syskit-lite
 ```
 ## ✨ FEATURES
