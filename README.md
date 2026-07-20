@@ -13,6 +13,10 @@ git clone https://github.com/anshlabs716/syskit.git
 
 # how to run
 cd syskit && chmod +x syskit.sh && bash syskit.sh
+
+#how to run c version
+cd syskit gcc -o syskit syskit.c
+./syskit
 ```
 
 ## ✨ FEATURES
