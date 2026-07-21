@@ -1,4 +1,4 @@
-# 🚀 SysKit — Universal Unix Toolkit (now in C and bash)
+# 🚀 SysKit — Universal Unix Toolkit (now in C bash and C-gui)
 
 **By AnshLabs716 and shozanbozan**
 
