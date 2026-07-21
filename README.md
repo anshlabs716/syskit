@@ -44,7 +44,7 @@ cd syskit && gcc -o syskit syskit.c && ./syskit
 # 5. RUN LITE C VERSION (Termux / Low-RAM)
 # ========================================
 cd syskit && gcc -o syskit-lite syskit-lite.c && ./syskit-lite
-```
+
 # ========================================
 # 6. RUN LITE BASH VERSION (Termux)
 # ========================================
