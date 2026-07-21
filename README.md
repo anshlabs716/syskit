@@ -82,7 +82,7 @@ Colors, Animations, Emojis, Reset
 ### Help: 
 About, Docs, Support, Version
 
-## 🖥️ SUPPORTED OS'
+## 🖥️ SUPPORTED OS
 Any Unix-like operating system
 
 
