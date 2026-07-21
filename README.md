@@ -10,13 +10,13 @@
 ```bash
 # Ubuntu / Debian / Mint:
 sudo apt update && sudo apt install -y build-essential libgtk-3-dev curl lm-sensors policykit-1 fastfetch
-
+```
 # Arch Linux / EndeavourOS / Manjaro:
 sudo pacman -Syu --needed base-devel gtk3 curl lm_sensors polkit fastfetch
-
+```
 # Fedora:
 sudo dnf install -y gcc gtk3-devel curl lm_sensors polkit fastfetch
-
+```
 # Termux (Android):
 pkg update && pkg install -y clang fastfetch
 
@@ -24,12 +24,12 @@ pkg update && pkg install -y clang fastfetch
 # 1. CLONE
 # ========================================
 git clone https://github.com/anshlabs716/syskit.git
-
+```
 # ========================================
 # 2. RUN GTK3 GUI VERSION (Linux Desktop)
 # ========================================
 cd syskit && gcc syskit-gui.c -o syskit-gui `pkg-config --cflags --libs gtk+-3.0` && ./syskit-gui
-
+```
 # ========================================
 # 3. RUN BASH VERSION
 # ========================================
