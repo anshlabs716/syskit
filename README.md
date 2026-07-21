@@ -19,27 +19,27 @@ sudo dnf install -y gcc gtk3-devel curl lm_sensors polkit fastfetch
 
 # Termux (Android):
 pkg update && pkg install -y clang fastfetch
-```
+
 # ========================================
 # 1. CLONE
 # ========================================
 git clone https://github.com/anshlabs716/syskit.git
-```
+
 # ========================================
 # 2. RUN GTK3 GUI VERSION (Linux Desktop)
 # ========================================
 cd syskit && gcc syskit-gui.c -o syskit-gui `pkg-config --cflags --libs gtk+-3.0` && ./syskit-gui
-```
+
 # ========================================
 # 3. RUN BASH VERSION
 # ========================================
 cd syskit && chmod +x syskit.sh && ./syskit.sh
-```
+
 # ========================================
 # 4. RUN FULL C VERSION (Linux/macOS/BSD)
 # ========================================
 cd syskit && gcc -o syskit syskit.c && ./syskit
-```
+
 # ========================================
 # 5. RUN LITE C VERSION (Termux / Low-RAM)
 # ========================================
@@ -49,7 +49,7 @@ cd syskit && gcc -o syskit-lite syskit-lite.c && ./syskit-lite
 # 6. RUN LITE BASH VERSION (Termux)
 # ========================================
 cd syskit && chmod +x syskit-lite.sh && ./syskit-lite.sh
-```
+
 ## ✨ FEATURES
 ### System: 
 Fastfetch, System Info, Hardware, CPU, GPU, RAM, Motherboard, Disk, Kernel, Uptime, Environment
