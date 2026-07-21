@@ -49,7 +49,7 @@ cd syskit && gcc -o syskit-lite syskit-lite.c && ./syskit-lite
 # 6. RUN LITE BASH VERSION (Termux)
 # ========================================
 cd syskit && chmod +x syskit-lite.sh && ./syskit-lite.sh
-
+```
 ## ✨ FEATURES
 ### System: 
 Fastfetch, System Info, Hardware, CPU, GPU, RAM, Motherboard, Disk, Kernel, Uptime, Environment
