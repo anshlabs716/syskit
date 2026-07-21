@@ -8,29 +8,45 @@
 
 
 ```bash
+# Ubuntu / Debian / Mint:
+sudo apt update && sudo apt install -y build-essential libgtk-3-dev curl lm-sensors policykit-1 fastfetch
+
+# Arch Linux / EndeavourOS / Manjaro:
+sudo pacman -Syu --needed base-devel gtk3 curl lm_sensors polkit fastfetch
+
+# Fedora:
+sudo dnf install -y gcc gtk3-devel curl lm_sensors polkit fastfetch
+
+# Termux (Android):
+pkg update && pkg install -y clang fastfetch
+```
 # ========================================
 # 1. CLONE
 # ========================================
 git clone https://github.com/anshlabs716/syskit.git
-
+```
 # ========================================
-# 2. RUN BASH VERSION
+# 2. RUN GTK3 GUI VERSION (Linux Desktop)
 # ========================================
-cd syskit && chmod +x syskit.sh && bash syskit.sh
-
+cd syskit && gcc syskit-gui.c -o syskit-gui `pkg-config --cflags --libs gtk+-3.0` && ./syskit-gui
+```
 # ========================================
-# 3. RUN FULL C VERSION (Linux/macOS/BSD)
+# 3. RUN BASH VERSION
+# ========================================
+cd syskit && chmod +x syskit.sh && ./syskit.sh
+```
+# ========================================
+# 4. RUN FULL C VERSION (Linux/macOS/BSD)
 # ========================================
 cd syskit && gcc -o syskit syskit.c && ./syskit
-
+```
 # ========================================
-# 4. RUN LITE C VERSION (skip pkg if not on termux)
+# 5. RUN LITE C VERSION (Termux / Low-RAM)
 # ========================================
-pkg update && pkg install clang fastfetch
 cd syskit && gcc -o syskit-lite syskit-lite.c && ./syskit-lite
-
+```
 # ========================================
-# 5. RUN LITE BASH VERSION (Termux)
+# 6. RUN LITE BASH VERSION (Termux)
 # ========================================
 cd syskit && chmod +x syskit-lite.sh && ./syskit-lite.sh
 ```
