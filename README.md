@@ -1,111 +1,64 @@
-# 🚀 SysKit — Universal Unix Toolkit (now in C bash and C-gui)
+# 🚀 SysKit — Universal Unix Toolkit
 
-**By AnshLabs716 and shozanbozan**
+<div align="center">
+
+[![Version](https://img.shields.io/badge/version-2.0.0-00bcd4?style=for-the-badge)](https://github.com/anshlabs716/syskit/releases)
+[![C](https://img.shields.io/badge/C-57.7%25-00599C?style=for-the-badge&logo=c&logoColor=white)](https://github.com/anshlabs716/syskit)
+[![Shell](https://img.shields.io/badge/Shell-42.3%25-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white)](https://github.com/anshlabs716/syskit)
+[![License](https://img.shields.io/github/license/anshlabs716/syskit?style=for-the-badge)](https://github.com/anshlabs716/syskit/blob/main/LICENSE)
+[![Release](https://img.shields.io/github/v/release/anshlabs716/syskit?style=for-the-badge)](https://github.com/anshlabs716/syskit/releases)
+[![Stars](https://img.shields.io/github/stars/anshlabs716/syskit?style=for-the-badge)](https://github.com/anshlabs716/syskit/stargazers)
+[![Issues](https://img.shields.io/github/issues/anshlabs716/syskit?style=for-the-badge)](https://github.com/anshlabs716/syskit/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/anshlabs716/syskit?style=for-the-badge)](https://github.com/anshlabs716/syskit/pulls)
+
+**A powerful all-in-one Unix toolkit for system information, monitoring, networking, maintenance, storage, security, backups, and more.**
+
+**C • Bash • GTK3 • Unix**
+
+</div>
 
 ---
 
-## ⚡ **Cloning the repo** (not recomended to do unless you're planning to contribute-or want the latest versions every time, just download latest from releases)
+## ⚡ About
 
+**SysKit** is an all-in-one Unix toolkit designed to bring a wide range of useful system utilities into one clean, organized interface.
 
-```bash
-# Ubuntu / Debian / Mint:
-sudo apt update && sudo apt install -y build-essential libgtk-3-dev curl lm-sensors policykit-1 fastfetch
+Instead of switching between dozens of commands, SysKit gives you a single toolkit for managing, inspecting, monitoring, and maintaining your system.
 
-# Arch Linux / EndeavourOS / Manjaro:
-sudo pacman -Syu --needed base-devel gtk3 curl lm_sensors polkit fastfetch
+### 🧩 What SysKit Includes
 
-# Fedora:
-sudo dnf install -y gcc gtk3-devel curl lm_sensors polkit fastfetch
+- 🖥️ System information
+- 📊 Resource monitoring
+- 🌐 Networking tools
+- 🔋 Power & battery information
+- 📦 Package management
+- 🧹 System cleaning
+- 💾 Storage utilities
+- 🔐 Security checks
+- 📂 File utilities
+- 🗜️ Archive tools
+- 🔑 Utility tools
+- 🌤️ Internet utilities
+- 💾 Backup tools
+- ⚙️ Settings
+- ❓ Help & diagnostics
 
-# Termux (Android):
-pkg update && pkg install -y clang fastfetch
+---
 
-# ========================================
-# 1. CLONE
-# ========================================
-git clone https://github.com/anshlabs716/syskit.git
+## ✨ Features
 
-# ========================================
-# 2. RUN GTK3 GUI VERSION (Linux Desktop)
-# ========================================
-cd syskit && gcc syskit-gui.c -o syskit-gui `pkg-config --cflags --libs gtk+-3.0` && ./syskit-gui
+### 🖥️ System Information
 
-# ========================================
-# 3. RUN BASH VERSION
-# ========================================
-cd syskit && chmod +x syskit.sh && ./syskit.sh
+- ⚡ Fastfetch
+- 🖥️ System information
+- 🧩 Hardware information
+- 🧠 CPU information
+- 🎮 GPU information
+- 🧮 RAM information
+- 🔧 Motherboard information
+- 💾 Disk information
+- 🐧 Kernel information
+- ⏱️ Uptime
+- 🌎 Environment information
 
-# ========================================
-# 4. RUN FULL C VERSION (Linux/macOS/BSD)
-# ========================================
-cd syskit && gcc -o syskit syskit.c && ./syskit
-
-# ========================================
-# 5. RUN LITE C VERSION (Termux / Low-RAM)
-# ========================================
-cd syskit && gcc -o syskit-lite syskit-lite.c && ./syskit-lite
-
-# ========================================
-# 6. RUN LITE BASH VERSION (Termux)
-# ========================================
-cd syskit && chmod +x syskit-lite.sh && ./syskit-lite.sh
-```
-## ✨ FEATURES
-### System: 
-Fastfetch, System Info, Hardware, CPU, GPU, RAM, Motherboard, Disk, Kernel, Uptime, Environment
-### Monitoring: 
-CPU, RAM, Disk, Network, Processes, Top Processes, Resource Monitor, Temperature
-### Network:
- Ping, Internet Test, DNS, Public IP, Local IP, Gateway, Wi-Fi
-### Power: 
-Battery charge, Charging, Health, Cycles
-### Packages: 
-Update, Upgrade, Clean, Autoremove, Search, List
-### Cleaner: 
-Cache, Temp, Logs, Trash, Homebrew, Timeshift, Snapper
-### Storage: 
-Disk Usage, Largest Directories, Largest Files, Mounted Drives, SMART
-### Security: 
-Firewall, Open Ports, SSH, Services, Recommendations
-### Files: 
-Find, Duplicates, Search Text, Tree, Stats
-### Archive: 
-Extract/Create ZIP, Extract/Create TAR.GZ
-### Utilities: 
-Password, Hash (MD5/SHA1/SHA256/SHA512), UUID, Random String
-### Internet: 
-Weather, Time, Calendar
-### Backup: 
-Backup, Restore, Compress, Verify
-### Settings: 
-Colors, Animations, Emojis, Reset
-### Help: 
-About, Docs, Support, Version
-
-## 🖥️ SUPPORTED OS
-Any Unix-like operating system
-
-
-## 📦 AUTO-INSTALL TOOLS
-fastfetch, curl, wget, jq, git, tar, unzip, zip, tree, lshw, dmidecode, smartctl, sensors, iftop, nmcli, lspci, hostname, uuidgen
-
-## 🎯 MENU
-1. 🖥️ System    2. 📊 Monitoring    3. 🌐 Network
-4. 🔋 Power      5. 📦 Packages      6. 🧹 Cleaner
-7. 💾 Storage    8. 🔐 Security      9. 📂 Files
-10. 🗜️ Archive  11. 🔑 Utilities    12. 🌤️ Internet
-13. 💾 Backup    14. ⚙️ Settings     15. ❓ Help
-0. Exit
-
-## Troubleshooting
-
-| Issue                | Solution                  |
-| -------------------- | ------------------------- |
-| Won't run            | chmod +x syskit.sh        |
-| Colours not visible  | ./syskit.sh --color=always|
-| Permission           | sudo ./syskit.sh          |
-
-## 📜 LICENSE
-MIT — free for personal and commercial use.
-
-SysKit v2.0.0 | © 2026 AnshLabs716 and shozanthebozan
+### 📊 Monitoring
