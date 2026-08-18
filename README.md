@@ -185,7 +185,11 @@ SysKit includes full-featured and lightweight implementations for different envi
 
 > ⚠️ macOS and BSD support are currently untested.
 
-> ⚠️ Archive creation and extraction are currently untested.
+> ⚠️ Archive creation and extraction are currently untested
+
+> ⚠️ Some tools may not work like they are supposed to if so either report it create a pull request or use a different version
+
+> ⚠️ some tools may not work also.
 
 ---
 
