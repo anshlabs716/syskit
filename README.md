@@ -23,16 +23,7 @@ Instead of jumping between different commands for system information, networking
 The project currently has implementations in **C, Bash, Python, and Java**, with lightweight variants designed for more restricted environments.
 
 
-<img width="679" height="516" alt="Screenshot_20260819_175036" src="https://github.com/user-attachments/assets/1be2c14c-7db4-4a24-baa5-d1c3c6d74ca5" />
-
-
-
-<img width="424" height="521" alt="Screenshot_20260819_174953" src="https://github.com/user-attachments/assets/4caddf1b-2079-42c5-934e-59d530b1cc81" />
-
-
-
-
-
+<img width="679" height="516" alt="Screenshot_20260819_175036" src="https://github.com/user-attachments/assets/1be2c14c-7db4-4a24-baa5-d1c3c6d74ca5" /> <img width="424" height="521" alt="Screenshot_20260819_174953" src="https://github.com/user-attachments/assets/4caddf1b-2079-42c5-934e-59d530b1cc81" />
 
 
 
