@@ -1,33 +1,39 @@
 # 🚀 SysKit
 
-<div align="center">
+### Universal System Toolkit
 
-### Universal Unix Toolkit
+**A powerful multi-language toolkit for system information, monitoring, maintenance, diagnostics, networking, storage, utilities, and more.**
 
-**A powerful all-in-one toolkit for system information, maintenance, diagnostics, networking, storage, utilities, and more.**
+SysKit brings useful system tools together into one organized interface across Linux, Termux, Unix-like systems, and other supported environments.
 
-[![C](https://img.shields.io/badge/C-57.7%25-00599C?style=for-the-badge&logo=c&logoColor=white)](https://github.com/anshlabs716/syskit)
-[![Shell](https://img.shields.io/badge/Shell-42.3%25-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white)](https://github.com/anshlabs716/syskit)
-[![License](https://img.shields.io/badge/license-MIT-yellow?style=for-the-badge)](https://github.com/anshlabs716/syskit)
-[![Platform](https://img.shields.io/badge/platform-Unix-lightgrey?style=for-the-badge)](https://github.com/anshlabs716/syskit)
+<p align="center">
 
-</div>
+![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Bash](https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![Termux](https://img.shields.io/badge/Termux-000000?style=for-the-badge&logo=termux&logoColor=white)
+
+</p>
 
 ---
 
 ## ⚡ About
 
-**SysKit** is an all-in-one Unix toolkit built with **C and Bash**.
+**SysKit** is an all-in-one system toolkit built with **C, Bash, Python, and Java**.
 
-It brings system information, monitoring, maintenance, networking, storage, security checks, file utilities, backups, and other useful tools into one organized interface.
+It provides system information, monitoring, networking, storage utilities, package management, maintenance tools, file utilities, security checks, backups, archives, and other useful system functions.
 
-SysKit includes full-featured and lightweight implementations for different environments.
+SysKit includes multiple implementations so users can choose the version that best fits their environment.
+
+> **One toolkit. Multiple implementations. Multiple environments.**
 
 ---
 
-## ✨ Features
+# ✨ Features
 
-### 🖥️ System Information
+## 🖥️ System Information
 
 - System information
 - CPU information
@@ -40,7 +46,7 @@ SysKit includes full-featured and lightweight implementations for different envi
 - Environment information
 - Fastfetch integration
 
-### 📊 Monitoring
+## 📊 Monitoring
 
 - CPU usage
 - RAM usage
@@ -49,7 +55,7 @@ SysKit includes full-featured and lightweight implementations for different envi
 - Network information
 - Temperature information
 
-### 🌐 Networking
+## 🌐 Networking
 
 - Ping
 - Internet connectivity checks
@@ -59,7 +65,7 @@ SysKit includes full-featured and lightweight implementations for different envi
 - Gateway information
 - Wi-Fi information
 
-### 🔋 Power
+## 🔋 Power
 
 - Battery information
 - Battery percentage
@@ -67,7 +73,11 @@ SysKit includes full-featured and lightweight implementations for different envi
 - Battery health
 - Power information
 
-### 📦 Package Management
+> Battery functionality depends on the operating system and hardware.
+
+## 📦 Package Management
+
+Depending on the operating system:
 
 - Package updates
 - Package upgrades
@@ -76,7 +86,9 @@ SysKit includes full-featured and lightweight implementations for different envi
 - Package searching
 - Installed package information
 
-### 🧹 System Cleaning
+Package-manager functionality is platform-specific.
+
+## 🧹 System Cleaning
 
 - Cache cleanup
 - Temporary file cleanup
@@ -85,7 +97,9 @@ SysKit includes full-featured and lightweight implementations for different envi
 - Package cache cleanup
 - System maintenance
 
-### 💾 Storage
+> Some cleaning operations may require administrator/root privileges.
+
+## 💾 Storage
 
 - Disk usage
 - Mounted drives
@@ -94,7 +108,9 @@ SysKit includes full-featured and lightweight implementations for different envi
 - Storage information
 - SMART information
 
-### 🔐 Security
+> SMART and hardware-level storage information may require additional permissions and dependencies.
+
+## 🔐 Security
 
 - Firewall information
 - Open ports
@@ -102,7 +118,9 @@ SysKit includes full-featured and lightweight implementations for different envi
 - Running services
 - Basic security checks
 
-### 📂 File Utilities
+> Security features are intended for system information and defensive diagnostics.
+
+## 📂 File Utilities
 
 - File searching
 - Text searching
@@ -110,16 +128,16 @@ SysKit includes full-featured and lightweight implementations for different envi
 - File statistics
 - Duplicate detection
 
-### 🗜️ Archives
+## 🗜️ Archives
 
 - ZIP creation
 - ZIP extraction
 - TAR.GZ creation
 - TAR.GZ extraction
 
-> ⚠️ Archive creation and extraction are currently **untested**.
+> ⚠️ Archive functionality still needs additional testing across platforms.
 
-### 🔑 Utilities
+## 🔑 Utilities
 
 - Password generation
 - Random string generation
@@ -129,28 +147,30 @@ SysKit includes full-featured and lightweight implementations for different envi
 - SHA512
 - UUID generation
 
-### 🌍 Internet Utilities
+## 🌍 Internet Utilities
 
 - Weather
 - Time
 - Calendar
 - Connectivity tools
 
-### 💾 Backup
+## 💾 Backup
 
 - Backup
 - Restore
 - Compression
 - Backup verification
 
-### ⚙️ Settings
+> Backup functionality may depend on available system tools and permissions.
+
+## ⚙️ Settings
 
 - Colors
 - Emojis
 - Animations
 - Configuration reset
 
-### ❓ Help
+## ❓ Help
 
 - About information
 - Help menu
@@ -159,259 +179,53 @@ SysKit includes full-featured and lightweight implementations for different envi
 
 ---
 
-## 🧩 Implementations
+# 🧩 Implementations
 
-| File | Language | Description |
+SysKit currently has multiple implementations.
+
+| Implementation | Language | Purpose |
 |---|---|---|
-| `syskit.sh` | Bash | Full-featured Shell toolkit |
-| `syskit.c` | C | Full native C implementation |
-| `syskit-lite.sh` | Bash | Lightweight Shell implementation |
+| `syskit.sh` | Bash | Full-featured shell toolkit |
+| `syskit-lite.sh` | Bash | Lightweight shell implementation |
+| `syskit.c` | C | Native C implementation |
 | `syskit-lite.c` | C | Lightweight C implementation |
 | `syskit-gui.c` | C / GTK3 | Graphical desktop interface |
+| `syskit.py` | Python | Python implementation |
+| `syskit lite.py` | Python | Lightweight Python / Termux implementation |
+| `Syskit.java` | Java | Java terminal implementation |
+| `SyskitLite.java` | Java | Lightweight Java implementation |
+
+The implementations aim to provide similar functionality, but feature availability can vary depending on the language, operating system, permissions, and available dependencies.
 
 ---
 
-## 🖥️ Platform Support
+# 🖥️ Platform Support
 
-| Platform | Support |
+| Platform | Status |
 |---|---|
-| 🐧 Linux | ✅ Fully supported — all SysKit versions |
+| 🐧 Linux | ✅ Primary platform |
 | 📱 Termux | ✅ Supported — Lite versions recommended |
-| 🍎 macOS | ⚠️ Shell targeted — untested |
-| 👹 BSD | ⚠️ Shell targeted — untested |
-| 💻 Low-RAM systems | ✅ Supported — Lite versions recommended |
+| 🍎 macOS | ⚠️ Shell targeted — needs testing |
+| 👹 BSD | ⚠️ Shell targeted — needs testing |
+| 💻 Low-RAM systems | ✅ Lite versions recommended |
+| 🪟 Windows | ⚠️ Not a primary target |
 
-> ⚠️ Some tools may not work on every system depending on the OS, hardware, drivers, dependencies, permissions, or platform-specific commands.
+> ⚠️ Not every SysKit feature works on every operating system.
 
-> ⚠️ macOS and BSD support are currently untested.
+> ⚠️ Some features depend on commands, permissions, hardware, drivers, or platform-specific APIs.
 
-> ⚠️ Archive creation and extraction are currently untested
-
-> ⚠️ Some tools may not work like they are supposed to if so either report it create a pull request or use a different version
-
-> ⚠️ some tools may not work also.
+> ⚠️ macOS and BSD support still require additional testing.
 
 ---
 
-## 📦 Requirements
+# 📦 Dependencies
 
-Depending on the feature being used, SysKit may require:
+SysKit does **not** require every dependency below for every feature.
 
-- Bash
-- GCC
-- Clang
-- curl
-- wget
-- git
-- fastfetch
-- jq
-- tar
-- zip
-- unzip
-- tree
-- lshw
-- dmidecode
-- smartctl
-- sensors
-- nmcli
-- lspci
-- uuidgen
+Install the dependencies needed for the implementation and features you want to use.
 
-You do not need every dependency for every feature.
+## 🐧 Arch Linux / Arch-based
 
----
-
-## 📥 Installation
-
-### Clone
-
-    git clone https://github.com/anshlabs716/syskit.git
-    cd syskit
-
-### Bash
-
-    chmod +x syskit.sh
-    ./syskit.sh
-
-### Lite Bash
-
-    chmod +x syskit-lite.sh
-    ./syskit-lite.sh
-
-### C
-
-    gcc syskit.c -o syskit
-    ./syskit
-
-### Lite C
-
-    gcc syskit-lite.c -o syskit-lite
-    ./syskit-lite
-
-### GTK3 GUI
-
-    gcc syskit-gui.c -o syskit-gui $(pkg-config --cflags --libs gtk+-3.0)
-    ./syskit-gui
-
-### Termux
-
-    pkg update
-    pkg install clang
-    clang syskit-lite.c -o syskit-lite
-    ./syskit-lite
-
----
-
-## 📋 Main Menu
-
-    ╔══════════════════════════════════════╗
-    ║              🚀 SYSKIT               ║
-    ╚══════════════════════════════════════╝
-
-     1. 🖥️  System
-     2. 📊 Monitoring
-     3. 🌐 Network
-     4. 🔋 Power
-     5. 📦 Packages
-     6. 🧹 Cleaner
-     7. 💾 Storage
-     8. 🔐 Security
-     9. 📂 Files
-    10. 🗜️  Archives
-    11. 🔑 Utilities
-    12. 🌍 Internet
-    13. 💾 Backup
-    14. ⚙️  Settings
-    15. ❓ Help
-    16. 🚪 Exit
-
----
-
-## 📁 Project Structure
-
-    syskit/
-    ├── syskit.c
-    ├── syskit-lite.c
-    ├── syskit-gui.c
-    ├── syskit.sh
-    ├── syskit-lite.sh
-    ├── Syskit.desktop
-    ├── CHANGELOG.md
-    ├── CONTRIBUTING.md
-    ├── SECURITY.md
-    ├── LICENSE
-    └── README.md
-
----
-
-## 🛠️ Troubleshooting
-
-### Permission Denied
-
-    chmod +x syskit.sh
-
-### Missing Command
-
-Install the dependency required by the feature you are trying to use.
-
-### C Compilation Fails
-
-Make sure GCC or Clang is installed.
-
-### GTK3 Compilation Fails
-
-Make sure GTK3 development libraries and `pkg-config` are installed.
-
-### A Feature Does Not Work
-
-The feature may be platform-specific, dependency-dependent, or currently untested.
-
-Check your operating system, hardware, dependencies, permissions, and SysKit implementation before reporting the issue.
-
----
-
-## 🗺️ Roadmap
-
-- [ ] Expand cross-platform support
-- [ ] Test macOS
-- [ ] Test BSD
-- [ ] Improve Termux support
-- [ ] Improve GTK3 GUI
-- [ ] Expand monitoring tools
-- [ ] Add more networking utilities
-- [ ] Improve hardware detection
-- [ ] Improve Lite implementations
-- [ ] Expand documentation
-- [ ] Add automated testing
-- [ ] Fully test archive functionality
-- [ ] Improve platform-specific compatibility
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-
-1. Fork the repository
-2. Create a branch
-3. Make your changes
-4. Test your changes
-5. Commit your changes
-6. Push your branch
-7. Open a Pull Request
-
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) for more information.
-
----
-
-## 🔐 Security
-
-If you discover a security issue, please report it responsibly.
-
-See [`SECURITY.md`](SECURITY.md) for the security policy.
-
----
-
-## 📝 Changelog
-
-See [`CHANGELOG.md`](CHANGELOG.md) for the project changelog.
-
----
-
-## 📜 License
-
-SysKit is released under the **MIT License**.
-
-See [`LICENSE`](LICENSE) for the full license text.
-
----
-
-## 👨‍💻 Authors
-
-**AnshLabs716**
-
-**shozanthebozan**
-
----
-
-## ⭐ Support
-
-If you find SysKit useful:
-
-- ⭐ Star the repository
-- 🐛 Report bugs
-- 💡 Suggest features
-- 🔧 Contribute code
-- 📖 Improve documentation
-
----
-
-<div align="center">
-
-### 🚀 SysKit
-
-**One toolkit. Multiple Unix environments.**
-
-**C • Bash • GTK3 • Unix**
-
-</div>
+```bash
+sudo pacman -Syu
+sudo pacman -S base-devel gcc clang python openjdk curl wget git jq fastfetch tar zip unzip tree lshw dmidecode smartmontools lm_sensors pciutils util-linux
