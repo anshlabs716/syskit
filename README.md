@@ -26,6 +26,9 @@ The project currently has implementations in **C, Bash, Python, and Java**, with
 this is full
 <img width="424" height="521" alt="Screenshot_20260819_174953" src="https://github.com/user-attachments/assets/4caddf1b-2079-42c5-934e-59d530b1cc81" />
 this is lite 
+<img width="1366" height="719" alt="Screenshot_20260819_180708" src="https://github.com/user-attachments/assets/5c6c45ee-8565-47d2-a9be-353ef5a19f28" />
+this is the gui
+
 
 
 
