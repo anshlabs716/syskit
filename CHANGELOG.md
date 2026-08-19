@@ -1,33 +1,100 @@
 # 📝 Changelog
 
-## [2.0.0] - 2026-07-17
+All notable changes to SysKit are documented here.
+
+## [1.0.0-java-lite] - 2026-08-18
 
 ### Added
-- 100+ tools across 15 categories
-- Auto-installation of missing dependencies
-- Proper root/sudo handling
-- Progress indicators for long operations
-- Fullscreen detection
-- First-run wizard
-- Public IP with multiple fallbacks
 
-### Fixed
-- Box wrapping and alignment
-- Unbound variable errors
-- Unexpected exits in cleaner menu
-- Top processes duplicates
-- RAM info formatting
-
-### Changed
-- Complete rewrite from v1.0.0
-- Professional CLI interface
-- Better error handling
+* Java Lite implementation
+* Lightweight SysKit functionality
+* Designed for lower-resource environments
+* `SyskitLite.java`
 
 ---
 
-## [1.0.0] - 2026-06-01
+## [1.0.0-java] - 2026-08-18
 
 ### Added
-- Initial release
-- Basic system info
-- Package manager support
+
+* Full Java implementation
+* SysKit functionality implemented in Java
+* Command-line interface
+* System utilities and diagnostics
+
+---
+
+## [1.0.0-python-lite] - 2026-08-18
+
+### Added
+
+* Python Lite implementation
+* Lightweight command-line toolkit
+* Termux-focused implementation
+* Reduced-resource SysKit functionality
+* `syskit lite.py`
+
+---
+
+## [1.0.0-python] - 2026-08-18
+
+### Added
+
+* Full Python implementation
+* SysKit functionality implemented in Python
+* Command-line interface
+* System utilities and diagnostics
+* `syskit.py`
+
+---
+
+## [1.0.0-lite] - 2026-07-17
+
+### Added
+
+* Lightweight C implementation
+* Reduced-resource SysKit toolkit
+* Core system information and utility features
+* `syskit-lite.c`
+* `syskit-lite.sh`
+
+---
+
+## [1.0.0] - 2026-07-17
+
+### Added
+
+* Initial full SysKit release
+* 100+ tools across 15 categories
+* System information
+* CPU, RAM, storage, and process monitoring
+* Network diagnostics
+* Battery and power information
+* Package management
+* System cleaning
+* Storage utilities
+* Security checks
+* File utilities
+* Archive utilities
+* Internet utilities
+* Backup and restore
+* Settings and customization
+* Root/sudo handling
+* Dependency handling
+* Progress indicators
+* Fullscreen terminal support
+* Public IP detection with multiple fallbacks
+
+### Fixed
+
+* Box wrapping and alignment
+* Unbound variable errors
+* Cleaner menu unexpected exits
+* Duplicate top-process entries
+* RAM information formatting
+
+### Changed
+
+* Professional CLI interface
+* Improved error handling
+* Expanded system utilities
