@@ -6,7 +6,6 @@
 [![Java](https://img.shields.io/badge/Java-26.1%25-ED8B00?style=for-the-badge\&logo=openjdk\&logoColor=white)](https://github.com/anshlabs716/syskit)
 [![Shell](https://img.shields.io/badge/Shell-22.9%25-89E051?style=for-the-badge\&logo=gnubash\&logoColor=white)](https://github.com/anshlabs716/syskit)
 [![Python](https://img.shields.io/badge/Python-19.7%25-3776AB?style=for-the-badge\&logo=python\&logoColor=white)](https://github.com/anshlabs716/syskit)
-
 [![Linux](https://img.shields.io/badge/Linux-Supported-FCC624?style=for-the-badge\&logo=linux\&logoColor=black)](https://github.com/anshlabs716/syskit)
 [![Termux](https://img.shields.io/badge/Termux-Supported-000000?style=for-the-badge\&logo=termux\&logoColor=white)](https://github.com/anshlabs716/syskit)
 
