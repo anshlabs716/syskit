@@ -420,15 +420,15 @@ SysKit has multiple implementations, so compatibility matters.
 
 ## Feature Testing
 
-* [ ] C
-* [ ] C Lite
-* [ ] Bash
-* [ ] Bash Lite
+* [x] C
+* [x] C Lite
+* [x] Bash
+* [x] Bash Lite
 * [ ] Python
 * [ ] Python Lite
 * [ ] Java
 * [ ] Java Lite
-* [ ] GTK3
+* [x] GTK3
 
 ## Platform Testing
 
@@ -436,30 +436,30 @@ SysKit has multiple implementations, so compatibility matters.
 * [ ] Ubuntu
 * [ ] Linux Mint
 * [ ] Fedora
-* [ ] Arch Linux
+* [x] Arch Linux
 * [ ] Alpine
 * [ ] openSUSE
 * [ ] Void Linux
-* [ ] Termux
+* [x] Termux
 * [ ] macOS
 * [ ] BSD
 
 ## Feature Areas
 
-* [ ] System information
-* [ ] Monitoring
-* [ ] Networking
-* [ ] Power
+* [x] System information
+* [x] Monitoring
+* [x] Networking
+* [x] Power
 * [ ] Package management
 * [ ] Cleaning
-* [ ] Storage
-* [ ] Security
-* [ ] File utilities
+* [x] Storage
+* [x] Security
+* [x] File utilities
 * [ ] Archives
-* [ ] Utilities
-* [ ] Internet tools
+* [x] Utilities
+* [x] Internet tools
 * [ ] Backup / restore
-* [ ] Settings
+* [x] Settings
 
 ---
 
