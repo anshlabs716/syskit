@@ -482,17 +482,17 @@ SysKit has multiple implementations, so compatibility matters.
 * [ ] Expand monitoring
 * [ ] Expand networking
 * [ ] Improve storage diagnostics
-* [ ] Improve Lite versions
+* [X] Improve Lite versions
 * [ ] Improve documentation
 * [ ] Automated testing
-
+* [ ] maybe a apk soon?
 ## 🌍 Compatibility
 
 * [x] Linux
 * [x] Termux
 * [ ] Debian-based testing
 * [ ] Fedora-based testing
-* [ ] Arch-based testing
+* [x] Arch-based testing
 * [ ] Alpine testing
 * [ ] openSUSE testing
 * [ ] Void Linux testing
@@ -501,10 +501,10 @@ SysKit has multiple implementations, so compatibility matters.
 
 ## 🧪 Reliability
 
-* [ ] Test every menu option
-* [ ] Test every implementation
+* [x] Test every menu option
+* [x] Test every implementation
 * [ ] Test multiple distributions
-* [ ] Test low-resource environments
+* [x] Test low-resource environments
 * [ ] Test archive functionality
 * [ ] Test backup / restore
 * [ ] Test missing dependencies
