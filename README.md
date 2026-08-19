@@ -9,230 +9,107 @@
 
 [![Linux](https://img.shields.io/badge/Linux-Supported-FCC624?style=for-the-badge\&logo=linux\&logoColor=black)](https://github.com/anshlabs716/syskit)
 [![Termux](https://img.shields.io/badge/Termux-Supported-000000?style=for-the-badge\&logo=termux\&logoColor=white)](https://github.com/anshlabs716/syskit)
-[![GTK3](https://img.shields.io/badge/GTK3-GUI-7FE719?style=for-the-badge\&logo=gtk\&logoColor=black)](https://github.com/anshlabs716/syskit)
-[![Open Source](https://img.shields.io/badge/Open%20Source-Yes-3DA639?style=for-the-badge\&logo=opensourceinitiative\&logoColor=white)](https://github.com/anshlabs716/syskit)
 
-> **SysKit** is an all-in-one toolkit for system information, diagnostics, maintenance, networking, storage, security, utilities, and more.
->
-> Available in **C, Bash, Python, and Java**, with Lite versions for more restricted environments and a GTK3 GUI for Linux.
+> **SysKit** is a multi-language system toolkit for information, diagnostics, maintenance, networking, storage, utilities, and more.
 
 ---
 
-## ✨ What is SysKit?
+## 🧠 What is SysKit?
 
-SysKit brings commonly used system tools together into one organized interface.
+SysKit brings a collection of useful system tools into one menu-driven toolkit.
 
-Instead of remembering dozens of commands, SysKit gives you a single place to access system information, monitoring, networking, storage tools, maintenance utilities, diagnostics, and more.
+Instead of jumping between different commands for system information, networking, storage, maintenance, and diagnostics, SysKit puts them together in one place.
 
-The project is built around **multiple implementations**, allowing SysKit to work across different environments rather than being locked to one language or platform.
+The project currently has implementations in **C, Bash, Python, and Java**, with lightweight variants designed for more restricted environments.
 
 ```text
-                 ┌──────────────────────┐
-                 │       🚀 SysKit      │
-                 └──────────┬───────────┘
+                         🚀 SysKit
                             │
-        ┌───────────────────┼───────────────────┐
-        │                   │                   │
-     Terminal             Lite                 GUI
-        │                   │                   │
-   ┌────┼────┐        ┌─────┼─────┐          GTK3
-   │    │    │        │     │     │
-   C  Bash  Python    C   Bash  Python
-            │
-          Java
+          ┌─────────────────┼─────────────────┐
+          │                 │                 │
+       Full CLI            Lite              GUI
+          │                 │                 │
+     ┌────┼────┐       ┌────┼────┐           │
+     │    │    │       │    │    │          GTK3
+     C  Bash Python    C  Bash Python
+          │
+         Java
 ```
 
 ---
 
-## 🧰 Features
+## ✨ Features
 
-### 🖥️ System Information
+| Category          | What SysKit provides                                         |
+| ----------------- | ------------------------------------------------------------ |
+| 🖥️ **System**    | OS, kernel, CPU, GPU, RAM, hardware, uptime, environment     |
+| 📊 **Monitoring** | CPU, RAM, disk, processes, network, temperature              |
+| 🌐 **Network**    | Ping, connectivity, IP, DNS, gateway, Wi-Fi                  |
+| 🔋 **Power**      | Battery, charging, health, power information                 |
+| 📦 **Packages**   | Updates, upgrades, search, installed packages, cleanup       |
+| 🧹 **Cleaner**    | Cache, temporary files, logs, trash, package cache           |
+| 💾 **Storage**    | Disk usage, mounted drives, directories, large files, SMART  |
+| 🔐 **Security**   | Firewall, open ports, SSH, services, basic checks            |
+| 📁 **Files**      | Search, text search, directory trees, statistics, duplicates |
+| 📦 **Archives**   | ZIP and TAR.GZ creation/extraction                           |
+| 🛠️ **Utilities** | Passwords, random strings, hashes, UUIDs                     |
+| 🌍 **Internet**   | Weather, time, calendar, connectivity                        |
+| 💾 **Backup**     | Backup, restore, compression, verification                   |
+| ⚙️ **Settings**   | Colors, emojis, animations, reset                            |
+| ❓ **Help**        | Help, about, documentation, support                          |
 
-* OS information
-* Kernel information
-* CPU information
-* GPU information
-* RAM information
-* Storage information
-* Hardware information
-* Uptime
-* Environment information
-* Fastfetch integration
-
-### 📊 Monitoring
-
-* CPU usage
-* RAM usage
-* Disk usage
-* Running processes
-* Network information
-* Temperature information
-* System status
-
-### 🌐 Networking
-
-* Ping
-* Internet connectivity checks
-* Local IP
-* Public IP
-* DNS information
-* Gateway information
-* Wi-Fi information
-* Basic network diagnostics
-
-### 🔋 Power
-
-* Battery information
-* Battery percentage
-* Charging status
-* Battery health
-* Power information
-
-### 📦 Package Management
-
-Where supported by the host system:
-
-* Update packages
-* Upgrade packages
-* Search packages
-* View installed packages
-* Cleanup
-* Autoremove
-
-### 🧹 System Cleaning
-
-* Cache cleanup
-* Temporary-file cleanup
-* Log cleanup
-* Trash cleanup
-* Package-cache cleanup
-* General maintenance
-
-> ⚠️ Some cleaning operations can modify system files and may require elevated permissions.
-
-### 💾 Storage
-
-* Disk usage
-* Mounted drives
-* Directory sizes
-* Large-file detection
-* Storage information
-* SMART information where supported
-
-### 🔐 Security & Diagnostics
-
-* Firewall status
-* Open-port checks
-* SSH information
-* Service information
-* Basic security checks
-* System diagnostics
-
-### 📁 File Utilities
-
-* File searching
-* Text searching
-* Directory trees
-* File statistics
-* Duplicate detection
-* Directory information
-
-### 📦 Archives
-
-* ZIP creation
-* ZIP extraction
-* TAR.GZ creation
-* TAR.GZ extraction
-
-> 🧪 Archive functionality is still being tested across different environments.
-
-### 🛠️ Utilities
-
-* Password generation
-* Random strings
-* MD5
-* SHA1
-* SHA256
-* SHA512
-* UUID generation
-
-### 🌍 Internet Utilities
-
-* Weather
-* Time
-* Calendar
-* Connectivity checks
-
-### 💾 Backup
-
-* Backup creation
-* Backup restoration
-* Compression
-* Verification
-
-### ⚙️ Settings
-
-* Colors
-* Emojis
-* Animations
-* Reset settings
-
-### ❓ Help
-
-* Help menu
-* About SysKit
-* Documentation
-* Support information
+> ⚠️ Feature availability depends on the implementation, operating system, installed dependencies, hardware, and permissions.
 
 ---
 
-## 🧩 Implementations
+# 🧩 Implementations
 
-| Implementation  | Language | File              | Purpose                             |
-| --------------- | -------- | ----------------- | ----------------------------------- |
-| **SysKit**      | C        | `syskit.c`        | Full native terminal version        |
-| **SysKit Lite** | C        | `syskit-lite.c`   | Lightweight C version               |
-| **SysKit GUI**  | C / GTK3 | `syskit-gui.c`    | Linux graphical interface           |
-| **SysKit**      | Bash     | `syskit.sh`       | Shell implementation                |
-| **SysKit Lite** | Bash     | `syskit-lite.sh`  | Lightweight shell version           |
-| **SysKit**      | Python   | `syskit.py`       | Python terminal version             |
-| **SysKit Lite** | Python   | `syskit lite.py`  | Lightweight Python / Termux version |
-| **SysKit**      | Java     | `Syskit.java`     | Java terminal version               |
-| **SysKit Lite** | Java     | `SyskitLite.java` | Lightweight Java version            |
+SysKit isn't tied to a single language.
+
+| Version         | Language | File              | Environment                       |
+| --------------- | -------- | ----------------- | --------------------------------- |
+| **SysKit**      | C        | `syskit.c`        | Full terminal version             |
+| **SysKit Lite** | C        | `syskit-lite.c`   | Lightweight environments          |
+| **SysKit GUI**  | C / GTK3 | `syskit-gui.c`    | Linux desktop                     |
+| **SysKit**      | Bash     | `syskit.sh`       | Unix-like systems                 |
+| **SysKit Lite** | Bash     | `syskit-lite.sh`  | Lightweight environments          |
+| **SysKit**      | Python   | `syskit.py`       | Python environments               |
+| **SysKit Lite** | Python   | `syskit lite.py`  | Termux / lightweight environments |
+| **SysKit**      | Java     | `Syskit.java`     | Java environments                 |
+| **SysKit Lite** | Java     | `SyskitLite.java` | Lightweight Java environments     |
 
 ---
 
 # 🖥️ Platform Support
 
-| Platform           |    Status   | Recommended Version |
-| ------------------ | :---------: | ------------------- |
-| 🐧 Linux           | ✅ Supported | Full SysKit         |
-| 📱 Termux          | ✅ Supported | Lite versions       |
-| 🍎 macOS           |  🧪 Testing | Bash / Lite         |
-| 👻 BSD             |  🧪 Testing | Bash / Lite         |
-| 💻 Low-RAM systems | ✅ Supported | Lite versions       |
+| Platform  | Status | Notes                             |
+| --------- | :----: | --------------------------------- |
+| 🐧 Linux  |    ✅   | Primary platform                  |
+| 📱 Termux |    ✅   | Lite versions recommended         |
+| 🍎 macOS  |   🧪   | Shell compatibility needs testing |
+| 👻 BSD    |   🧪   | Shell compatibility needs testing |
 
-### 🐧 Linux
+### Linux
 
 Linux is the primary target for SysKit.
 
-The exact feature set depends on your distribution, installed utilities, hardware, and permissions.
+The exact functionality depends on your distribution and installed system utilities.
 
-### 📱 Termux
+### Termux
 
-Termux is supported, with the **Lite implementations** recommended.
+SysKit can run in Termux, with the Lite implementations being the recommended choice.
 
-Android/Termux does not expose every Linux utility or system interface, so some full SysKit features may not be available.
+Android does not expose every traditional Linux interface, so some features may not be available.
 
-### 🍎 macOS & BSD
+### macOS / BSD
 
-Shell compatibility is a goal, but these platforms still require additional testing.
+Shell-based compatibility is planned, but these platforms still need proper testing.
 
 ---
 
 # 📥 Installation
 
-## 1. Clone SysKit
+## Clone
 
 ```bash
 git clone https://github.com/anshlabs716/syskit.git
@@ -241,16 +118,16 @@ cd syskit
 
 ---
 
-# 🐚 Bash
+## 🐚 Bash
 
-### Full Version
+### Full
 
 ```bash
 chmod +x syskit.sh
 ./syskit.sh
 ```
 
-### Lite Version
+### Lite
 
 ```bash
 chmod +x syskit-lite.sh
@@ -259,21 +136,21 @@ chmod +x syskit-lite.sh
 
 ---
 
-# 🐍 Python
+## 🐍 Python
 
-### Full Version
+### Full
 
 ```bash
 python3 syskit.py
 ```
 
-### Lite Version
+### Lite
 
 ```bash
 python3 "syskit lite.py"
 ```
 
-### Install Python
+### Python
 
 **Debian / Ubuntu / Mint**
 
@@ -302,25 +179,23 @@ sudo apk add python3
 
 ---
 
-# ☕ Java
+## ☕ Java
 
-Java versions require a JDK.
-
-Check your installation:
+Check your JDK:
 
 ```bash
 java --version
 javac --version
 ```
 
-### Full Version
+### Full
 
 ```bash
 javac Syskit.java
 java Syskit
 ```
 
-### Lite Version
+### Lite
 
 ```bash
 javac SyskitLite.java
@@ -356,23 +231,23 @@ sudo apk add openjdk17
 
 ---
 
-# 🦾 C
+## 🦾 C
 
-### Full Version
+### Full
 
 ```bash
 gcc syskit.c -o syskit
 ./syskit
 ```
 
-### Lite Version
+### Lite
 
 ```bash
 gcc syskit-lite.c -o syskit-lite
 ./syskit-lite
 ```
 
-### Using Clang
+### Clang
 
 ```bash
 clang syskit.c -o syskit
@@ -381,7 +256,7 @@ clang syskit.c -o syskit
 
 ---
 
-# 🖥️ GTK3 GUI
+## 🖥️ GTK3
 
 The GTK3 version requires GTK3 development libraries and `pkg-config`.
 
@@ -420,7 +295,7 @@ sudo pacman -S base-devel pkgconf gtk3
 
 # 📱 Termux
 
-Install the core tools:
+Install the basic tools:
 
 ```bash
 pkg update
@@ -428,27 +303,27 @@ pkg upgrade
 pkg install git python clang
 ```
 
-Clone the repository:
+Clone SysKit:
 
 ```bash
 git clone https://github.com/anshlabs716/syskit.git
 cd syskit
 ```
 
-### 🐍 Python Lite
+### Python Lite
 
 ```bash
 python "syskit lite.py"
 ```
 
-### 🦾 C Lite
+### C Lite
 
 ```bash
 clang syskit-lite.c -o syskit-lite
 ./syskit-lite
 ```
 
-### ☕ Java Lite
+### Java Lite
 
 If a suitable JDK is available:
 
@@ -457,15 +332,13 @@ javac SyskitLite.java
 java SyskitLite
 ```
 
-> 💡 **Tip:** Start with a Lite version on Termux. Full versions may depend on Linux utilities that Android does not provide.
+> 💡 **Recommended:** Start with a Lite implementation on Termux.
 
 ---
 
 # 📦 Dependencies
 
-SysKit does **not** require every dependency for every implementation.
-
-Install only what your chosen implementation and features need.
+Different implementations use different dependencies.
 
 ## Core
 
@@ -477,6 +350,8 @@ Install only what your chosen implementation and features need.
 
 ## Common Utilities
 
+Some features may use:
+
 * `curl`
 * `wget`
 * `jq`
@@ -486,9 +361,9 @@ Install only what your chosen implementation and features need.
 * `unzip`
 * `tree`
 
-## Hardware & System Tools
+## Hardware / System
 
-Some features may use:
+Depending on the feature and platform:
 
 * `lshw`
 * `dmidecode`
@@ -499,41 +374,41 @@ Some features may use:
 
 ## Networking
 
-Depending on your platform:
+Some networking features may use:
 
 * `ping`
 * `nmcli`
-* DNS utilities
 * NetworkManager
+* DNS utilities
 
-> ⚠️ Dependency availability varies between distributions. If a feature reports that a command is missing, install the corresponding package for your operating system.
+> Not every dependency is required to run every version of SysKit.
 
 ---
 
-# 🧭 Main Menu
+# 🎛️ Main Menu
 
-SysKit organizes its tools into a simple menu:
+SysKit uses a simple numbered menu:
 
 ```text
 ╭────────────────────────────╮
 │          🚀 SysKit         │
 ├────────────────────────────┤
-│  1. System                │
-│  2. Monitoring            │
-│  3. Network               │
-│  4. Power                 │
-│  5. Packages              │
-│  6. Cleaner               │
-│  7. Storage               │
-│  8. Security              │
-│  9. Files                 │
-│ 10. Archives              │
-│ 11. Utilities             │
-│ 12. Internet              │
-│ 13. Backup                │
-│ 14. Settings              │
-│ 15. Help                  │
-│ 16. Exit                  │
+│  1.  System               │
+│  2.  Monitoring           │
+│  3.  Network              │
+│  4.  Power                │
+│  5.  Packages             │
+│  6.  Cleaner              │
+│  7.  Storage              │
+│  8.  Security             │
+│  9.  Files                │
+│ 10.  Archives             │
+│ 11.  Utilities            │
+│ 12.  Internet             │
+│ 13.  Backup               │
+│ 14.  Settings             │
+│ 15.  Help                 │
+│ 16.  Exit                 │
 ╰────────────────────────────╯
 ```
 
@@ -541,29 +416,50 @@ SysKit organizes its tools into a simple menu:
 
 # 🧪 Testing
 
-SysKit has several implementations, so compatibility testing is an important part of development.
+SysKit has multiple implementations, so compatibility matters.
 
-## Current Testing Checklist
+## Feature Testing
 
-* [ ] Test all C features
-* [ ] Test all Bash features
-* [ ] Test all Python features
-* [ ] Test all Java features
-* [ ] Test Lite implementations
-* [ ] Test GTK3 GUI
-* [ ] Test Termux
-* [ ] Test package management
-* [ ] Test cleaning functions
-* [ ] Test backup and restore
-* [ ] Test archive creation
-* [ ] Test archive extraction
-* [ ] Test hardware detection
-* [ ] Test network tools
-* [ ] Test storage tools
-* [ ] Test security checks
-* [ ] Test error handling
-* [ ] Test missing dependencies
-* [ ] Test permission handling
+* [ ] C
+* [ ] C Lite
+* [ ] Bash
+* [ ] Bash Lite
+* [ ] Python
+* [ ] Python Lite
+* [ ] Java
+* [ ] Java Lite
+* [ ] GTK3
+
+## Platform Testing
+
+* [ ] Debian
+* [ ] Ubuntu
+* [ ] Linux Mint
+* [ ] Fedora
+* [ ] Arch Linux
+* [ ] Alpine
+* [ ] openSUSE
+* [ ] Void Linux
+* [ ] Termux
+* [ ] macOS
+* [ ] BSD
+
+## Feature Areas
+
+* [ ] System information
+* [ ] Monitoring
+* [ ] Networking
+* [ ] Power
+* [ ] Package management
+* [ ] Cleaning
+* [ ] Storage
+* [ ] Security
+* [ ] File utilities
+* [ ] Archives
+* [ ] Utilities
+* [ ] Internet tools
+* [ ] Backup / restore
+* [ ] Settings
 
 ---
 
@@ -581,58 +477,57 @@ SysKit has several implementations, so compatibility testing is an important par
 * [x] Java Lite implementation
 * [x] GTK3 implementation
 * [ ] Improve error handling
-* [ ] Improve compatibility detection
-* [ ] Expand hardware detection
+* [ ] Improve dependency detection
+* [ ] Expand hardware support
 * [ ] Expand monitoring
 * [ ] Expand networking
-* [ ] Expand storage diagnostics
-* [ ] Improve Lite implementations
+* [ ] Improve storage diagnostics
+* [ ] Improve Lite versions
 * [ ] Improve documentation
-* [ ] Add automated tests
+* [ ] Automated testing
 
-## 🌍 Cross-Platform
+## 🌍 Compatibility
 
-* [x] Linux support
-* [x] Termux support
-* [ ] Test Debian-based distributions
-* [ ] Test Fedora-based distributions
-* [ ] Test Arch-based distributions
-* [ ] Test Alpine
-* [ ] Test openSUSE
-* [ ] Test Void Linux
-* [ ] Test macOS
-* [ ] Test BSD
-* [ ] Improve platform-specific compatibility
+* [x] Linux
+* [x] Termux
+* [ ] Debian-based testing
+* [ ] Fedora-based testing
+* [ ] Arch-based testing
+* [ ] Alpine testing
+* [ ] openSUSE testing
+* [ ] Void Linux testing
+* [ ] macOS testing
+* [ ] BSD testing
 
 ## 🧪 Reliability
 
 * [ ] Test every menu option
 * [ ] Test every implementation
-* [ ] Test multiple Linux distributions
-* [ ] Test low-resource systems
-* [ ] Fully test archive functionality
-* [ ] Fully test backup / restore
-* [ ] Improve dependency detection
-* [ ] Improve failure messages
-* [ ] Add automated regression testing
+* [ ] Test multiple distributions
+* [ ] Test low-resource environments
+* [ ] Test archive functionality
+* [ ] Test backup / restore
+* [ ] Test missing dependencies
+* [ ] Test permission handling
+* [ ] Improve compatibility detection
 
 ## 📱 Android
 
-A possible future direction is turning SysKit into a proper Android application.
+Android is a **possible future direction**, not a completed feature.
 
-* [ ] Research Android system APIs
-* [ ] Research Java/Kotlin Android architecture
+* [ ] Research Android APIs
+* [ ] Research Android architecture
 * [ ] Design Android UI
-* [ ] Port supported SysKit functionality
-* [ ] Investigate Shizuku integration
-* [ ] Investigate ADB integration
+* [ ] Port supported functionality
+* [ ] Investigate Shizuku
+* [ ] Investigate ADB
 * [ ] Investigate root-aware features
-* [ ] Build Android prototype
+* [ ] Build prototype
 * [ ] Test on real devices
-* [ ] **Maybe build a full SysKit APK**
-* [ ] **Maybe don't — depends on complexity and Android restrictions**
+* [ ] **Maybe build a SysKit APK**
+* [ ] **Decide whether a full Android version is practical**
 
-> 🚧 The Android version would not simply execute the existing Linux code. Android has different permissions, APIs, and system interfaces, so supported features would need Android-native implementations.
+> Android would require an Android-native implementation rather than simply packaging the existing Linux code into an APK.
 
 ---
 
@@ -671,9 +566,7 @@ syskit/
 
 # 🛠️ Troubleshooting
 
-## `Permission denied`
-
-Make the script executable:
+### `Permission denied`
 
 ```bash
 chmod +x syskit.sh
@@ -685,27 +578,13 @@ Then:
 ./syskit.sh
 ```
 
-Some system operations may require elevated permissions:
+Some system operations may require elevated permissions.
 
-```bash
-sudo ./syskit.sh
-```
+### `command not found`
 
-> ⚠️ Only use `sudo` when the operation actually requires elevated permissions.
+Install the missing dependency using your distribution's package manager.
 
----
-
-## `command not found`
-
-A required dependency may be missing.
-
-Check the dependency list above and install the missing tool using your distribution's package manager.
-
----
-
-## C compilation fails
-
-Check your compiler:
+### C compilation fails
 
 ```bash
 gcc --version
@@ -717,72 +596,54 @@ or:
 clang --version
 ```
 
----
-
-## Java compilation fails
-
-Check both Java and `javac`:
+### Java compilation fails
 
 ```bash
 java --version
 javac --version
 ```
 
----
-
-## GTK3 compilation fails
-
-Check GTK3:
+### GTK3 compilation fails
 
 ```bash
 pkg-config --modversion gtk+-3.0
 ```
 
-If it cannot find GTK3, install the appropriate development package for your distribution.
+If GTK3 cannot be found, install the appropriate development package.
 
----
+### A feature doesn't work
 
-## A feature does not work
+Check:
 
-SysKit features can depend on:
+1. Required dependencies
+2. Platform compatibility
+3. Permissions
+4. Hardware support
+5. Whether the Lite version works
 
-* Operating system
-* Distribution
-* Installed utilities
-* Hardware
-* Permissions
-* Network availability
-* Android/Termux restrictions
-
-Try the following:
-
-1. Check the required dependency.
-2. Check whether your platform supports the feature.
-3. Try the Lite implementation.
-4. Reproduce the issue.
-5. Open an issue with useful system information.
+If the problem continues, open an issue with useful information about your environment.
 
 ---
 
 # 🤝 Contributing
 
-Contributions, fixes, testing, and ideas are welcome.
+Contributions, testing, bug reports, ideas, and improvements are welcome.
 
-Before contributing:
+Before contributing, read [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-1. Read [`CONTRIBUTING.md`](CONTRIBUTING.md).
-2. Create a branch for your changes.
-3. Keep changes focused.
-4. Test your changes.
-5. Avoid breaking existing implementations.
-6. Document new functionality where appropriate.
-7. Open a pull request.
+When submitting changes:
+
+1. Keep changes focused.
+2. Test what you changed.
+3. Avoid breaking other implementations.
+4. Document new functionality where appropriate.
+5. Explain compatibility considerations.
 
 ---
 
 # 🔐 Security
 
-If you discover a security issue, please follow the instructions in [`SECURITY.md`](SECURITY.md).
+For security-related issues, see [`SECURITY.md`](SECURITY.md).
 
 Please avoid publicly exposing sensitive security issues before they can be investigated.
 
@@ -790,26 +651,19 @@ Please avoid publicly exposing sensitive security issues before they can be inve
 
 # 📜 Changelog
 
-Development history is available in [`CHANGELOG.md`](CHANGELOG.md).
+See [`CHANGELOG.md`](CHANGELOG.md) for development history.
 
 ---
 
 # ⚠️ Disclaimer
 
-SysKit is intended for:
+SysKit is intended for **system administration, diagnostics, maintenance, troubleshooting, learning, and personal use**.
 
-* System administration
-* Diagnostics
-* Maintenance
-* Troubleshooting
-* Learning
-* Personal use
-
-Some features can modify system resources, packages, files, services, caches, or other system settings.
+Some operations can modify system files, packages, services, caches, or other system resources.
 
 **Use system-modifying features carefully.**
 
-Not every feature is supported on every operating system.
+Feature availability varies between operating systems and implementations.
 
 ---
 
@@ -821,34 +675,40 @@ SysKit is distributed under the license included in [`LICENSE`](LICENSE).
 
 # 💡 Philosophy
 
-SysKit follows a simple development loop:
+SysKit is built around a simple development loop:
 
 ```text
-       💡 Idea
-          ↓
-       🔨 Build
-          ↓
-       💥 Break
-          ↓
-     🔎 Investigate
-          ↓
-       🔧 Fix
-          ↓
+        💡 Idea
+           │
+           ▼
+        🔨 Build
+           │
+           ▼
+        💥 Break
+           │
+           ▼
+      🔎 Investigate
+           │
+           ▼
+        🔧 Fix
+           │
+           ▼
       🚀 Improve
-          ↓
-       🧠 Learn
-          │
-          └──────────────↻
+           │
+           ▼
+        🧠 Learn
+           │
+           └───────────↻
 ```
 
 > **Build it. Break it. Understand it. Improve it.**
 
 ---
 
-# 🚀 SysKit
+## 🚀 SysKit
 
 **C · Bash · Python · Java**
 
 **Terminal · Lite · GTK3 · Maybe Android**
 
-> One toolkit. Multiple implementations. One project that keeps growing.
+> **One toolkit. Multiple implementations. Always improving.**
