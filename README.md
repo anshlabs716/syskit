@@ -438,7 +438,7 @@ SysKit has multiple implementations, so compatibility matters.
 * [x] C Lite
 * [x] Bash
 * [x] Bash Lite
-* [ ] Python
+* [x] Python (some features are a bit more buggier than others)
 * [ ] Python Lite
 * [ ] Java
 * [ ] Java Lite
