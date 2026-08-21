@@ -442,8 +442,8 @@ SysKit has multiple implementations, so compatibility matters.
 * [ ] Python Lite (not tested yet NEVER run this on real linux
 * [x] Java (works pretty well)
 * [ ] Java Lite (not tested yet NEVER run this on real linux)
-* [X]GTK3 (works well but is slower compared to the other C versions)
-# NEVER run lite versions on real linux but u can do vice versa on termux
+* [X] GTK3 (works well but is slower compared to the other C versions)
+# NEVER run lite versions on real linux but u can do vice versa on termux. (Because on linux the lites tweak the hell out and crash)
 ## Platform Testing
 
 * [ ] Debian
