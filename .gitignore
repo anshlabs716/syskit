@@ -1,86 +1,232 @@
-# ==========================================
-# 1. C / C++ / Compilers
-# ==========================================
+# C / C++ / Compilers (Build artifacts & compiled binaries)
 *.o
 *.obj
 *.so
 *.dylib
 *.a
+*.lib
+*.dll
 *.exe
 *.out
 *.app
+*.elf
+*.bin
+*.exp
+*.ilk
+*.pdb
+*.idb
+*.gch
+*.pch
+*.d
+*.i
+*.s
 syskit
 syskit-lite
 syskit-gui
+Makefile.in
+config.status
+config.log
+config.cache
+autom4te.cache/
+.libs/
+.deps/
+CMakeCache.txt
+CMakeFiles/
+CMakePaths.cmake
+cmake_install.cmake
+CMakeLists.txt.user
+vcpkg_installed/
+.conan/
 
-# ==========================================
-# 2. Java / JVM / Kotlin / Scala
-# ==========================================
+# Java / JVM / Kotlin / Scala (Compiled bytecode, JARs & build tools)
 *.class
 *.jar
 *.war
 *.ear
-*.class
+*.nar
 .gradle/
 build/
-bin/
+out/
+target/
+.mvn/
+hs_err_pid*
+replay_pid*
+.m2/
+.scala_dependencies
+.sbt_metadata
+.boot/
+.clojel/
+.fsproj.user
 
-# ==========================================
-# 3. Python / Virtual Environments
-# ==========================================
+# Python / Virtual Envs (Bytecode cache, virtualenvs & package builds)
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
 .venv/
 venv/
 ENV/
 env/
+ENV3/
+env3/
 .pytest_cache/
 .coverage
+.coverage.*
+htmlcov/
+.ipynb_checkpoints/
+*.egg-info/
+.eggs/
+dist/
+build/
+eggs/
+parts/
+bin/
+var/
+sdist/
+develop-eggs/
+downloads/
+exports/
+.tox/
+.nox/
+.hypothesis/
+.ruff_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+nosetests.xml
+coverage.xml
 
-# ==========================================
-# 4. Shell / Bash
-# ==========================================
-*.sh.e*
-*.sh.o*
-
-# ==========================================
-# 5. Rust / Go / WebAssembly
-# ==========================================
-/target/
-*.rs.bk
-vendor/
-*.exe
-
-# ==========================================
-# 6. Node.js / JavaScript / TypeScript
-# ==========================================
+# JavaScript / TypeScript / Node.js (Dependencies & web build caches)
 node_modules/
+jspm_packages/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
-dist/
+.npm/
+.eslintcache
+.stylelintcache
 .next/
+.nuxt/
+.vuepress/dist
+.svelte-kit/
+.astro/
+.output/
+.turbo/
+.cache/
+.parcel-cache/
+.docusaurus/
+.storybook-build/
+bower_components/
 
-# ==========================================
-# 7. Android / Mobile Dev / Gradle
-# ==========================================
+# Rust / Go / Zig / WebAssembly (Compiled targets & module caches)
+/target/
+**/*.rs.bk
+go.work
+go.work.sum
+zig-cache/
+zig-out/
+.stack-work/
+dist-newstyle/
+_build/
+*.install
+*.wasm
+
+# Mobile Dev / Android / iOS / Flutter (APKs, Pods & SDK configs)
 .navigation/
 captures/
 *.apk
 *.aab
 *.dex
 local.properties
+.bundle/
+.cocoapods/
+Pods/
+DerivedData/
+*.xcworkspace
+*.xcodeproj
+.dart_tool/
+.pub-cache/
+.pub/
+android/app/build/
+ios/Flutter/App.framework/
+ios/Flutter/Flutter.framework/
 
-# ==========================================
-# 8. IDEs & Code Editors (VS Code, JetBrains, Eclipse, Vim)
-# ==========================================
+# PHP / Ruby / .NET / Elixir (Vendor deps, Gems & solution files)
+vendor/
+.bundle/
+*.gem
+.yardoc/
+_yardoc/
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+_build/
+deps/
+*.beam
+.fetch
+
+# Game Engines / Unity / Unreal / Godot (Temp assets & build cache)
+[Ll]ibrary/
+[Tt]emp/
+[Ob]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+Intermediate/
+Saved/
+DerivedDataCache/
+Plugins/UnrealBuilTool/
+.godot/
+*.translation
+*.import
+
+# Databases / Storage / Secrets (Local DB dumps & private SSH/API keys)
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.dump
+dump.rdb
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.pfx
+*.p12
+*.crt
+*.csr
+*.asc
+id_rsa
+id_ed25519
+
+# DevOps / Containers / Cloud (Terraform state, Vagrant & Helm caches)
+.terraform/
+*.tfstate
+*.tfstate.backup
+.vagrant/
+.helm/
+*.kubeconfig
+docker-compose.override.yml
+
+# Embedded / Hardware (Arduino, PlatformIO & microcontroller builds)
+.pio/
+.pioenvs/
+.piolibdeps/
+.clangd/
+*.hex
+*.map
+
+# IDEs & Code Editors (VS Code, JetBrains, Eclipse & Vim swap files)
 .idea/
 *.iml
 *.iws
-.vscode/
+*.ipr
+.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -91,10 +237,10 @@ local.properties
 *.swp
 *.swo
 *~
+*.bak
+.history/
 
-# ==========================================
-# 9. OS & System Garbage Files
-# ==========================================
+# OS Garbage & Archives (Mac/Windows system junk, logs & archives)
 .DS_Store
 .DS_Store?
 ._*
@@ -103,14 +249,12 @@ local.properties
 ehthumbs.db
 Thumbs.db
 desktop.ini
-
-# ==========================================
-# 10. Logs, Temp Files & Archives
-# ==========================================
 *.log
 *.tmp
-*.bak
-*.swp
 *.zip
+*.tar
 *.tar.gz
+*.tgz
 *.7z
+*.rar
+*.iso
