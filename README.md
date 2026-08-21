@@ -434,22 +434,22 @@ SysKit has multiple implementations, so compatibility matters.
 
 ## Feature Testing
 
-* [x] C
-* [x] C Lite
-* [x] Bash
-* [x] Bash Lite
+* [x] C (runs great)
+* [x] C Lite (super fast NEVER run this on real linux)
+* [x] Bash (works amazingly good on linux)
+* [x] Bash Lite (works really well on termux NEVER run this on real linux)
 * [x] Python (some features are a bit more buggier than others)
-* [ ] Python Lite
-* [ ] Java
-* [ ] Java Lite
-* [x] GTK3
-
+* [ ] Python Lite (not tested yet NEVER run this on real linux
+* [x] Java (works pretty well)
+* [ ] Java Lite (not tested yet NEVER run this on real linux)
+* [X]GTK3 (works well but is slower compared to the other C versions)
+# NEVER run lite versions on real linux but u can do vice versa on termux
 ## Platform Testing
 
 * [ ] Debian
 * [ ] Ubuntu
 * [ ] Linux Mint
-* [ ] Fedora
+* [x] Fedora
 * [x] Arch Linux
 * [ ] Alpine
 * [ ] openSUSE
