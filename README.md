@@ -443,6 +443,7 @@ SysKit has multiple implementations, so compatibility matters.
 * [x] Java (works pretty well)
 * [ ] Java Lite (not tested yet NEVER run this on real linux)
 * [X] GTK3 (works well but is slower compared to the other C versions)
+ 
  NEVER run lite versions on real linux but u can do vice versa on termux. (Because on linux the lites tweak the hell out and crash)
 ## Platform Testing
 
@@ -492,12 +493,12 @@ SysKit has multiple implementations, so compatibility matters.
 * [x] GTK3 implementation
 * [ ] Improve error handling
 * [ ] Improve dependency detection
-* [ ] Expand hardware support
-* [ ] Expand monitoring
+* [x] Expand hardware support
+* [x] Expand monitoring
 * [ ] Expand networking
 * [ ] Improve storage diagnostics
 * [X] Improve Lite versions
-* [ ] Improve documentation
+* [x] Improve documentation
 * [ ] Automated testing
 * [ ] maybe a apk soon?
 ## 🌍 Compatibility
@@ -505,7 +506,7 @@ SysKit has multiple implementations, so compatibility matters.
 * [x] Linux
 * [x] Termux
 * [ ] Debian-based testing
-* [ ] Fedora-based testing
+* [x] Fedora-based testing
 * [x] Arch-based testing
 * [ ] Alpine testing
 * [ ] openSUSE testing
@@ -517,7 +518,7 @@ SysKit has multiple implementations, so compatibility matters.
 
 * [x] Test every menu option
 * [x] Test every implementation
-* [ ] Test multiple distributions
+* [x] Test multiple distributions
 * [x] Test low-resource environments
 * [ ] Test archive functionality
 * [ ] Test backup / restore
