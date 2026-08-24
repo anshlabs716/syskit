@@ -439,7 +439,7 @@ SysKit has multiple implementations, so compatibility matters.
 * [x] Bash (works amazingly good on linux)
 * [x] Bash Lite (works really well on termux NEVER run this on real linux)
 * [x] Python (some features are a bit more buggier than others)
-* [ ] Python Lite (not tested yet NEVER run this on real linux
+* [x] Python Lite (has some issues with device info but overall great NEVER run this on real linux
 * [x] Java (works pretty well)
 * [ ] Java Lite (not tested yet NEVER run this on real linux)
 * [X] GTK3 (works well but is slower compared to the other C versions)
