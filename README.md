@@ -522,7 +522,7 @@ SysKit has multiple implementations, so compatibility matters.
 * [x] Test low-resource environments
 * [ ] Test archive functionality
 * [ ] Test backup / restore
-* [ ] Test missing dependencies
+* [x] Test missing dependencies (some stuff wont run but it's fine to run it like that)
 * [ ] Test permission handling
 * [ ] Improve compatibility detection
 
@@ -531,7 +531,7 @@ SysKit has multiple implementations, so compatibility matters.
 Android is a **possible future direction**, not a completed feature.
 
 * [ ] Research Android APIs
-* [ ] Research Android architecture
+* [x] Research Android architecture
 * [ ] Design Android UI
 * [ ] Port supported functionality
 * [ ] Investigate Shizuku
