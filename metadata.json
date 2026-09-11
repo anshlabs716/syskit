@@ -1,0 +1,6 @@
+{
+  "name": "SysKit",
+  "description": "Universal system toolkit and monitor for Android with real-time stats, system information, diagnostics, network utilities, cleaner, and power tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
