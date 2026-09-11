@@ -21,20 +21,17 @@ Instead of jumping between different commands for system information, networking
 
 The project currently has implementations in **C, Bash, Python, and Java**, with lightweight variants designed for more restricted environments.
 
+<img width="679" height="516" alt="SysKit Full" src="https://github.com/user-attachments/assets/1be2c14c-7db4-4a24-baa5-d1c3c6d74ca5" />
 
-<img width="679" height="516" alt="Screenshot_20260819_175036" src="https://github.com/user-attachments/assets/1be2c14c-7db4-4a24-baa5-d1c3c6d74ca5" /> 
-this is full
-<img width="424" height="521" alt="Screenshot_20260819_174953" src="https://github.com/user-attachments/assets/4caddf1b-2079-42c5-934e-59d530b1cc81" />
-this is lite 
-<img width="1366" height="719" alt="Screenshot_20260819_180708" src="https://github.com/user-attachments/assets/5c6c45ee-8565-47d2-a9be-353ef5a19f28" />
-this is the gui
+**Full**
 
+<img width="424" height="521" alt="SysKit Lite" src="https://github.com/user-attachments/assets/4caddf1b-2079-42c5-934e-59d530b1cc81" />
 
+**Lite**
 
+<img width="1366" height="719" alt="SysKit GUI" src="https://github.com/user-attachments/assets/5c6c45ee-8565-47d2-a9be-353ef5a19f28" />
 
-
-
-
+**GUI**
 
 ```text
                          🚀 SysKit
@@ -164,7 +161,7 @@ python3 syskit.py
 python3 "syskit lite.py"
 ```
 
-### Python
+### Install Python
 
 **Debian / Ubuntu / Mint**
 
@@ -418,7 +415,7 @@ SysKit uses a simple numbered menu:
 │  9.  Files                │
 │ 10.  Archives             │
 │ 11.  Utilities            │
-│ 12.  Internet             │
+│ 12.  Internet              │
 │ 13.  Backup               │
 │ 14.  Settings             │
 │ 15.  Help                 │
@@ -434,17 +431,18 @@ SysKit has multiple implementations, so compatibility matters.
 
 ## Feature Testing
 
-* [x] C (runs great)
-* [x] C Lite (super fast NEVER run this on real linux)
-* [x] Bash (works amazingly good on linux)
-* [x] Bash Lite (works really well on termux NEVER run this on real linux)
-* [x] Python (some features are a bit more buggier than others)
-* [x] Python Lite (has some issues with device info but overall great NEVER run this on real linux
-* [x] Java (works pretty well)
-* [ ] Java Lite (not tested yet NEVER run this on real linux)
-* [X] GTK3 (works well but is slower compared to the other C versions)
- 
- NEVER run lite versions on real linux but u can do vice versa on termux. (Because on linux the lites tweak the hell out and crash)
+* [x] C — runs great
+* [x] C Lite — super fast; **NEVER run this on real Linux**
+* [x] Bash — works amazingly well on Linux
+* [x] Bash Lite — works really well on Termux; **NEVER run this on real Linux**
+* [x] Python — some features are a bit buggier than others
+* [x] Python Lite — has some issues with device info but overall great; **NEVER run this on real Linux**
+* [x] Java — works pretty well
+* [ ] Java Lite — not tested yet; **NEVER run this on real Linux**
+* [x] GTK3 — works well but is slower compared to the other C versions
+
+> ⚠️ **Never run Lite versions on real Linux.** They are designed for restricted environments such as Termux and can heavily modify their behavior on Linux, potentially causing crashes. Full versions can be used on Termux where supported.
+
 ## Platform Testing
 
 * [ ] Debian
@@ -497,10 +495,11 @@ SysKit has multiple implementations, so compatibility matters.
 * [x] Expand monitoring
 * [ ] Expand networking
 * [ ] Improve storage diagnostics
-* [X] Improve Lite versions
+* [x] Improve Lite versions
 * [x] Improve documentation
 * [ ] Automated testing
-* [ ] maybe a apk soon?
+* [ ] Maybe an APK soon?
+
 ## 🌍 Compatibility
 
 * [x] Linux
@@ -522,7 +521,7 @@ SysKit has multiple implementations, so compatibility matters.
 * [x] Test low-resource environments
 * [ ] Test archive functionality
 * [ ] Test backup / restore
-* [x] Test missing dependencies (some stuff wont run but it's fine to run it like that)
+* [x] Test missing dependencies — some features won't run without them, which is expected
 * [ ] Test permission handling
 * [ ] Improve compatibility detection
 
@@ -667,6 +666,22 @@ Please avoid publicly exposing sensitive security issues before they can be inve
 # 📜 Changelog
 
 See [`CHANGELOG.md`](CHANGELOG.md) for development history.
+
+---
+
+# 👥 Credits
+
+### Weather Feature
+
+Special thanks to **[@shozanthebozan](https://github.com/shozanthebozan)**.
+
+The SysKit weather feature is based on **[onNow](https://github.com/shozanthebozan/onNow)** by shozanthebozan.
+
+Please check out the original project:
+
+**🔗 [shozanthebozan/onNow](https://github.com/shozanthebozan/onNow)**
+
+> 💙 Credit goes to shozanthebozan for the original weather implementation that inspired the weather functionality in SysKit.
 
 ---
 
