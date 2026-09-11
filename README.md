@@ -537,7 +537,7 @@ Android is a **possible future direction**, not a completed feature.
 * [ ] Investigate ADB
 * [ ] Investigate root-aware features
 * [x] Build prototype
-* [x] Test on real devices
+* [ ] Test on real devices
 * [x] **build a SysKit APK**
 
 > Android would require an Android-native implementation rather than simply packaging the existing Linux code into an APK.
