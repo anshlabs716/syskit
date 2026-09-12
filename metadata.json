@@ -1,0 +1,6 @@
+{
+  "name": "SysKit",
+  "description": "Powerful Android system toolkit with Root, Shizuku, and diagnostics support",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

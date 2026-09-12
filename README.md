@@ -498,7 +498,7 @@ SysKit has multiple implementations, so compatibility matters.
 * [x] Improve Lite versions
 * [x] Improve documentation
 * [ ] Automated testing
-* [x] the apk is done
+* [ ] Maybe an APK soon?
 
 ## 🌍 Compatibility
 
@@ -529,16 +529,17 @@ SysKit has multiple implementations, so compatibility matters.
 
 Android is a **possible future direction**, not a completed feature.
 
-* [x] Research Android APIs
+* [ ] Research Android APIs
 * [x] Research Android architecture
-* [x] Design Android UI
+* [ ] Design Android UI
 * [ ] Port supported functionality
 * [ ] Investigate Shizuku
 * [ ] Investigate ADB
 * [ ] Investigate root-aware features
-* [x] Build prototype
+* [ ] Build prototype
 * [ ] Test on real devices
-* [x] **build a SysKit APK**
+* [ ] **Maybe build a SysKit APK**
+* [ ] **Decide whether a full Android version is practical**
 
 > Android would require an Android-native implementation rather than simply packaging the existing Linux code into an APK.
 
