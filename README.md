@@ -1,419 +1,591 @@
-div align="center">
+🚀 SysKit
 
-# 🚀 SysKit
+Universal System Toolkit
 
-### Universal System Toolkit
-
-<p>
-<img src="https://img.shields.io/badge/C-31.3%25-A8B9CC?style=for-the-badge&logo=c&logoColor=white" alt="C">&nbsp;&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/Java-26.1%25-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java">&nbsp;&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/Shell-22.9%25-89E051?style=for-the-badge&logo=gnubash&logoColor=white" alt="Shell">&nbsp;&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/Python-19.7%25-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">&nbsp;&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/Linux-Supported-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux">&nbsp;&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/Termux-Supported-000000?style=for-the-badge&logo=termux&logoColor=white" alt="Termux">
+<p align="left">
+  <img src=""https://img.shields.io/badge/C-31.3%25-A8B9CC?style=for-the-badge&logo=c&logoColor=white" (https://img.shields.io/badge/C-31.3%25-A8B9CC?style=for-the-badge&logo=c&logoColor=white)">
+    
+  <img src=""https://img.shields.io/badge/Java-26.1%25-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" (https://img.shields.io/badge/Java-26.1%25-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)">
+    
+  <img src=""https://img.shields.io/badge/Shell-22.9%25-89E051?style=for-the-badge&logo=gnubash&logoColor=white" (https://img.shields.io/badge/Shell-22.9%25-89E051?style=for-the-badge&logo=gnubash&logoColor=white)">
+    
+  <img src=""https://img.shields.io/badge/Python-19.7%25-3776AB?style=for-the-badge&logo=python&logoColor=white" (https://img.shields.io/badge/Python-19.7%25-3776AB?style=for-the-badge&logo=python&logoColor=white)">
+    
+  <img src=""https://img.shields.io/badge/Linux-Supported-FCC624?style=for-the-badge&logo=linux&logoColor=black" (https://img.shields.io/badge/Linux-Supported-FCC624?style=for-the-badge&logo=linux&logoColor=black)">
+    
+  <img src=""https://img.shields.io/badge/Termux-Supported-000000?style=for-the-badge&logo=termux&logoColor=white" (https://img.shields.io/badge/Termux-Supported-000000?style=for-the-badge&logo=termux&logoColor=white)">
 </p>
 
-<p>
-<img src="https://img.shields.io/github/v/release/anshlabs716/syskit?style=for-the-badge&label=Latest%20Release" alt="Latest Release">&nbsp;&nbsp;&nbsp;
-<img src="https://img.shields.io/github/license/anshlabs716/syskit?style=for-the-badge" alt="License">&nbsp;&nbsp;&nbsp;
-<img src="https://img.shields.io/github/stars/anshlabs716/syskit?style=for-the-badge" alt="Stars">&nbsp;&nbsp;&nbsp;
-<img src="https://img.shields.io/github/issues/anshlabs716/syskit?style=for-the-badge" alt="Issues">&nbsp;&nbsp;&nbsp;
-<img src="https://img.shields.io/github/last-commit/anshlabs716/syskit?style=for-the-badge" alt="Last Commit">
-</p>
-
-<br>
-
-> **SysKit** is a multi-language system toolkit for information, diagnostics, maintenance, networking, storage, utilities, and more.
-
-</div>
+«SysKit is a multi-language system toolkit for information, diagnostics, maintenance, networking, storage, utilities, and more.»
 
 ---
 
-## 🧠 What is SysKit?
+🧠 What is SysKit?
 
 SysKit brings a collection of useful system tools into one menu-driven toolkit.
 
-Instead of jumping between different commands for system information, networking, storage, maintenance, diagnostics, and utilities, SysKit puts them together in one place.
+Instead of jumping between different commands for system information, networking, storage, maintenance, and diagnostics, SysKit puts them together in one place.
 
-The project includes implementations in **C, Bash, Python, and Java**, alongside a dedicated **Android APK**.
+The project currently includes implementations in C, Bash, Python, Java, and Android, with lightweight variants designed for more restricted environments.
 
-SysKit is designed to provide useful functionality across **Linux, Termux, and Android**.
+🖥️ SysKit Full
 
----
+Full
 
-# 📱 Android
+📱 SysKit Lite
 
-SysKit now includes a dedicated **Android APK**.
+Lite
 
-The Android version is built specifically for Android rather than simply packaging the existing Linux versions into an APK.
+🖥️ SysKit GUI
 
-### Android Features
+GUI
 
-* [x] 📱 Native Android APK
-* [x] 🧩 Android-native implementation
-* [x] 🔧 Shizuku support
-* [x] 🔓 Root support
-* [x] 🔌 ADB-related functionality
-* [x] 🛠️ System tools
-* [x] 📊 Device information
-* [x] 🔋 Battery information
-* [x] 💾 Storage information
-* [x] 🌐 Network information
-* [x] ⚙️ Android system utilities
-* [x] 📦 Android package/app tools
-* [x] 🧹 Maintenance utilities
-* [x] 🔐 Permission-aware functionality
-* [x] 📱 Designed for modern Android devices
-
-### Android Access Levels
-
-| Access                        | Support |
-| ----------------------------- | ------- |
-| 📱 Normal Android permissions | ✅       |
-| 🔌 ADB                        | ✅       |
-| 🧩 Shizuku                    | ✅       |
-| 🔓 Root                       | ✅       |
-
-> ⚠️ Some Android functionality requires Shizuku or root. Features available through normal Android permissions may work without elevated access.
+                         🚀 SysKit
+                            │
+          ┌─────────────────┼─────────────────┐
+          │                 │                 │
+       Full CLI            Lite              GUI
+          │                 │                 │
+     ┌────┼────┐       ┌────┼────┐           │
+     │    │    │       │    │    │          GTK3
+     C  Bash Python    C  Bash Python
+          │
+         Java
 
 ---
 
-# 📥 Android Installation
+✨ Features
 
-The Android APK is available through the project's releases.
+Category| What SysKit provides
+🖥️ System| OS, kernel, CPU, GPU, RAM, hardware, uptime, environment
+📊 Monitoring| CPU, RAM, disk, processes, network, temperature
+🌐 Network| Ping, connectivity, IP, DNS, gateway, Wi-Fi
+🔋 Power| Battery, charging, health, power information
+📦 Packages| Updates, upgrades, search, installed packages, cleanup
+🧹 Cleaner| Cache, temporary files, logs, trash, package cache
+💾 Storage| Disk usage, mounted drives, directories, large files, SMART
+🔐 Security| Firewall, open ports, SSH, services, basic checks
+📁 Files| Search, text search, directory trees, statistics, duplicates
+📦 Archives| ZIP and TAR.GZ creation/extraction — Beta
+🛠️ Utilities| Passwords, random strings, hashes, UUIDs
+🌍 Internet| Weather, time, calendar, connectivity
+💾 Backup| Backup, restore, compression, verification
+⚙️ Settings| Colors, emojis, animations, reset
+❓ Help| Help, about, documentation, support
 
-### Latest APK
-
-**v1.0.1-apk**
-
-### Requirements
-
-* Android device
-* Compatible Android version
-* Additional permissions depending on the feature
-* Shizuku for Shizuku-powered functionality
-* Root access for root-only functionality
+«⚠️ Feature availability depends on the implementation, operating system, installed dependencies, hardware, and permissions.»
 
 ---
 
-# 🖥️ Implementations
+🧩 Implementations
 
 SysKit isn't tied to a single language.
 
-| Version            | Language         | File              | Environment                       |
-| ------------------ | ---------------- | ----------------- | --------------------------------- |
-| **SysKit**         | C                | `syskit.c`        | Full terminal version             |
-| **SysKit Lite**    | C                | `syskit-lite.c`   | Lightweight environments          |
-| **SysKit GUI**     | C / GTK3         | `syskit-gui.c`    | Linux desktop                     |
-| **SysKit**         | Bash             | `syskit.sh`       | Unix-like systems                 |
-| **SysKit Lite**    | Bash             | `syskit-lite.sh`  | Lightweight environments          |
-| **SysKit**         | Python           | `syskit.py`       | Python environments               |
-| **SysKit Lite**    | Python           | `syskit lite.py`  | Termux / lightweight environments |
-| **SysKit**         | Java             | `Syskit.java`     | Java environments                 |
-| **SysKit Lite**    | Java             | `SyskitLite.java` | Lightweight Java environments     |
-| **SysKit Android** | Kotlin / Android | `app/`            | Android                           |
+Version| Language| File| Environment
+SysKit| C| "syskit.c"| Full terminal version
+SysKit Lite| C| "syskit-lite.c"| Lightweight environments
+SysKit GUI| C / GTK3| "syskit-gui.c"| Linux desktop
+SysKit| Bash| "syskit.sh"| Unix-like systems
+SysKit Lite| Bash| "syskit-lite.sh"| Lightweight environments
+SysKit| Python| "syskit.py"| Python environments
+SysKit Lite| Python| "syskit lite.py"| Termux / lightweight environments
+SysKit| Java| "Syskit.java"| Java environments
+SysKit Lite| Java| "SyskitLite.java"| Lightweight Java environments
+SysKit Android| Kotlin / Android| "app/"| Android devices
 
 ---
 
-# ✨ Features
+🖥️ Platform Support
 
-| Category          | What SysKit provides                                                           |
-| ----------------- | ------------------------------------------------------------------------------ |
-| 🖥️ **System**    | OS, kernel, CPU, GPU, RAM, hardware, uptime, environment                       |
-| 📊 **Monitoring** | CPU, RAM, disk, processes, network, temperature                                |
-| 🌐 **Network**    | Ping, connectivity, IP, DNS, gateway, Wi-Fi                                    |
-| 🔋 **Power**      | Battery, charging, health, power information                                   |
-| 📦 **Packages**   | Updates, upgrades, search, installed packages, cleanup                         |
-| 🧹 **Cleaner**    | Cache, temporary files, logs, trash, package cache                             |
-| 💾 **Storage**    | Disk usage, mounted drives, directories, large files, SMART                    |
-| 🔐 **Security**   | Firewall, open ports, SSH, services, basic checks                              |
-| 📁 **Files**      | Search, text search, directory trees, statistics, duplicates                   |
-| 📦 **Archives**   | ZIP and TAR.GZ creation/extraction                                             |
-| 🛠️ **Utilities** | Passwords, random strings, hashes, UUIDs                                       |
-| 🌍 **Internet**   | Weather, time, calendar, connectivity                                          |
-| 💾 **Backup**     | Backup, restore, compression, verification                                     |
-| ⚙️ **Settings**   | Colors, emojis, animations, reset                                              |
-| ❓ **Help**        | Help, about, documentation, support                                            |
-| 📱 **Android**    | Device information, system utilities, storage, battery, network, package tools |
+Platform| Status| Notes
+🐧 Linux| ✅| Primary platform
+📱 Termux| ✅| Lite versions recommended
+🤖 Android| ✅| Native APK available
+🍎 macOS| 🧪| Shell compatibility needs testing
+👻 BSD| 🧪| Shell compatibility needs testing
 
-> ⚠️ Feature availability depends on the implementation, operating system, installed dependencies, hardware, and permissions.
-
----
-
-# 🖼️ Screenshots
-
-## Full
-
-<img src="https://github.com/user-attachments/assets/69f077f3-5705-4ca7-a308-216f86dcb942" alt="SysKit Full" width="800">
-
-## Lite
-
-<img src="https://github.com/user-attachments/assets/a4a79df9-b15e-45fa-a63a-c5fab11d0af1" alt="SysKit Lite" width="800">
-
-## GUI
-
-<img src="https://github.com/user-attachments/assets/fbb6fadd-f682-4b84-87bb-197a16a7c97b" alt="SysKit GUI" width="800">
-
----
-
-# 🐧 Linux
+Linux
 
 Linux is the primary target for SysKit.
 
-SysKit supports system information, diagnostics, networking, storage, maintenance, utilities, and more across multiple Linux implementations.
+The exact functionality depends on your distribution and installed system utilities.
 
----
-
-# 📱 Termux
+Termux
 
 SysKit can run in Termux, with the Lite implementations being the recommended choice.
 
-```bash
-pkg update
-pkg upgrade
-pkg install git python clang
-```
+Android does not expose every traditional Linux interface, so some features may not be available.
 
-Clone SysKit:
+Android
 
-```bash
-git clone https://github.com/anshlabs716/syskit.git
-cd syskit
-```
+SysKit now has a native Android application.
 
-### Python Lite
+The Android version is built separately from the traditional Linux implementations and provides Android-specific functionality.
 
-```bash
-python "syskit lite.py"
-```
+It supports:
 
-### C Lite
+- Android-native system information
+- Device diagnostics
+- Android-specific utilities
+- Shizuku integration
+- Root-aware functionality
+- Android permissions
+- Native Android UI
+- APK distribution
+- Android device testing
 
-```bash
-clang syskit-lite.c -o syskit-lite
-./syskit-lite
-```
-
-> 💡 **Recommended:** Start with a Lite implementation on Termux.
+The Android application is available through the project's releases.
 
 ---
 
-# 📥 Installation
+📱 Android
 
-## Clone
+Android Feature Status
 
-```bash
+All currently planned core Android implementation tasks have been completed:
+
+- [x] Research Android APIs
+- [x] Research Android architecture
+- [x] Design Android UI
+- [x] Port supported functionality
+- [x] Integrate Shizuku
+- [x] Integrate root-aware functionality
+- [x] Implement Android permissions
+- [x] Build Android application
+- [x] Build APK
+- [x] Test APK on real devices
+- [x] Add Android project structure
+- [x] Add Android release
+- [x] Add Android support to SysKit documentation
+- [x] Add Shizuku/root support
+- [x] Release SysKit Android
+
+«📱 The Android version is a native Android implementation rather than a Linux application packaged into an APK.»
+
+🔐 Shizuku
+
+SysKit can use Shizuku for supported operations without requiring traditional root access.
+
+🛡️ Root
+
+On rooted devices, SysKit can use root-aware functionality where supported.
+
+«⚠️ Root and Shizuku capabilities depend on the device, Android version, permissions, and the specific operation being performed.»
+
+---
+
+📥 Installation
+
+Clone
+
 git clone https://github.com/anshlabs716/syskit.git
 cd syskit
-```
 
-## 🐚 Bash
+---
 
-### Full
+📱 Android APK
 
-```bash
+The Android version is distributed as an APK through GitHub Releases.
+
+Latest Android Release
+
+SysKit v1.0.1 APK
+
+"Download from Releases" (https://github.com/anshlabs716/syskit/releases/tag/v1.0.1-apk)
+
+Android installation
+
+1. Download the SysKit APK from the release page.
+2. Install the APK on your Android device.
+3. Open SysKit.
+4. Grant the permissions required by the features you want to use.
+5. If using Shizuku features, make sure Shizuku is running.
+6. If using root features, grant root access when requested.
+
+«⚠️ Only install APKs from sources you trust.»
+
+---
+
+🐚 Bash
+
+Full
+
 chmod +x syskit.sh
 ./syskit.sh
-```
 
-### Lite
+Lite
 
-```bash
 chmod +x syskit-lite.sh
 ./syskit-lite.sh
-```
 
-## 🐍 Python
+---
 
-### Full
+🐍 Python
 
-```bash
+Full
+
 python3 syskit.py
-```
 
-### Lite
+Lite
 
-```bash
 python3 "syskit lite.py"
-```
 
-## ☕ Java
+Install Python
+
+Debian / Ubuntu / Mint
+
+sudo apt update
+sudo apt install python3
+
+Fedora
+
+sudo dnf install python3
+
+Arch Linux
+
+sudo pacman -S python
+
+Alpine
+
+sudo apk add python3
+
+---
+
+☕ Java
 
 Check your JDK:
 
-```bash
 java --version
 javac --version
-```
 
-### Full
+Full
 
-```bash
 javac Syskit.java
 java Syskit
-```
 
-### Lite
+Lite
 
-```bash
 javac SyskitLite.java
 java SyskitLite
-```
 
-## 🦾 C
+Install a JDK
 
-### Full
+Debian / Ubuntu / Mint
 
-```bash
-gcc syskit.c -o syskit
-./syskit
-```
+sudo apt update
+sudo apt install default-jdk
 
-### Lite
+Fedora
 
-```bash
-gcc syskit-lite.c -o syskit-lite
-./syskit-lite
-```
+sudo dnf install java-latest-openjdk-devel
 
-### Clang
+Arch Linux
 
-```bash
-clang syskit.c -o syskit
-./syskit
-```
+sudo pacman -S jdk-openjdk
+
+Alpine
+
+sudo apk add openjdk17
 
 ---
 
-# 🎛️ Main Menu
+🦾 C
+
+Full
+
+gcc syskit.c -o syskit
+./syskit
+
+Lite
+
+gcc syskit-lite.c -o syskit-lite
+./syskit-lite
+
+Clang
+
+clang syskit.c -o syskit
+./syskit
+
+---
+
+🖥️ GTK3
+
+The GTK3 version requires GTK3 development libraries and "pkg-config".
+
+Compile
+
+gcc syskit-gui.c -o syskit-gui $(pkg-config --cflags --libs gtk+-3.0)
+
+Run
+
+./syskit-gui
+
+Debian / Ubuntu / Mint
+
+sudo apt update
+sudo apt install build-essential pkg-config libgtk-3-dev
+
+Fedora
+
+sudo dnf install gcc pkgconf-pkg-config gtk3-devel
+
+Arch Linux
+
+sudo pacman -S base-devel pkgconf gtk3
+
+---
+
+📱 Termux
+
+Install the basic tools:
+
+pkg update
+pkg upgrade
+pkg install git python clang
+
+Clone SysKit:
+
+git clone https://github.com/anshlabs716/syskit.git
+cd syskit
+
+Python Lite
+
+python "syskit lite.py"
+
+C Lite
+
+clang syskit-lite.c -o syskit-lite
+./syskit-lite
+
+Java Lite
+
+If a suitable JDK is available:
+
+javac SyskitLite.java
+java SyskitLite
+
+«💡 Recommended: Start with a Lite implementation on Termux.»
+
+---
+
+📦 Dependencies
+
+Different implementations use different dependencies.
+
+Core
+
+- Bash
+- GCC or Clang
+- Python 3
+- Java JDK
+- Git
+
+Common Utilities
+
+Some features may use:
+
+- "curl"
+- "wget"
+- "jq"
+- "fastfetch"
+- "tar"
+- "zip"
+- "unzip"
+- "tree"
+
+Hardware / System
+
+Depending on the feature and platform:
+
+- "lshw"
+- "dmidecode"
+- "smartctl"
+- "sensors"
+- "lspci"
+- "uuidgen"
+
+Networking
+
+Some networking features may use:
+
+- "ping"
+- "nmcli"
+- NetworkManager
+- DNS utilities
+
+«Not every dependency is required to run every version of SysKit.»
+
+---
+
+🎛️ Main Menu
 
 SysKit uses a simple numbered menu:
 
-```text
 ╭────────────────────────────╮
 │          🚀 SysKit         │
 ├────────────────────────────┤
-│  1.  System                │
-│  2.  Monitoring            │
-│  3.  Network               │
-│  4.  Power                 │
-│  5.  Packages              │
-│  6.  Cleaner               │
-│  7.  Storage               │
-│  8.  Security              │
-│  9.  Files                 │
-│ 10.  Archives              │
-│ 11.  Utilities             │
+│  1.  System               │
+│  2.  Monitoring           │
+│  3.  Network              │
+│  4.  Power                │
+│  5.  Packages             │
+│  6.  Cleaner              │
+│  7.  Storage              │
+│  8.  Security             │
+│  9.  Files                │
+│ 10.  Archives             │
+│ 11.  Utilities            │
 │ 12.  Internet              │
-│ 13.  Backup                │
-│ 14.  Settings              │
-│ 15.  Help                  │
-│ 16.  Exit                  │
+│ 13.  Backup               │
+│ 14.  Settings             │
+│ 15.  Help                 │
+│ 16.  Exit                 │
 ╰────────────────────────────╯
-```
 
 ---
 
-# 🧪 Testing
+🧪 Testing
 
 SysKit has multiple implementations, so compatibility matters.
 
-### Feature Testing
+Feature Testing
 
-* [x] C — runs great
-* [x] C Lite — super fast
-* [x] Bash — works amazingly well on Linux
-* [x] Bash Lite — works really well on Termux
-* [x] Python — functional
-* [x] Python Lite — functional with some device-info limitations
-* [x] Java — works pretty well
-* [x] Java Lite
-* [x] GTK3 — functional
-* [x] Android APK — released
-* [x] Android Shizuku integration
-* [x] Android root integration
+- [x] C — runs great
+- [x] C Lite — super fast; NEVER run this on real Linux
+- [x] Bash — works amazingly well on Linux
+- [x] Bash Lite — works really well on Termux; NEVER run this on real Linux
+- [x] Python — some features are a bit buggier than others
+- [x] Python Lite — has some issues with device info but overall great; NEVER run this on real Linux
+- [x] Java — works pretty well
+- [ ] Java Lite — not tested yet; NEVER run this on real Linux
+- [x] GTK3 — works well but is slower compared to the other C versions
+- [x] Android APK
+- [x] Shizuku support
+- [x] Root-aware Android functionality
 
-> ⚠️ **Never run Lite versions on real Linux.** They are designed for restricted environments such as Termux.
+«⚠️ Never run Lite versions on real Linux. They are designed for restricted environments such as Termux and can heavily modify their behavior on Linux, potentially causing crashes. Full versions can be used on Termux where supported.»
 
----
+Platform Testing
 
-# 🗺️ Roadmap
+- [ ] Debian 
+- [ ] Ubuntu
+- [ ] Linux Mint
+- [x] Fedora
+- [x] Arch Linux
+- [ ] Alpine
+- [ ] openSUSE
+- [ ] Void Linux
+- [x] Termux
+- [x] Android
+- [ ] macOS
+- [ ] BSD
 
-## 🔧 Core
+Feature Areas
 
-* [x] C implementation
-* [x] C Lite implementation
-* [x] Bash implementation
-* [x] Bash Lite implementation
-* [x] Python implementation
-* [x] Python Lite implementation
-* [x] Java implementation
-* [x] Java Lite implementation
-* [x] GTK3 implementation
-* [x] Android implementation
-* [x] APK release
-* [x] Shizuku support
-* [x] Root support
-* [ ] Improve error handling
-* [ ] Improve dependency detection
-* [x] Expand hardware support
-* [x] Expand monitoring
-* [x] Expand networking
-* [ ] Improve storage diagnostics
-* [x] Improve Lite versions
-* [ ] Improve documentation
-* [ ] Automated testing
-
----
-
-# 📱 Android
-
-The Android version is now an active part of SysKit.
-
-### Android Development
-
-* [x] Research Android APIs
-* [x] Research Android architecture
-* [x] Design Android UI
-* [x] Port supported functionality
-* [x] Investigate Shizuku
-* [x] Investigate ADB
-* [x] Investigate root-aware features
-* [x] Build Android implementation
-* [x] Build APK
-* [x] Test on real Android devices
-* [x] Add Shizuku support
-* [x] Add root support
-* [x] Release Android APK
-
-### Android Goals
-
-* [x] Android-native implementation
-* [x] System information
-* [x] Device information
-* [x] Storage information
-* [x] Battery information
-* [x] Network information
-* [x] Android utilities
-* [x] Elevated-access support
-* [x] APK distribution
-* [x] Expand Android functionality
-* [x] Improve device compatibility
-* [x] Add more Android-specific tools
-* [x] Expand non-root functionality
-* [x] Expand Shizuku functionality
-* [x] Expand root functionality
+- [x] System information
+- [x] Monitoring
+- [x] Networking
+- [x] Power
+- [x] Package management
+- [x] Cleaning
+- [x] Storage
+- [x] Security
+- [x] File utilities
+- [x] Archives — Beta
+- [x] Utilities
+- [x] Internet tools
+- [x] Backup / restore
+- [x] Settings
+- [x] Android integration
+- [x] Shizuku integration
+- [x] Root-aware functionality
 
 ---
 
-# 🗂️ Project Structure
+🗺️ Roadmap
 
-```text
+🔧 Core
+
+- [x] C implementation
+- [x] C Lite implementation
+- [x] Bash implementation
+- [x] Bash Lite implementation
+- [x] Python implementation
+- [x] Python Lite implementation
+- [x] Java implementation
+- [x] Java Lite implementation
+- [x] GTK3 implementation
+- [x] Android implementation
+- [x] Shizuku integration
+- [x] Root-aware Android functionality
+- [x] APK release
+- [ ] Improve error handling
+- [ ] Improve dependency detection
+- [ ] Expand hardware support
+- [ ] Expand monitoring
+- [ ] Expand networking
+- [ ] Improve storage diagnostics
+- [ ] Improve Lite versions
+- [ ] Improve documentation
+- [ ] Automated testing
+
+🌍 Compatibility
+
+- [x] Linux
+- [x] Termux
+- [x] Android
+- [ ] Debian-based testing
+- [x] Fedora-based testing
+- [x] Arch-based testing
+- [ ] Alpine testing
+- [ ] openSUSE testing
+- [ ] Void Linux testing
+- [ ] macOS testing
+- [ ] BSD testing
+
+🧪 Reliability
+
+- [x] Test every menu option
+- [x] Test every implementation
+- [x] Test multiple distributions
+- [ ] Test low-resource environments
+- [ ] Test archive functionality
+- [ ] Test backup / restore
+- [ ] Test missing dependencies
+- [ ] Test permission handling
+- [ ] Improve compatibility detection
+
+📱 Android
+
+- [x] Research Android APIs
+- [x] Research Android architecture
+- [x] Design Android UI
+- [x] Port supported functionality
+- [x] Investigate Shizuku
+- [x] Integrate Shizuku
+- [x] Investigate ADB
+- [x] Add root-aware features
+- [x] Build prototype
+- [x] Test on real devices
+- [x] Build SysKit APK
+- [x] Release SysKit APK
+- [x] Add Android documentation
+- [x] Add Android project structure
+- [ ] Expand Android feature coverage
+- [ ] Expand device compatibility
+- [ ] Add more Android-specific tools
+
+«Android uses an Android-native implementation rather than simply packaging the existing Linux code into an APK.»
+
+---
+
+🗂️ Project Structure
+
 syskit/
-├── app/
-│   └── Android application
-│
-├── gradle/
+├── .gitignore
+├── .gitignore (C)
+├── .gitignore (java)
+├── .gitignore (py)
 │
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
@@ -422,6 +594,7 @@ syskit/
 ├── SECURITY.md
 │
 ├── Syskit.desktop
+│
 ├── Syskit.java
 ├── SyskitLite.java
 │
@@ -433,68 +606,94 @@ syskit/
 ├── syskit-gui.c
 │
 ├── syskit.sh
-└── syskit-lite.sh
-```
+├── syskit-lite.sh
+│
+└── app/
+    └── Android application
 
 ---
 
-# 🛠️ Troubleshooting
+🛠️ Troubleshooting
 
-### `Permission denied`
+"Permission denied"
 
-```bash
 chmod +x syskit.sh
-```
 
 Then:
 
-```bash
 ./syskit.sh
-```
 
 Some system operations may require elevated permissions.
 
-### `command not found`
+"command not found"
 
 Install the missing dependency using your distribution's package manager.
 
-### C compilation fails
+C compilation fails
 
-```bash
 gcc --version
-```
 
 or:
 
-```bash
 clang --version
-```
 
-### Java compilation fails
+Java compilation fails
 
-```bash
 java --version
 javac --version
-```
 
-### Android feature doesn't work
+GTK3 compilation fails
+
+pkg-config --modversion gtk+-3.0
+
+If GTK3 cannot be found, install the appropriate development package.
+
+Android APK won't install
 
 Check:
 
-1. Android version
-2. Required permissions
-3. Whether Shizuku is required
-4. Whether root is required
-5. Whether the feature is supported on your device
-6. Whether the relevant Android service is available
+1. The APK is compatible with your Android version.
+2. You downloaded the APK from the official release.
+3. Android allows installation from the source you used.
+4. The APK download completed correctly.
+
+Shizuku features don't work
+
+Check:
+
+1. Shizuku is installed.
+2. Shizuku is running.
+3. SysKit has been granted Shizuku access.
+4. The operation is supported on your Android version.
+
+Root features don't work
+
+Check:
+
+1. Your device is rooted.
+2. Your root manager is functioning correctly.
+3. SysKit has been granted root access.
+4. The requested operation requires root.
+
+A feature doesn't work
+
+Check:
+
+1. Required dependencies
+2. Platform compatibility
+3. Permissions
+4. Hardware support
+5. Whether the Lite version works
+
+If the problem continues, open an issue with useful information about your environment.
 
 ---
 
-# 🤝 Contributing
+🤝 Contributing
 
 Contributions, testing, bug reports, ideas, and improvements are welcome.
 
-Before contributing, read [`CONTRIBUTING.md`](https://github.com/anshlabs716/syskit/blob/main/CONTRIBUTING.md).
+Before contributing, read ""CONTRIBUTING.md"" (https://github.com/anshlabs716/syskit/blob/main/CONTRIBUTING.md).
 
 When submitting changes:
 
@@ -506,57 +705,58 @@ When submitting changes:
 
 ---
 
-# 🔐 Security
+🔐 Security
 
-For security-related issues, see [`SECURITY.md`](https://github.com/anshlabs716/syskit/blob/main/SECURITY.md).
+For security-related issues, see ""SECURITY.md"" (https://github.com/anshlabs716/syskit/blob/main/SECURITY.md).
 
 Please avoid publicly exposing sensitive security issues before they can be investigated.
 
 ---
 
-# 📜 Changelog
+📜 Changelog
 
-See [`CHANGELOG.md`](https://github.com/anshlabs716/syskit/blob/main/CHANGELOG.md) for development history.
+See ""CHANGELOG.md"" (https://github.com/anshlabs716/syskit/blob/main/CHANGELOG.md) for development history.
 
 ---
 
-# 👥 Credits
+👥 Credits
 
-### Weather Feature
+Weather Feature
 
-Special thanks to [**@shozanthebozan**](https://github.com/shozanthebozan).
+Special thanks to "@shozanthebozan" (https://github.com/shozanthebozan).
 
-The SysKit weather feature is based on [**onNow**](https://github.com/shozanthebozan/onNow) by shozanthebozan.
+The SysKit weather feature is based on "onNow" (https://github.com/shozanthebozan/onNow) by shozanthebozan.
 
 Please check out the original project:
 
-**🔗** [**shozanthebozan/onNow**](https://github.com/shozanthebozan/onNow)
+🔗 "shozanthebozan/onNow" (https://github.com/shozanthebozan/onNow)
+
+«💙 Credit goes to shozanthebozan for the original weather implementation that inspired the weather functionality in SysKit.»
 
 ---
 
-# ⚠️ Disclaimer
+⚠️ Disclaimer
 
-SysKit is intended for **system administration, diagnostics, maintenance, troubleshooting, learning, and personal use**.
+SysKit is intended for system administration, diagnostics, maintenance, troubleshooting, learning, and personal use.
 
 Some operations can modify system files, packages, services, caches, or other system resources.
 
-**Use system-modifying features carefully.**
+Use system-modifying features carefully.
 
 Feature availability varies between operating systems and implementations.
 
 ---
 
-# 📄 License
+📄 License
 
-SysKit is distributed under the license included in [`LICENSE`](https://github.com/anshlabs716/syskit/blob/main/LICENSE).
+SysKit is distributed under the license included in ""LICENSE"" (https://github.com/anshlabs716/syskit/blob/main/LICENSE).
 
 ---
 
-# 💡 Philosophy
+💡 Philosophy
 
 SysKit is built around a simple development loop:
 
-```text
         💡 Idea
            │
            ▼
@@ -578,20 +778,26 @@ SysKit is built around a simple development loop:
         🧠 Learn
            │
            └───────────↻
-```
 
-> **Build it. Break it. Understand it. Improve it.**
+«Build it. Break it. Understand it. Improve it.»
 
 ---
 
-<div align="center">
+📞 Contact
 
-### 🚀 SysKit
+Have a question, bug report, feature request, or idea?
 
-**C · Bash · Python · Java · Android**
+- 🐛 Bug: Open an "issue" (https://github.com/anshlabs716/syskit/issues)
+- 💡 Feature request: Open an "issue" (https://github.com/anshlabs716/syskit/issues)
+- 🤝 Contribution: See ""CONTRIBUTING.md"" (https://github.com/anshlabs716/syskit/blob/main/CONTRIBUTING.md)
+- 🔐 Security: See ""SECURITY.md"" (https://github.com/anshlabs716/syskit/blob/main/SECURITY.md)
 
-**Terminal · Lite · GTK3 · Android APK**
+---
 
-> **One toolkit. Multiple implementations. Always improving.**
+🚀 SysKit
 
-</div>
+C · Bash · Python · Java · Kotlin
+
+Terminal · Lite · GTK3 · Android
+
+«One toolkit. Multiple implementations. Always improving.»
