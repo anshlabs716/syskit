@@ -11,7 +11,6 @@
 <img width="1366" height="719" alt="Screenshot_20260819_180708" src="https://github.com/user-attachments/assets/3f267f50-3e09-458d-ae13-363b21683210" /> gui
 
 
-(screenshot of app coming soon)
 
 
 
