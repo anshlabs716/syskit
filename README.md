@@ -11,7 +11,7 @@
 <img width="1366" height="719" alt="Screenshot_20260819_180708" src="https://github.com/user-attachments/assets/3f267f50-3e09-458d-ae13-363b21683210" /> gui
 
 
-<img width="424" height="1687" alt="image" src="https://github.com/user-attachments/assets/06b14e22-24b4-415a-916f-722140636304" /> apk
+<img width="424" height="1587" alt="image" src="https://github.com/user-attachments/assets/06b14e22-24b4-415a-916f-722140636304" /> apk
 
 
   
