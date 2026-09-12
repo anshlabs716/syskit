@@ -4,6 +4,19 @@
 
 <div align="center">
 
+<img width="679" height="516" alt="Screenshot_20260819_175036" src="https://github.com/user-attachments/assets/6b63de81-e649-4135-9613-74187ceff7ef" />
+full
+
+<img width="424" height="521" alt="Screenshot_20260819_174953" src="https://github.com/user-attachments/assets/3d1f114e-558b-450f-98aa-7bae12118618" />
+lite
+
+<img width="1366" height="719" alt="Screenshot_20260819_180708" src="https://github.com/user-attachments/assets/3f267f50-3e09-458d-ae13-363b21683210" />
+gui
+
+
+(screenshot of app coming soon)
+
+
 
   
 
