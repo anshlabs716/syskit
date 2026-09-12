@@ -5,50 +5,23 @@
 ### Universal System Toolkit
 
 <p>
-<img src="https://img.shields.io/badge/C-31.3%25-A8B9CC?style=for-the-badge&logo=c&logoColor=white" alt="C">
-
-  
-
-<img src="https://img.shields.io/badge/Java-26.1%25-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java">
-
-  
-
-<img src="https://img.shields.io/badge/Shell-22.9%25-89E051?style=for-the-badge&logo=gnubash&logoColor=white" alt="Shell">
-
-  
-
-<img src="https://img.shields.io/badge/Python-19.7%25-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
-
-  
-
-<img src="https://img.shields.io/badge/Linux-Supported-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux">
-
-  
-
+<img src="https://img.shields.io/badge/C-31.3%25-A8B9CC?style=for-the-badge&logo=c&logoColor=white" alt="C">&nbsp;&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/Java-26.1%25-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java">&nbsp;&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/Shell-22.9%25-89E051?style=for-the-badge&logo=gnubash&logoColor=white" alt="Shell">&nbsp;&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/Python-19.7%25-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">&nbsp;&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/Linux-Supported-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux">&nbsp;&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/Termux-Supported-000000?style=for-the-badge&logo=termux&logoColor=white" alt="Termux">
-
 </p>
 
 <p>
-<img src="https://img.shields.io/github/v/release/anshlabs716/syskit?style=for-the-badge&label=Latest%20Release" alt="Latest Release">
-
-  
-
-<img src="https://img.shields.io/github/license/anshlabs716/syskit?style=for-the-badge" alt="License">
-
-  
-
-<img src="https://img.shields.io/github/stars/anshlabs716/syskit?style=for-the-badge" alt="Stars">
-
-  
-
-<img src="https://img.shields.io/github/issues/anshlabs716/syskit?style=for-the-badge" alt="Issues">
-
-  
-
+<img src="https://img.shields.io/github/v/release/anshlabs716/syskit?style=for-the-badge&label=Latest%20Release" alt="Latest Release">&nbsp;&nbsp;&nbsp;
+<img src="https://img.shields.io/github/license/anshlabs716/syskit?style=for-the-badge" alt="License">&nbsp;&nbsp;&nbsp;
+<img src="https://img.shields.io/github/stars/anshlabs716/syskit?style=for-the-badge" alt="Stars">&nbsp;&nbsp;&nbsp;
+<img src="https://img.shields.io/github/issues/anshlabs716/syskit?style=for-the-badge" alt="Issues">&nbsp;&nbsp;&nbsp;
 <img src="https://img.shields.io/github/last-commit/anshlabs716/syskit?style=for-the-badge" alt="Last Commit">
-
 </p>
+
+<br>
 
 > **SysKit** is a multi-language system toolkit for information, diagnostics, maintenance, networking, storage, utilities, and more.
 
@@ -64,15 +37,15 @@ Instead of jumping between different commands for system information, networking
 
 The project includes implementations in **C, Bash, Python, and Java**, alongside a dedicated **Android APK**.
 
-SysKit is designed to provide useful functionality across Linux, Termux, and Android.
+SysKit is designed to provide useful functionality across **Linux, Termux, and Android**.
 
 ---
 
-## 📱 Android
+# 📱 Android
 
-SysKit now has a dedicated **Android APK**.
+SysKit now includes a dedicated **Android APK**.
 
-The Android version is built specifically for Android rather than simply packaging the Linux versions into an APK.
+The Android version is built specifically for Android rather than simply packaging the existing Linux versions into an APK.
 
 ### Android Features
 
@@ -94,8 +67,6 @@ The Android version is built specifically for Android rather than simply packagi
 
 ### Android Access Levels
 
-SysKit can make use of different Android permission/access methods depending on the operation:
-
 | Access                        | Support |
 | ----------------------------- | ------- |
 | 📱 Normal Android permissions | ✅       |
@@ -107,7 +78,7 @@ SysKit can make use of different Android permission/access methods depending on 
 
 ---
 
-## 📥 Android Installation
+# 📥 Android Installation
 
 The Android APK is available through the project's releases.
 
@@ -125,7 +96,7 @@ The Android APK is available through the project's releases.
 
 ---
 
-## 🖥️ Implementations
+# 🖥️ Implementations
 
 SysKit isn't tied to a single language.
 
@@ -144,7 +115,7 @@ SysKit isn't tied to a single language.
 
 ---
 
-## ✨ Features
+# ✨ Features
 
 | Category          | What SysKit provides                                                           |
 | ----------------- | ------------------------------------------------------------------------------ |
@@ -169,17 +140,23 @@ SysKit isn't tied to a single language.
 
 ---
 
-## 🖼️ Screenshots
+# 🖼️ Screenshots
 
-**Full**
+## Full
 
-**Lite**
+<img src="https://github.com/user-attachments/assets/69f077f3-5705-4ca7-a308-216f86dcb942" alt="SysKit Full" width="800">
 
-**GUI**
+## Lite
+
+<img src="https://github.com/user-attachments/assets/a4a79df9-b15e-45fa-a63a-c5fab11d0af1" alt="SysKit Lite" width="800">
+
+## GUI
+
+<img src="https://github.com/user-attachments/assets/fbb6fadd-f682-4b84-87bb-197a16a7c97b" alt="SysKit GUI" width="800">
 
 ---
 
-## 🐧 Linux
+# 🐧 Linux
 
 Linux is the primary target for SysKit.
 
@@ -187,7 +164,7 @@ SysKit supports system information, diagnostics, networking, storage, maintenanc
 
 ---
 
-## 📱 Termux
+# 📱 Termux
 
 SysKit can run in Termux, with the Lite implementations being the recommended choice.
 
@@ -350,7 +327,7 @@ SysKit has multiple implementations, so compatibility matters.
 * [x] Python — functional
 * [x] Python Lite — functional with some device-info limitations
 * [x] Java — works pretty well
-* [ ] Java Lite — testing continues
+* [x] Java Lite
 * [x] GTK3 — functional
 * [x] Android APK — released
 * [x] Android Shizuku integration
@@ -422,7 +399,7 @@ The Android version is now an active part of SysKit.
 * [x] APK distribution
 * [x] Expand Android functionality
 * [x] Improve device compatibility
-* [ ] Add more Android-specific tools
+* [x] Add more Android-specific tools
 * [x] Expand non-root functionality
 * [x] Expand Shizuku functionality
 * [x] Expand root functionality
@@ -550,6 +527,10 @@ See [`CHANGELOG.md`](https://github.com/anshlabs716/syskit/blob/main/CHANGELOG.m
 Special thanks to [**@shozanthebozan**](https://github.com/shozanthebozan).
 
 The SysKit weather feature is based on [**onNow**](https://github.com/shozanthebozan/onNow) by shozanthebozan.
+
+Please check out the original project:
+
+**🔗** [**shozanthebozan/onNow**](https://github.com/shozanthebozan/onNow)
 
 ---
 
