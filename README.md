@@ -4,108 +4,53 @@
 
 ### Universal System Toolkit
 
-<img src="https://img.shields.io/badge/C-24.4%25-A8B9CC?style=for-the-badge&logo=c&logoColor=white" alt="C">
+<p>
+<a href="https://github.com/anshlabs716/syskit"><img src="https://img.shields.io/badge/C-31.3%25-A8B9CC?style=for-the-badge&logo=c&logoColor=white" alt="C"></a>&nbsp;&nbsp;
+<a href="https://github.com/anshlabs716/syskit"><img src="https://img.shields.io/badge/Java-26.1%25-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java"></a>&nbsp;&nbsp;
+<a href="https://github.com/anshlabs716/syskit"><img src="https://img.shields.io/badge/Shell-22.9%25-89E051?style=for-the-badge&logo=gnubash&logoColor=white" alt="Shell"></a>&nbsp;&nbsp;
+<a href="https://github.com/anshlabs716/syskit"><img src="https://img.shields.io/badge/Python-19.7%25-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"></a>&nbsp;&nbsp;
+<a href="https://github.com/anshlabs716/syskit"><img src="https://img.shields.io/badge/Linux-Supported-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux"></a>&nbsp;&nbsp;
+<a href="https://github.com/anshlabs716/syskit"><img src="https://img.shields.io/badge/Termux-Supported-000000?style=for-the-badge&logo=termux&logoColor=white" alt="Termux"></a>&nbsp;&nbsp;
+<a href="https://github.com/anshlabs716/syskit"><img src="https://img.shields.io/badge/Android-APK-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android APK"></a>&nbsp;&nbsp;
+<a href="https://github.com/anshlabs716/syskit"><img src="https://img.shields.io/badge/Shizuku-Supported-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Shizuku"></a>&nbsp;&nbsp;
+<a href="https://github.com/anshlabs716/syskit"><img src="https://img.shields.io/badge/Root-Supported-000000?style=for-the-badge&logo=android&logoColor=white" alt="Root"></a>
+</p>
 
- 
+<img width="320" height="320" alt="SysKit Full" src="https://private-user-images.githubusercontent.com/233554853/638142142-1be2c14c-7db4-4a24-baa5-d1c3c6d74ca5.png" />
 
-<img src="https://img.shields.io/badge/Kotlin-22%25-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white" alt="Kotlin">
+<img width="320" height="320" alt="SysKit Lite" src="https://private-user-images.githubusercontent.com/233554853/638142244-4caddf1b-2079-42c5-934e-59d530b1cc81.png" />
 
- 
-
-<img src="https://img.shields.io/badge/Java-20.4%25-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java">
-
- 
-
-<img src="https://img.shields.io/badge/Shell-17.9%25-89E051?style=for-the-badge&logo=gnubash&logoColor=white" alt="Shell">
-
- 
-
-<img src="https://img.shields.io/badge/Python-15.3%25-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
-
- 
-
-<img src="https://img.shields.io/badge/Linux-Supported-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux">
-
- 
-
-<img src="https://img.shields.io/badge/Android-Supported-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android">
-
- 
-
-<img src="https://img.shields.io/badge/Termux-Supported-000000?style=for-the-badge&logo=termux&logoColor=white" alt="Termux">
-
- 
-
-<img src="https://img.shields.io/badge/GTK3-Supported-7FE719?style=for-the-badge&logo=gtk&logoColor=white" alt="GTK3">
-
- 
-
-<img src="https://img.shields.io/github/license/anshlabs716/syskit?style=for-the-badge" alt="License">
-
- 
-
-<img src="https://img.shields.io/github/stars/anshlabs716/syskit?style=for-the-badge" alt="GitHub Stars">
-
- 
-
-<img src="https://img.shields.io/github/issues/anshlabs716/syskit?style=for-the-badge" alt="GitHub Issues">
-
- 
-
-<img src="https://img.shields.io/github/last-commit/anshlabs716/syskit?style=for-the-badge" alt="Last Commit">
-
-</div>
-
----
-
-<div align="center">
-
-<img width="320" height="320" alt="SysKit Full" src="https://github.com/user-attachments/assets/69f077f3-5705-4ca7-a308-216f86dcb942" />
-
-<img width="320" height="320" alt="SysKit Lite" src="https://github.com/user-attachments/assets/a4a79df9-b15e-45fa-a63a-c5fab11d0af1" />
-
-<img width="320" height="320" alt="SysKit GUI" src="https://github.com/user-attachments/assets/fbb6fadd-f682-4b84-87bb-197a16a7c97b" />
-
-</div>
+<img width="320" height="320" alt="SysKit GUI" src="https://private-user-images.githubusercontent.com/233554853/638147438-5c6c45ee-8565-47d2-a9be-353ef5a19f28.png" />
 
 > **SysKit** is a multi-language system toolkit for information, diagnostics, maintenance, networking, storage, utilities, and more.
 
+</div>
+
 ---
 
-# 🧠 What is SysKit?
+## 🧠 What is SysKit?
 
 SysKit brings a collection of useful system tools into one menu-driven toolkit.
 
 Instead of jumping between different commands for system information, networking, storage, maintenance, and diagnostics, SysKit puts them together in one place.
 
-The project includes multiple implementations for different environments:
+The project includes implementations in **C, Bash, Python, and Java**, lightweight variants for restricted environments such as Termux, a GTK3 desktop interface, and now an **Android APK**.
 
-* 🦾 C
-* 🐚 Bash
-* 🐍 Python
-* ☕ Java
-* 📱 Android / Kotlin
-* 🖥️ GTK3
-* 📱 Termux
-
-SysKit is designed to adapt to the platform it is running on instead of forcing every environment to use the same implementation.
-
----
-
-# 🧩 Implementations
-
-| Version            | Language | Environment                       |
-| ------------------ | -------- | --------------------------------- |
-| **SysKit**         | C        | Full terminal version             |
-| **SysKit Lite**    | C        | Lightweight environments          |
-| **SysKit GUI**     | C / GTK3 | Linux desktop                     |
-| **SysKit**         | Bash     | Unix-like systems                 |
-| **SysKit Lite**    | Bash     | Lightweight environments          |
-| **SysKit**         | Python   | Python environments               |
-| **SysKit Lite**    | Python   | Termux / lightweight environments |
-| **SysKit**         | Java     | Java environments                 |
-| **SysKit Lite**    | Java     | Lightweight Java environments     |
-| **SysKit Android** | Kotlin   | Android                           |
+```text
+                         🚀 SysKit
+                            │
+          ┌─────────────────┼──────────────────┐
+          │                 │                  │
+       Desktop            Termux            Android
+          │                 │                  │
+     ┌────┼────┐       ┌────┼────┐       ┌─────┴─────┐
+     │    │    │       │    │    │       │           │
+     C   Bash Python   C   Bash Python  Shizuku     Root
+          │
+         Java
+          │
+         GTK3
+```
 
 ---
 
@@ -133,82 +78,96 @@ SysKit is designed to adapt to the platform it is running on instead of forcing 
 
 ---
 
+# 🧩 Implementations
+
+SysKit isn't tied to a single language or platform.
+
+| Version            | Language / Technology | File / Location   | Environment                       |
+| ------------------ | --------------------- | ----------------- | --------------------------------- |
+| **SysKit**         | C                     | `syskit.c`        | Full terminal version             |
+| **SysKit Lite**    | C                     | `syskit-lite.c`   | Lightweight environments          |
+| **SysKit GUI**     | C / GTK3              | `syskit-gui.c`    | Linux desktop                     |
+| **SysKit**         | Bash                  | `syskit.sh`       | Unix-like systems                 |
+| **SysKit Lite**    | Bash                  | `syskit-lite.sh`  | Lightweight environments          |
+| **SysKit**         | Python                | `syskit.py`       | Python environments               |
+| **SysKit Lite**    | Python                | `syskit lite.py`  | Termux / lightweight environments |
+| **SysKit**         | Java                  | `Syskit.java`     | Java environments                 |
+| **SysKit Lite**    | Java                  | `SyskitLite.java` | Lightweight Java environments     |
+| **SysKit Android** | Kotlin / Android      | `app/`            | Android                           |
+
+---
+
 # 📱 Android
 
-SysKit now includes a **native Android APK**.
+SysKit now has an **Android-native APK implementation**.
 
-The Android version is a separate Android implementation rather than simply packaging the existing Linux CLI versions into an APK.
+The Android version is separate from the traditional Linux/Termux implementations and uses an Android project structure with **Gradle and Kotlin**.
 
-The repository contains an Android application under `app/`, and Kotlin is now one of the project's tracked languages.
+### Android capabilities
 
-## 📦 Android APK
+* 📱 Native Android application
+* 🧩 Android-specific system functionality
+* 🔌 **Shizuku support**
+* 🔓 **Root-aware functionality**
+* ⚙️ Android-native architecture
+* 🛠️ Built using Gradle
+* 🧑‍💻 Kotlin-based Android code
+* 📦 Distributed as an APK release
 
-The current Android release is:
+### 🔌 Shizuku
 
-**`v1.0.1-apk`**
+SysKit can use **Shizuku** for Android operations that require elevated system-level access without requiring traditional root.
 
-[**📥 Download SysKit Android v1.0.1**](https://github.com/anshlabs716/syskit/releases/tag/v1.0.1-apk)
+This allows SysKit to access additional functionality through Android's supported privileged APIs when Shizuku is available.
 
-The `v1.0.1-apk` release is marked as the latest Android APK release. The release notes state that root, Shizuku, and a shell were added in this version.
-
-> ⚠️ **Do not use ****`v1.0.0-apk`****.** The current release notes explicitly identify it as broken. Use `v1.0.1-apk` instead.
-
----
-
-## 🔐 Shizuku Support
-
-SysKit Android supports **Shizuku** for elevated Android functionality.
-
-Shizuku allows compatible Android applications to use supported system APIs through an ADB or root-backed service.
-
-SysKit can therefore use Shizuku-based functionality without requiring every user to have a rooted device.
-
-> Shizuku-dependent features require Shizuku to be running and the required permissions to be granted.
-
-Shizuku itself supports both rooted and non-rooted setups, with ADB-based operation available on supported Android versions.
-
----
-
-## 🔓 Root Support
+### 🔓 Root
 
 The Android version also includes **root-aware functionality**.
 
-Root is optional for the application, but supported functionality can use elevated access when available.
+When a device is rooted, SysKit can use root access for functionality that requires elevated permissions.
 
-> ⚠️ Root-level operations can have significant system access. Use elevated functionality carefully.
+> ⚠️ Root functionality depends on the device, Android version, root implementation, granted permissions, and what the specific operation requires.
 
-The current `v1.0.1-apk` release specifically states that root support was added.
+### 📦 APK
 
----
+The Android APK is available through the project's GitHub Releases.
 
-## 🐚 Android Shell
+**Latest APK release:** `v1.0.1-apk`
 
-The current Android release also includes a **shell**.
+[Download the latest SysKit APK release](https://github.com/anshlabs716/syskit/releases/tag/v1.0.1-apk?utm_source=chatgpt.com)
 
-This allows SysKit Android to provide functionality that goes beyond a normal Android application where the required access is available.
-
-The release notes for `v1.0.1-apk` explicitly mention that a shell was added alongside root and Shizuku support.
+> ⚠️ Only install APKs from sources you trust. SysKit is an open-source project, so the source code is available in this repository.
 
 ---
 
-## 📱 Android Architecture
+# 🤖 Android Development
 
-The Android implementation uses the repository's Android project structure:
+The Android implementation uses a standard Android project structure.
 
 ```text
-syskit/
-├── app/
-│   └── Android application
+app/
+├── src/
+│   └── main/
+│       ├── java/
+│       ├── res/
+│       └── AndroidManifest.xml
 │
-├── gradle/
+├── build.gradle.kts
 │
 ├── build.gradle.kts
 ├── gradle.properties
 ├── settings.gradle.kts
-└── metadata.json
+└── gradle/
 ```
 
-The repository currently contains `app/`, `gradle/`, `build.gradle.kts`, `gradle.properties`, `settings.gradle.kts`, and `metadata.json` alongside the original SysKit implementations.
+The Android project uses:
+
+* **Kotlin**
+* **Gradle**
+* **Android SDK**
+* Android-native APIs
+* Shizuku integration
+* Root-aware functionality
 
 ---
 
@@ -216,9 +175,11 @@ The repository currently contains `app/`, `gradle/`, `build.gradle.kts`, `gradle
 
 | Platform   | Status | Notes                             |
 | ---------- | ------ | --------------------------------- |
-| 🐧 Linux   | ✅      | Primary platform                  |
-| 📱 Android | ✅      | Native Android APK                |
+| 🐧 Linux   | ✅      | Primary desktop platform          |
 | 📱 Termux  | ✅      | Lite versions recommended         |
+| 🤖 Android | ✅      | Native APK available              |
+| 🔌 Shizuku | ✅      | Supported by Android version      |
+| 🔓 Root    | ✅      | Supported by Android version      |
 | 🍎 macOS   | 🧪     | Shell compatibility needs testing |
 | 👻 BSD     | 🧪     | Shell compatibility needs testing |
 
@@ -228,19 +189,17 @@ Linux is the primary target for the original SysKit implementations.
 
 The exact functionality depends on your distribution and installed system utilities.
 
-### Android
-
-Android has its own native implementation.
-
-Android does not expose every traditional Linux interface to normal applications, so Android-specific functionality is implemented separately.
-
-SysKit Android can also use supported elevated functionality through Shizuku and root.
-
 ### Termux
 
 SysKit can run in Termux, with the Lite implementations being the recommended choice.
 
-Android does not expose every traditional Linux interface, so some functionality may not be available.
+Android does not expose every traditional Linux interface, so some features may not be available.
+
+### Android
+
+The Android version is a **native Android application**, rather than simply packaging the Linux version into an APK.
+
+Android-specific functionality is implemented separately and can use Android APIs, Shizuku, and root where supported.
 
 ### macOS / BSD
 
@@ -291,33 +250,6 @@ python3 syskit.py
 python3 "syskit lite.py"
 ```
 
-### Install Python
-
-**Debian / Ubuntu / Mint**
-
-```bash
-sudo apt update
-sudo apt install python3
-```
-
-**Fedora**
-
-```bash
-sudo dnf install python3
-```
-
-**Arch Linux**
-
-```bash
-sudo pacman -S python
-```
-
-**Alpine**
-
-```bash
-sudo apk add python3
-```
-
 ---
 
 ## ☕ Java
@@ -341,33 +273,6 @@ java Syskit
 ```bash
 javac SyskitLite.java
 java SyskitLite
-```
-
-### Install a JDK
-
-**Debian / Ubuntu / Mint**
-
-```bash
-sudo apt update
-sudo apt install default-jdk
-```
-
-**Fedora**
-
-```bash
-sudo dnf install java-latest-openjdk-devel
-```
-
-**Arch Linux**
-
-```bash
-sudo pacman -S jdk-openjdk
-```
-
-**Alpine**
-
-```bash
-sudo apk add openjdk17
 ```
 
 ---
@@ -434,55 +339,63 @@ sudo pacman -S base-devel pkgconf gtk3
 
 ---
 
-# 📱 Android Installation
+# 📱 Termux
 
-Download the current Android APK from the GitHub Releases page:
+Install the basic tools:
 
-[**📥 SysKit v1.0.1-apk**](https://github.com/anshlabs716/syskit/releases/tag/v1.0.1-apk)
+```bash
+pkg update
+pkg upgrade
+pkg install git python clang
+```
 
-### Setup
+Clone SysKit:
 
-1. Download `v1.0.1-apk`.
-2. Install SysKit on your Android device.
-3. Open SysKit.
-4. Grant any Android permissions required by the features you use.
-5. If using Shizuku functionality, make sure Shizuku is running.
-6. If using root functionality, grant root access when requested.
+```bash
+git clone https://github.com/anshlabs716/syskit.git
+cd syskit
+```
 
-> ⚠️ Exact functionality depends on your Android version, device, permissions, and whether elevated access is available.
+### Python Lite
+
+```bash
+python "syskit lite.py"
+```
+
+### C Lite
+
+```bash
+clang syskit-lite.c -o syskit-lite
+./syskit-lite
+```
+
+### Java Lite
+
+If a suitable JDK is available:
+
+```bash
+javac SyskitLite.java
+java SyskitLite
+```
+
+> 💡 **Recommended:** Start with a Lite implementation on Termux.
 
 ---
 
-# 📱 Android Access Modes
+# 📦 Android APK Installation
 
-SysKit Android can operate with different levels of access:
+Download the latest APK from the GitHub Releases page.
 
-| Mode       | Access                                   |
-| ---------- | ---------------------------------------- |
-| 📱 Normal  | Standard Android application permissions |
-| 🔐 Shizuku | Elevated APIs through Shizuku            |
-| 🔓 Root    | Root-level access where supported        |
+[SysKit Releases](https://github.com/anshlabs716/syskit/releases?utm_source=chatgpt.com)
 
-This allows SysKit to provide different capabilities depending on the user's device configuration.
+Then install the APK on a compatible Android device.
 
----
+For advanced functionality:
 
-# 📱 Android vs Linux
+* **Shizuku** can be configured for supported operations.
+* **Root access** can be granted where root functionality is required.
 
-| Feature                        |              Linux | Android |
-| ------------------------------ | -----------------: | ------: |
-| System information             |                  ✅ |       ✅ |
-| Battery information            |                  ✅ |       ✅ |
-| Storage information            |                  ✅ |       ✅ |
-| Networking                     |                  ✅ |       ✅ |
-| Native terminal implementation |                  ✅ |       ❌ |
-| Native Android application     |                  ❌ |       ✅ |
-| Shizuku                        |                  ❌ |       ✅ |
-| Root-aware functionality       | Platform-dependent |       ✅ |
-| Android APIs                   |                  ❌ |       ✅ |
-| Termux support                 |                  — |       ✅ |
-
-> ⚠️ This is a platform-level comparison. Individual SysKit features can have different availability depending on the implementation and permissions.
+> ⚠️ Android permissions and available functionality vary by device and Android version.
 
 ---
 
@@ -533,12 +446,14 @@ Some networking features may use:
 
 ## Android
 
-The Android implementation uses Android-specific APIs and components.
+The Android build uses the Android project configuration contained in the repository.
 
-Additional elevated functionality can use:
+Android-specific functionality may additionally depend on:
 
+* Android SDK
+* Android system APIs
 * Shizuku
-* Root access
+* Root access where required
 
 > Not every dependency is required to run every version of SysKit.
 
@@ -546,7 +461,7 @@ Additional elevated functionality can use:
 
 # 🎛️ Main Menu
 
-SysKit uses a simple numbered menu in its terminal implementations:
+SysKit uses a simple numbered menu:
 
 ```text
 ╭────────────────────────────╮
@@ -571,8 +486,6 @@ SysKit uses a simple numbered menu in its terminal implementations:
 ╰────────────────────────────╯
 ```
 
-The Android version uses a native Android interface instead of the terminal menu.
-
 ---
 
 # 🧪 Testing
@@ -590,9 +503,28 @@ SysKit has multiple implementations, so compatibility matters.
 * Java — works pretty well
 * Java Lite — not tested yet; **NEVER run this on real Linux**
 * GTK3 — works well but is slower compared to the other C versions
-* Android — current APK available
+* Android — APK implementation with Shizuku/root support
 
-> ⚠️ **Never run Lite versions on real Linux.** They are designed for restricted environments such as Termux.
+> ⚠️ **Never run Lite versions on real Linux.**
+>
+> They are designed for restricted environments such as Termux and can behave incorrectly on full Linux systems.
+
+## Android Testing
+
+Android functionality should be tested separately from the desktop implementations.
+
+Testing areas include:
+
+* APK installation
+* Android system information
+* Device compatibility
+* Shizuku functionality
+* Root functionality
+* Permissions
+* Android-version compatibility
+* Hardware-specific behavior
+
+> ⚠️ Android features may behave differently across manufacturers, Android versions, root implementations, and device configurations.
 
 ## Platform Testing
 
@@ -615,55 +547,67 @@ SysKit has multiple implementations, so compatibility matters.
 
 ## 🔧 Core
 
-* [x] C implementation
-* [x] C Lite implementation
-* [x] Bash implementation
-* [x] Bash Lite implementation
-* [x] Python implementation
-* [x] Python Lite implementation
-* [x] Java implementation
-* [x] Java Lite implementation
-* [x] GTK3 implementation
-* [x] Android implementation
-* [ ] Improve error handling
-* [ ] Improve dependency detection
-* [x] Expand hardware support
-* [x] Expand monitoring
-* [x] Expand networking
-* [ ] Improve storage diagnostics
-* [x] Improve Lite versions
-* [ ] Improve documentation
-* [ ] Automated testing
+* C implementation
+* C Lite implementation
+* Bash implementation
+* Bash Lite implementation
+* Python implementation
+* Python Lite implementation
+* Java implementation
+* Java Lite implementation
+* GTK3 implementation
+* Improve error handling
+* Improve dependency detection
+* Expand hardware support
+* Expand monitoring
+* Expand networking
+* Improve storage diagnostics
+* Improve Lite versions
+* Improve documentation
+* Automated testing
 
 ## 📱 Android
 
-* [x] Android project
-* [x] Native Android APK
-* [x] Kotlin implementation
-* [x] Shizuku support
-* [x] Root-aware functionality
-* [x] Android shell functionality
-* [x] Android release
-* [x] Expand Android-specific features
-* [x] Improve device compatibility
-* [x] Expand Shizuku functionality
-* [x] Expand root functionality
-* [x] Improve Android UI
-* [x] Add more Android diagnostics
+* Native Android implementation
+* Android system information
+* Android-specific diagnostics
+* Expand Shizuku integration
+* Expand root-aware functionality
+* Improve device compatibility
+* Improve Android permissions handling
+* Test across Android versions
+* Test across different devices
+* Improve APK releases
+* Expand Android feature parity with desktop versions
 
-The Android implementation is no longer a planned experiment — it is an actual released part of SysKit. The current release is `v1.0.1-apk`.
+## 🌍 Compatibility
 
----
+* Linux
+* Termux
+* Android
+* Debian-based testing
+* Fedora-based testing
+* Arch-based testing
+* Alpine testing
+* openSUSE testing
+* Void Linux testing
+* macOS testing
+* BSD testing
 
-# 🌍 Compatibility
+## 🧪 Reliability
 
-| Platform   | Status |
-| ---------- | ------ |
-| 🐧 Linux   | ✅      |
-| 📱 Android | ✅      |
-| 📱 Termux  | ✅      |
-| 🍎 macOS   | 🧪     |
-| 👻 BSD     | 🧪     |
+* Test every menu option
+* Test every implementation
+* Test multiple distributions
+* Test low-resource environments
+* Test archive functionality
+* Test backup / restore
+* Test missing dependencies
+* Test permission handling
+* Improve compatibility detection
+* Test Android permissions
+* Test Shizuku functionality
+* Test root functionality
 
 ---
 
@@ -671,26 +615,18 @@ The Android implementation is no longer a planned experiment — it is an actual
 
 ```text
 syskit/
-├── app/
-│   └── Android application
-│
-├── gradle/
+├── .gitignore
 │
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
 ├── LICENSE
 ├── README.md
 ├── SECURITY.md
-├── metadata.json
 │
 ├── Syskit.desktop
 │
 ├── Syskit.java
 ├── SyskitLite.java
-│
-├── build.gradle.kts
-├── gradle.properties
-├── settings.gradle.kts
 │
 ├── syskit.py
 ├── syskit lite.py
@@ -700,7 +636,13 @@ syskit/
 ├── syskit-gui.c
 │
 ├── syskit.sh
-└── syskit-lite.sh
+├── syskit-lite.sh
+│
+├── app/
+├── gradle/
+├── build.gradle.kts
+├── gradle.properties
+└── settings.gradle.kts
 ```
 
 ---
@@ -757,12 +699,12 @@ If GTK3 cannot be found, install the appropriate development package.
 Check:
 
 1. Android version compatibility
-2. Required Android permissions
-3. Whether Shizuku is running
-4. Whether SysKit has the required Shizuku permission
-5. Whether root access is available when required
-6. Whether the functionality is supported on your device
-7. Whether you are using the current `v1.0.1-apk` release
+2. App permissions
+3. Whether the required Android API is available
+4. Whether Shizuku is running when required
+5. Whether SysKit has been granted the required Shizuku permission
+6. Whether root access is available when required
+7. Device-specific restrictions
 
 ### A feature doesn't work
 
@@ -773,7 +715,7 @@ Check:
 3. Permissions
 4. Hardware support
 5. Whether the Lite version works
-6. Whether Android functionality requires Shizuku or root
+6. Whether the feature requires Shizuku or root on Android
 
 If the problem continues, open an issue with useful information about your environment.
 
@@ -792,7 +734,7 @@ When submitting changes:
 3. Avoid breaking other implementations.
 4. Document new functionality where appropriate.
 5. Explain compatibility considerations.
-6. Test Android-specific changes on real devices where possible.
+6. For Android changes, include relevant Android-version/device information when reporting compatibility issues.
 
 ---
 
@@ -832,11 +774,11 @@ SysKit is intended for **system administration, diagnostics, maintenance, troubl
 
 Some operations can modify system files, packages, services, caches, or other system resources.
 
-Android functionality using Shizuku or root can provide elevated system access.
+Android features may also require additional permissions, Shizuku, or root depending on the operation.
 
-**Use system-modifying and elevated-access features carefully.**
+**Use system-modifying features carefully.**
 
-Feature availability varies between operating systems, implementations, devices, permissions, and dependencies.
+Feature availability varies between operating systems, Android versions, devices, implementations, and permissions.
 
 ---
 
@@ -882,9 +824,11 @@ SysKit is built around a simple development loop:
 
 # 🚀 SysKit
 
-### C · Bash · Python · Java · Kotlin
+**C · Bash · Python · Java · Kotlin**
 
-### Terminal · Lite · GTK3 · Android
+**Linux · Termux · Android · GTK3**
+
+**Terminal · Lite · GUI · APK · Shizuku · Root**
 
 > **One toolkit. Multiple implementations. Always improving.**
 
