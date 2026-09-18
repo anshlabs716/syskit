@@ -1,0 +1,3 @@
+Prepared the Android release metadata and package identity for F-Droid distribution.
+Improved build/repository configuration for reproducible open-source builds.
+Removed the unused JitPack repository.
