@@ -1,0 +1,19 @@
+SysKit is a free and open-source Android system toolkit that brings system information, diagnostics, networking, storage, maintenance and utilities together in one native app.
+
+Features include:
+
+• System and device information
+• CPU, memory, storage and battery diagnostics
+• Network and connectivity information
+• Storage and file utilities
+• Maintenance and cleanup tools
+• Package management tools where Android permissions allow
+• Security and system checks
+• Shizuku integration for supported privileged operations
+• Root-aware operations on rooted devices
+• Utility tools such as hashes, UUIDs and random strings
+• Android-focused diagnostics and system tools
+
+SysKit does not require Google Play services. Privileged features depend on your Android version, device, ROM, permissions, Shizuku availability and root access.
+
+SysKit is developed in the open under the MIT License.
