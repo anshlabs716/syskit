@@ -2,8 +2,6 @@
 
 Third-party components used by SysKit.
 
-# Third-Party Dependencies
-
 This page lists the third-party components used by SysKit, their role, and
 where applicable their license. See
 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md) for full attribution.

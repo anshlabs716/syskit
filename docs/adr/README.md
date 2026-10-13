@@ -2,8 +2,6 @@
 
 Architecture decision records for SysKit.
 
-# Architecture Decision Records
-
 This directory records significant architecture decisions for SysKit.
 
 ## What is an ADR?

@@ -2,8 +2,6 @@
 
 How to configure SysKit.
 
-# Configuration
-
 Reference for configuring SysKit.
 
 ## Where configuration lives

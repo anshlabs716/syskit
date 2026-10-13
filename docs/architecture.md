@@ -2,8 +2,6 @@
 
 High-level structure of SysKit.
 
-# Architecture
-
 This page describes the high-level structure of SysKit. It is a starting
 point and is updated as the implementation evolves.
 
@@ -13,11 +11,11 @@ SysKit
 
 ## Main components
 
-- `**C (GTK3)**`
-- `**Bash**`
-- `**Python**`
-- `**Java**`
-- `**Kotlin / Compose**`
+- **C (GTK3)**
+- **Bash**
+- **Python**
+- **Java**
+- **Kotlin / Compose**
 
 ## Data flow
 
