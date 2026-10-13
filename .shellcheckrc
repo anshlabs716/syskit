@@ -1,0 +1,4 @@
+# ShellCheck configuration
+shell=bash
+severity=warning
+exclude=SC1091

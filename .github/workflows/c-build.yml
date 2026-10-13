@@ -1,0 +1,21 @@
+name: C build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile C sources
+        run: |
+          for f in *.c; do
+            [ -e "$f" ] || continue
+            cc -std=c11 -Wall -Wextra -c "$f" -o /dev/null
+          done

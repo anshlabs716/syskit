@@ -1,0 +1,24 @@
+name: Python checks
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Byte-compile Python sources
+        run: |
+          for f in *.py; do
+            [ -e "$f" ] || continue
+            python -m py_compile "$f"
+          done
