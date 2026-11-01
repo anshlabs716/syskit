@@ -886,3 +886,62 @@ SysKit is built around a simple development loop:
 **Terminal · Lite · GTK3 · Android**
 
 > **One toolkit. Multiple implementations. Always improving.**
+
+---
+
+## 📁 Project Files
+
+```text
+syskit/
+├── .clang-format
+├── .clang-tidy
+├── .coveragerc
+├── .editorconfig
+├── .gitattributes
+├── .github/
+├── .gitignore
+├── .markdownlint-cli2.jsonc
+├── .shellcheckrc
+├── app/
+│   ├── build.gradle.kts
+│   ├── src/
+│   │   ├── main/
+├── build.gradle.kts
+├── BUILDING.md
+├── CHANGELOG.md
+├── CITATION.cff
+├── CODE_OF_CONDUCT.md
+├── COMMAND_REFERENCE.md
+├── COMPATIBILITY.md
+├── CONTRIBUTING.md
+├── docs/
+├── fastlane/
+├── gradle/
+├── gradle.properties
+├── INSTALL.md
+├── LICENSE
+├── Makefile
+├── metadata.json
+├── PRIVACY.md
+├── pytest.ini
+├── README.md
+├── RELEASE_PROCESS.md
+├── SECURITY.md
+├── settings.gradle.kts
+├── SUPPORT.md
+├── syskit lite.py
+├── syskit-gui.c
+├── syskit-lite.c
+├── syskit-lite.sh
+├── syskit.c
+├── Syskit.desktop
+├── Syskit.java
+├── syskit.py
+├── syskit.sh
+├── SyskitLite.java
+├── TESTING.md
+├── THIRD_PARTY_NOTICES.md
+├── TROUBLESHOOTING.md
+├── UNINSTALL.md
+├── VERSIONING.md
+```
