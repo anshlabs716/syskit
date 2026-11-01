@@ -10,9 +10,7 @@
 
 <img width="1366" height="719" alt="Screenshot_20260819_180708" src="https://github.com/user-attachments/assets/3f267f50-3e09-458d-ae13-363b21683210" /> gui
 
-
 <img width="424" height="1587" alt="image" src="https://github.com/user-attachments/assets/06b14e22-24b4-415a-916f-722140636304" /> apk
-
 
   
 
@@ -888,63 +886,6 @@ SysKit is built around a simple development loop:
 > **One toolkit. Multiple implementations. Always improving.**
 
 ---
-
-## 📁 Project Files
-
-```text
-syskit/
-├── .clang-format
-├── .clang-tidy
-├── .coveragerc
-├── .editorconfig
-├── .gitattributes
-├── .github/
-├── .gitignore
-├── .markdownlint-cli2.jsonc
-├── .shellcheckrc
-├── app/
-│   ├── build.gradle.kts
-│   ├── src/
-│   │   ├── main/
-├── build.gradle.kts
-├── BUILDING.md
-├── CHANGELOG.md
-├── CITATION.cff
-├── CODE_OF_CONDUCT.md
-├── COMMAND_REFERENCE.md
-├── COMPATIBILITY.md
-├── CONTRIBUTING.md
-├── docs/
-├── fastlane/
-├── gradle/
-├── gradle.properties
-├── INSTALL.md
-├── LICENSE
-├── Makefile
-├── metadata.json
-├── PRIVACY.md
-├── pytest.ini
-├── README.md
-├── RELEASE_PROCESS.md
-├── SECURITY.md
-├── settings.gradle.kts
-├── SUPPORT.md
-├── syskit lite.py
-├── syskit-gui.c
-├── syskit-lite.c
-├── syskit-lite.sh
-├── syskit.c
-├── Syskit.desktop
-├── Syskit.java
-├── syskit.py
-├── syskit.sh
-├── SyskitLite.java
-├── TESTING.md
-├── THIRD_PARTY_NOTICES.md
-├── TROUBLESHOOTING.md
-├── UNINSTALL.md
-├── VERSIONING.md
-```
 
 ---
 
