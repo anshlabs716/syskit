@@ -899,9 +899,35 @@ syskit/
 ├── .editorconfig
 ├── .gitattributes
 ├── .github/
+│   ├── CODEOWNERS
+│   ├── CONTRIBUTING.md
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── bug_report.yml
+│   │   ├── config.yml
+│   │   ├── feature_request.yml
+│   │   └── question.yml
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   ├── release.yml
+│   └── workflows/
+│       ├── c-build.yml
+│       ├── ci.yml
+│       ├── gradle-publish.yml
+│       ├── java-build.yml
+│       ├── links.yml
+│       ├── markdown-lint.yml
+│       ├── python-app.yml
+│       ├── python-checks.yml
+│       ├── release.yml
+│       ├── security.yml
+│       └── shell-checks.yml
 ├── .gitignore
 ├── .markdownlint-cli2.jsonc
 ├── .shellcheckrc
+├── app/
+│   ├── build.gradle.kts
+│   └── src/
+│       └── main/
+├── build.gradle.kts
 ├── BUILDING.md
 ├── CHANGELOG.md
 ├── CITATION.cff
@@ -909,39 +935,67 @@ syskit/
 ├── COMMAND_REFERENCE.md
 ├── COMPATIBILITY.md
 ├── CONTRIBUTING.md
+├── docs/
+│   ├── adr/
+│   │   └── README.md
+│   ├── architecture.md
+│   ├── backup-and-restore.md
+│   ├── building.md
+│   ├── cli-usage.md
+│   ├── command-reference.md
+│   ├── configuration.md
+│   ├── dependencies.md
+│   ├── development.md
+│   ├── faq.md
+│   ├── gui-usage.md
+│   ├── index.md
+│   ├── installation-android.md
+│   ├── installation-linux.md
+│   ├── installation-termux.md
+│   ├── lite-versions.md
+│   ├── networking.md
+│   ├── package-management.md
+│   ├── packaging.md
+│   ├── permissions-and-privileges.md
+│   ├── releasing.md
+│   ├── security-tools.md
+│   ├── storage-and-files.md
+│   ├── supported-platforms.md
+│   ├── system-information.md
+│   ├── testing.md
+│   ├── third-party-dependencies.md
+│   └── troubleshooting.md
+├── fastlane/
+│   └── metadata/
+│       └── android/
+├── gradle/
+│   └── libs.versions.toml
+├── gradle.properties
 ├── INSTALL.md
 ├── LICENSE
 ├── Makefile
+├── metadata.json
 ├── PRIVACY.md
+├── pytest.ini
 ├── README.md
 ├── RELEASE_PROCESS.md
 ├── SECURITY.md
-├── SUPPORT.md
-├── Syskit.desktop
-├── Syskit.java
-├── SyskitLite.java
-├── TESTING.md
-├── THIRD_PARTY_NOTICES.md
-├── TROUBLESHOOTING.md
-├── UNINSTALL.md
-├── VERSIONING.md
-├── app/
-│   ├── build.gradle.kts
-│   └── src/
-│       └── main/
-├── build.gradle.kts
-├── docs/
-├── fastlane/
-├── gradle/
-├── gradle.properties
-├── metadata.json
-├── pytest.ini
 ├── settings.gradle.kts
+├── SUPPORT.md
 ├── syskit lite.py
 ├── syskit-gui.c
 ├── syskit-lite.c
 ├── syskit-lite.sh
 ├── syskit.c
+├── Syskit.desktop
+├── Syskit.java
 ├── syskit.py
-└── syskit.sh
+├── syskit.sh
+├── SyskitLite.java
+├── TESTING.md
+├── THIRD_PARTY_NOTICES.md
+├── TROUBLESHOOTING.md
+├── UNINSTALL.md
+└── VERSIONING.md
 ```
+
