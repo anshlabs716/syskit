@@ -945,3 +945,62 @@ syskit/
 ├── UNINSTALL.md
 ├── VERSIONING.md
 ```
+
+---
+
+## 📁 Project Files
+
+```text
+syskit/
+├── .clang-format
+├── .clang-tidy
+├── .coveragerc
+├── .editorconfig
+├── .gitattributes
+├── .github/
+├── .gitignore
+├── .markdownlint-cli2.jsonc
+├── .shellcheckrc
+├── BUILDING.md
+├── CHANGELOG.md
+├── CITATION.cff
+├── CODE_OF_CONDUCT.md
+├── COMMAND_REFERENCE.md
+├── COMPATIBILITY.md
+├── CONTRIBUTING.md
+├── INSTALL.md
+├── LICENSE
+├── Makefile
+├── PRIVACY.md
+├── README.md
+├── RELEASE_PROCESS.md
+├── SECURITY.md
+├── SUPPORT.md
+├── Syskit.desktop
+├── Syskit.java
+├── SyskitLite.java
+├── TESTING.md
+├── THIRD_PARTY_NOTICES.md
+├── TROUBLESHOOTING.md
+├── UNINSTALL.md
+├── VERSIONING.md
+├── app/
+│   ├── build.gradle.kts
+│   └── src/
+│       └── main/
+├── build.gradle.kts
+├── docs/
+├── fastlane/
+├── gradle/
+├── gradle.properties
+├── metadata.json
+├── pytest.ini
+├── settings.gradle.kts
+├── syskit lite.py
+├── syskit-gui.c
+├── syskit-lite.c
+├── syskit-lite.sh
+├── syskit.c
+├── syskit.py
+└── syskit.sh
+```
