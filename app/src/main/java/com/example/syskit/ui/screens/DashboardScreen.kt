@@ -16,6 +16,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.DeveloperBoard
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Memory
@@ -33,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,7 +49,10 @@ import com.example.syskit.theme.WarningAmber
 fun DashboardScreen(
     systemInfo: SystemInfo,
     hardwareStats: HardwareStats,
-    deepInfo: com.example.syskit.model.DeepDeviceInfo
+    deepInfo: com.example.syskit.model.DeepDeviceInfo,
+    testRunning: Boolean = false,
+    testOutput: List<String> = emptyList(),
+    onRunTests: () -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
 
@@ -182,6 +187,41 @@ fun DashboardScreen(
                 deepInfo.sensors.forEach { s ->
                     InfoRow(s.name, s.typeLabel + if (s.powerMA > 0f) " • ${s.powerMA} mA" else "")
                 }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Device tests (DevCheck-style benchmarks, all local)
+        InfoCard(
+            title = "Device tests",
+            icon = Icons.Default.Build,
+            iconTint = ElectricBlue
+        ) {
+            androidx.compose.material3.Button(
+                onClick = onRunTests,
+                enabled = !testRunning,
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text(if (testRunning) "Running tests…" else "Run benchmark & sensor tests")
+            }
+            if (testOutput.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(10.dp))
+                Text(
+                    text = testOutput.joinToString("\n"),
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 11.sp,
+                    lineHeight = 16.sp,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            } else {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "Benchmarks CPU (multi-thread), memory bandwidth, storage speed and live sensor sampling. Everything runs on-device.",
+                    fontSize = 11.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
             }
         }
     }

@@ -84,6 +84,33 @@ class SysKitViewModel(application: Application) : AndroidViewModel(application) 
         settingsPrefs.edit().putInt("terminal_font_sp", size).apply()
         _terminalFontSp.value = size
     }
+
+    private val _accentMode = MutableStateFlow(settingsPrefs.getString("accent_mode", "cyan") ?: "cyan")
+    val accentMode: StateFlow<String> = _accentMode.asStateFlow()
+
+    fun setAccentMode(mode: String) {
+        settingsPrefs.edit().putString("accent_mode", mode).apply()
+        _accentMode.value = mode
+    }
+
+    // ---- Device tests ----
+    private val _testRunning = MutableStateFlow(false)
+    val testRunning: StateFlow<Boolean> = _testRunning.asStateFlow()
+
+    private val _testOutput = MutableStateFlow<List<String>>(emptyList())
+    val testOutput: StateFlow<List<String>> = _testOutput.asStateFlow()
+
+    fun runDeviceTests() {
+        if (_testRunning.value) return
+        viewModelScope.launch {
+            _testRunning.value = true
+            _testOutput.value = emptyList()
+            com.example.syskit.engine.DeviceTester.runAll(getApplication()) { line ->
+                _testOutput.value = _testOutput.value + line
+            }
+            _testRunning.value = false
+        }
+    }
     val feedbackMessage: StateFlow<String?> = _feedbackMessage.asStateFlow()
 
     private val _searchQuery = MutableStateFlow("")
@@ -118,12 +145,18 @@ class SysKitViewModel(application: Application) : AndroidViewModel(application) 
 
     private fun startStatsMonitor() {
         viewModelScope.launch(Dispatchers.Default) {
+            var tick = 0
             while (isActive) {
                 delay(3000)
                 _hardwareStats.value = dataProvider.getHardwareStats()
                 _deepInfo.value = _deepInfo.value.copy(
                     cpuCoreFreqsMHz = dataProvider.readCpuCoreFreqsMHz()
                 )
+                tick++
+                // refresh the full snapshot (sensors/cameras/display) every ~9s
+                if (tick % 3 == 0) {
+                    _deepInfo.value = dataProvider.getDeepDeviceInfo()
+                }
             }
         }
     }
@@ -240,15 +273,43 @@ class SysKitViewModel(application: Application) : AndroidViewModel(application) 
         _privilegeState.value.rootGranted || _privilegeState.value.shizukuGranted
 
     private fun privilegeHint(): String =
-        if (_privilegeState.value.shizukuInstalled) "Debloating needs Shizuku running + authorized (see Privileges tab)"
-        else "Debloating needs Root or Shizuku (see Privileges tab)"
+        if (_privilegeState.value.shizukuInstalled) "Debloating needs Shizuku running + authorized (see Integrity tab)"
+        else "Debloating needs Root or Shizuku (see Integrity tab)"
+
+    /**
+     * Privileged operations must run on the strongest available pipeline,
+     * regardless of the console's active backend: root first, then Shizuku.
+     */
+    private suspend fun runPrivileged(cmd: String): com.example.syskit.privilege.PrivilegeManager.ExecResult {
+        val mode = when {
+            _privilegeState.value.rootGranted -> ExecutionMode.ROOT
+            _privilegeState.value.shizukuGranted -> ExecutionMode.SHIZUKU
+            else -> ExecutionMode.STANDARD
+        }
+        var res = privilegeManager.executeCommand(cmd, mode)
+        // AUTO can silently degrade to an unprivileged shell — force the strongest
+        // pipeline once more if the first attempt clearly failed.
+        if (res.isError && mode == ExecutionMode.AUTO) {
+            if (_privilegeState.value.rootGranted) {
+                res = privilegeManager.executeCommand(cmd, ExecutionMode.ROOT)
+            } else if (_privilegeState.value.shizukuGranted) {
+                res = privilegeManager.executeCommand(cmd, ExecutionMode.SHIZUKU)
+            }
+        }
+        return res
+    }
+
+    private fun feedbackFor(action: String, pkg: String, res: com.example.syskit.privilege.PrivilegeManager.ExecResult): String =
+        if (!res.isError) "$action $pkg (via ${res.modeUsed})"
+        else "Failed (${res.modeUsed}): " + res.output.lines().firstOrNull()?.take(80)
 
     /** Canta-style: remove for user 0 without touching /system — restorable. */
     fun uninstallPackage(packageName: String) {
         viewModelScope.launch {
             if (!hasPrivilege()) { _feedbackMessage.value = privilegeHint(); return@launch }
-            val res = privilegeManager.executeCommand("pm uninstall --user 0 $packageName", _privilegeState.value.activeMode)
-            _feedbackMessage.value = if (!res.isError) "Removed $packageName (restorable)" else "Failed: ${res.output.lines().firstOrNull()}"
+            val res = runPrivileged("pm uninstall --user 0 $packageName")
+            _feedbackMessage.value = feedbackFor("Removed", packageName, res) +
+                if (!res.isError) " — restorable" else ""
             loadPackages()
         }
     }
@@ -257,43 +318,43 @@ class SysKitViewModel(application: Application) : AndroidViewModel(application) 
     fun restorePackage(packageName: String) {
         viewModelScope.launch {
             if (!hasPrivilege()) { _feedbackMessage.value = privilegeHint(); return@launch }
-            val res = privilegeManager.executeCommand("cmd package install-existing $packageName", _privilegeState.value.activeMode)
-            _feedbackMessage.value = if (!res.isError) "Restored $packageName" else "Failed: ${res.output.lines().firstOrNull()}"
+            val res = runPrivileged("cmd package install-existing $packageName")
+            _feedbackMessage.value = feedbackFor("Restored", packageName, res)
             loadPackages()
         }
     }
 
     fun freezePackage(packageName: String) {
         viewModelScope.launch {
-            val cmd = "pm disable-user --user 0 $packageName"
-            val res = privilegeManager.executeCommand(cmd, _privilegeState.value.activeMode)
-            _feedbackMessage.value = if (!res.isError) "Froze $packageName" else "Failed: ${res.output.lines().firstOrNull()}"
+            if (!hasPrivilege()) { _feedbackMessage.value = privilegeHint(); return@launch }
+            val res = runPrivileged("pm disable-user --user 0 $packageName")
+            _feedbackMessage.value = feedbackFor("Froze", packageName, res)
             loadPackages()
         }
     }
 
     fun unfreezePackage(packageName: String) {
         viewModelScope.launch {
-            val cmd = "pm enable $packageName"
-            val res = privilegeManager.executeCommand(cmd, _privilegeState.value.activeMode)
-            _feedbackMessage.value = if (!res.isError) "Enabled $packageName" else "Failed: ${res.output.lines().firstOrNull()}"
+            if (!hasPrivilege()) { _feedbackMessage.value = privilegeHint(); return@launch }
+            val res = runPrivileged("pm enable $packageName")
+            _feedbackMessage.value = feedbackFor("Enabled", packageName, res)
             loadPackages()
         }
     }
 
     fun forceStopPackage(packageName: String) {
         viewModelScope.launch {
-            val cmd = "am force-stop $packageName"
-            val res = privilegeManager.executeCommand(cmd, _privilegeState.value.activeMode)
-            _feedbackMessage.value = if (!res.isError) "Stopped $packageName" else "Failed: ${res.output.lines().firstOrNull()}"
+            if (!hasPrivilege()) { _feedbackMessage.value = privilegeHint(); return@launch }
+            val res = runPrivileged("am force-stop $packageName")
+            _feedbackMessage.value = feedbackFor("Stopped", packageName, res)
         }
     }
 
     fun clearPackageData(packageName: String) {
         viewModelScope.launch {
-            val cmd = "pm clear $packageName"
-            val res = privilegeManager.executeCommand(cmd, _privilegeState.value.activeMode)
-            _feedbackMessage.value = if (!res.isError) "Cleared data for $packageName" else "Failed: ${res.output.lines().firstOrNull()}"
+            if (!hasPrivilege()) { _feedbackMessage.value = privilegeHint(); return@launch }
+            val res = runPrivileged("pm clear $packageName")
+            _feedbackMessage.value = feedbackFor("Cleared data for", packageName, res)
         }
     }
 

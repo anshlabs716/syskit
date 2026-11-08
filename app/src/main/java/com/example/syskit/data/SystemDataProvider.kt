@@ -353,26 +353,42 @@ class SystemDataProvider(private val context: Context) {
 
         val cameras = runCatching {
             val cm = context.getSystemService(Context.CAMERA_SERVICE) as? CameraManager
-            cm?.cameraIdList?.mapNotNull { id ->
+            val ids = cm?.cameraIdList ?: emptyArray()
+            ids.map { id ->
+                // Never drop a camera: fall back to raw id when characteristics fail.
                 runCatching {
-                    val chars = cm.getCameraCharacteristics(id)
+                    val chars = cm!!.getCameraCharacteristics(id)
                     val facing = when (chars.get(CameraCharacteristics.LENS_FACING)) {
                         CameraCharacteristics.LENS_FACING_BACK -> "Back"
                         CameraCharacteristics.LENS_FACING_FRONT -> "Front"
                         CameraCharacteristics.LENS_FACING_EXTERNAL -> "External"
-                        else -> "Unknown"
+                        else -> "Camera"
+                    }
+                    val focal = chars.get(CameraCharacteristics.LENS_INFO_AVAILABLE_FOCAL_LENGTHS)
+                        ?.firstOrNull() ?: 0f
+                    // identify the lens by focal length (mm): <3 ultra, >=15 tele
+                    val lens = when {
+                        focal <= 0f -> ""
+                        focal < 3f -> " ultrawide"
+                        focal >= 15f -> " telephoto"
+                        else -> " wide"
                     }
                     val res = chars.get(CameraCharacteristics.SENSOR_INFO_PIXEL_ARRAY_SIZE)
                     val apertures = chars.get(CameraCharacteristics.LENS_INFO_AVAILABLE_APERTURES)
                         ?.joinToString("/") { String.format(java.util.Locale.US, "%.1f", it) } ?: "N/A"
                     com.example.syskit.model.CameraItem(
                         id = id,
-                        facing = facing,
+                        facing = facing + lens,
                         maxResolution = res?.let { "${it.width.toInt()} x ${it.height.toInt()}" } ?: "N/A",
                         apertures = apertures
                     )
-                }.getOrNull()
-            }?.filterNotNull() ?: emptyList()
+                }.getOrElse {
+                    com.example.syskit.model.CameraItem(
+                        id = id, facing = "Camera $id",
+                        maxResolution = "N/A", apertures = "N/A"
+                    )
+                }
+            }
         }.getOrDefault(emptyList())
 
         val coreFreqs = readCpuCoreFreqsMHz()

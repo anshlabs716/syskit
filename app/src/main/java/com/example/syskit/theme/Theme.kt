@@ -59,9 +59,22 @@ private val AppTypography = Typography()
 @Composable
 fun SysKitTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
+    accentMode: String = "cyan",
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
+    val base = if (darkTheme) DarkColorScheme else LightColorScheme
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val colorScheme = when (accentMode) {
+        "dynamic" -> if (android.os.Build.VERSION.SDK_INT >= 31) {
+            // Material You: the whole app picks up the wallpaper palette.
+            if (darkTheme) androidx.compose.material3.dynamicDarkColorScheme(context)
+            else androidx.compose.material3.dynamicLightColorScheme(context)
+        } else base
+        "green" -> base.copy(primary = NeonGreen, primaryContainer = Color(0xFF14402A), onPrimaryContainer = Color(0xFFBDF0CC))
+        "amber" -> base.copy(primary = WarningAmber, primaryContainer = Color(0xFF4A3A12), onPrimaryContainer = Color(0xFFFFE9B8))
+        "pink" -> base.copy(primary = Color(0xFFF48FB1), primaryContainer = Color(0xFF4A2233), onPrimaryContainer = Color(0xFFFFD3E2))
+        else -> base
+    }
 
     MaterialTheme(
         colorScheme = colorScheme,

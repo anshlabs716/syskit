@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
@@ -42,8 +44,10 @@ import com.example.syskit.theme.NeonGreen
 fun OptionsScreen(
     themeMode: String,
     terminalFontSp: Int,
+    accentMode: String,
     onThemeMode: (String) -> Unit,
-    onTerminalFont: (Int) -> Unit
+    onTerminalFont: (Int) -> Unit,
+    onAccentMode: (String) -> Unit
 ) {
     val context = LocalContext.current
     val version = runCatching {
@@ -96,6 +100,64 @@ fun OptionsScreen(
                             fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
                             color = if (selected) MaterialTheme.colorScheme.primary
                             else MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(14.dp))
+
+        // ---- Accent ----
+        OptionsCard(title = "Accent colour") {
+            Text(
+                text = "Dynamic uses your wallpaper's Material You palette (Android 12+).",
+                fontSize = 11.sp,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                listOf(
+                    "dynamic" to androidx.compose.ui.graphics.Color(0xFFB69DF8),
+                    "cyan" to com.example.syskit.theme.AccentCyan,
+                    "green" to com.example.syskit.theme.NeonGreen,
+                    "amber" to com.example.syskit.theme.WarningAmber,
+                    "pink" to androidx.compose.ui.graphics.Color(0xFFF48FB1)
+                ).forEach { (mode, color) ->
+                    val selected = accentMode == mode
+                    androidx.compose.foundation.layout.Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        androidx.compose.foundation.layout.Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { onAccentMode(mode) }
+                                .padding(vertical = 2.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            androidx.compose.foundation.layout.Box(
+                                modifier = Modifier
+                                    .size(36.dp)
+                                    .clip(RoundedCornerShape(999.dp))
+                                    .background(if (selected) MaterialTheme.colorScheme.primary else color)
+                                    .border(
+                                        2.dp,
+                                        if (selected) MaterialTheme.colorScheme.onSurface else color.copy(alpha = 0.4f),
+                                        RoundedCornerShape(999.dp)
+                                    )
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = mode.replaceFirstChar { it.uppercase() },
+                            fontSize = 9.sp,
+                            color = if (selected) MaterialTheme.colorScheme.primary
+                            else MaterialTheme.colorScheme.onSurfaceVariant,
+                            maxLines = 1
                         )
                     }
                 }

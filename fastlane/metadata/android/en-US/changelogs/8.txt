@@ -1,0 +1,5 @@
+- Cameras are identified properly now: count is exact and each lens is labelled wide / ultrawide / telephoto by its focal length
+- Accent colour options: Material You dynamic palette (Android 12+) plus Cyan / Green / Amber / Pink — the whole app tints
+- New device tests on the System tab, DevCheck-style: multi-core CPU benchmark, memory bandwidth, storage write/read speed and live sensor sampling — all on-device
+- Debloater pipeline hardened: privileged actions always run on the strongest available backend (root first, then Shizuku), feedback shows which one ran, and every action refreshes the privilege state
+- Sensors and cameras refresh periodically so the info never goes stale

@@ -98,12 +98,14 @@ class MainActivity : ComponentActivity() {
                         .getString("theme_mode", "system") ?: "system"
                 )
             }
+            val accent = getSharedPreferences("syskit_settings", MODE_PRIVATE)
+                .getString("accent_mode", "cyan") ?: "cyan"
             val darkTheme = when (themeMode.value) {
                 "dark" -> true
                 "light" -> false
                 else -> isSystemInDarkTheme()
             }
-            SysKitTheme(darkTheme = darkTheme) {
+            SysKitTheme(darkTheme = darkTheme, accentMode = accent) {
                 MainAppScreen(
                     viewModel = viewModel,
                     themeMode = themeMode.value,
@@ -111,6 +113,11 @@ class MainActivity : ComponentActivity() {
                         getSharedPreferences("syskit_settings", MODE_PRIVATE)
                             .edit().putString("theme_mode", it).apply()
                         themeMode.value = it
+                    },
+                    accentMode = accent,
+                    onAccentMode = {
+                        getSharedPreferences("syskit_settings", MODE_PRIVATE)
+                            .edit().putString("accent_mode", it).apply()
                     }
                 )
             }
@@ -129,7 +136,9 @@ class MainActivity : ComponentActivity() {
 fun MainAppScreen(
     viewModel: SysKitViewModel,
     themeMode: String,
-    onThemeMode: (String) -> Unit
+    onThemeMode: (String) -> Unit,
+    accentMode: String,
+    onAccentMode: (String) -> Unit
 ) {
     val privilegeState by viewModel.privilegeState.collectAsStateWithLifecycle()
     val systemInfo by viewModel.systemInfo.collectAsStateWithLifecycle()
@@ -145,6 +154,9 @@ fun MainAppScreen(
     val playIntegrity by viewModel.playIntegrity.collectAsStateWithLifecycle()
     val integrityChecking by viewModel.integrityChecking.collectAsStateWithLifecycle()
     val terminalFontSp by viewModel.terminalFontSp.collectAsStateWithLifecycle()
+    val accentMode by viewModel.accentMode.collectAsStateWithLifecycle()
+    val testRunning by viewModel.testRunning.collectAsStateWithLifecycle()
+    val testOutput by viewModel.testOutput.collectAsStateWithLifecycle()
 
     var currentDestination by remember { mutableStateOf(AppDestination.DASHBOARD) }
     val snackbarHostState = remember { SnackbarHostState() }
@@ -220,7 +232,10 @@ fun MainAppScreen(
                     DashboardScreen(
                         systemInfo = systemInfo,
                         hardwareStats = hardwareStats,
-                        deepInfo = deepInfo
+                        deepInfo = deepInfo,
+                        testRunning = testRunning,
+                        testOutput = testOutput,
+                        onRunTests = { viewModel.runDeviceTests() }
                     )
                 }
                 AppDestination.INTEGRITY -> {
@@ -272,8 +287,10 @@ fun MainAppScreen(
                     OptionsScreen(
                         themeMode = themeMode,
                         terminalFontSp = terminalFontSp,
+                        accentMode = accentMode,
                         onThemeMode = onThemeMode,
-                        onTerminalFont = { viewModel.setTerminalFontSp(it) }
+                        onTerminalFont = { viewModel.setTerminalFontSp(it) },
+                        onAccentMode = onAccentMode
                     )
                 }
                 AppDestination.NETWORK -> {

@@ -2,6 +2,29 @@
 
 All notable changes to SysKit are documented here.
 
+## [1.0.7-android] - 2026-11-08
+
+### Added
+- Camera identification: every camera is listed (count is exact — hidden IDs
+  included with a safe fallback) and lenses are classified
+  wide / ultrawide / telephoto by focal length, with apertures.
+- Accent colour options: Material You dynamic palette (Android 12+) plus
+  Cyan / Green / Amber / Pink — the whole scheme tints, persisted.
+- Device tests (DevCheck-style) on the System tab: multi-core CPU benchmark,
+  memory copy/scan bandwidth, storage write/read speed (app cache, cleaned
+  up), and live sensor sampling with pass/no-sample results.
+
+### Fixed
+- Debloater actions no longer depend on the console's active backend: they
+  always run on the strongest available pipeline (root first, then Shizuku),
+  retry if the first attempt degrades, report which pipeline ran, and refresh
+  the privilege state after every action.
+
+### Changed
+- Sensors/cameras/display snapshot refreshes every ~9s while the app is open.
+- versionCode 7 → 8.
+
+
 ## [1.0.6-android] - 2026-11-08
 
 ### Added
