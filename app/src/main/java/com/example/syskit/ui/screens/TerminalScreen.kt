@@ -59,6 +59,7 @@ fun TerminalScreen(
     privilegeState: PrivilegeState,
     terminalEntries: List<TerminalEntry>,
     isExecuting: Boolean,
+    terminalFontSp: Int = 11,
     onExecuteCommand: (String) -> Unit,
     onClearTerminal: () -> Unit
 ) {
@@ -198,7 +199,7 @@ fun TerminalScreen(
                         Text(
                             text = entry.output,
                             fontFamily = FontFamily.Monospace,
-                            fontSize = 11.sp,
+                            fontSize = terminalFontSp.sp,
                             color = if (entry.isError) DangerRed else MaterialTheme.colorScheme.onSurface,
                             lineHeight = 16.sp,
                             softWrap = entry.modeUsed != "SysKit fetch"

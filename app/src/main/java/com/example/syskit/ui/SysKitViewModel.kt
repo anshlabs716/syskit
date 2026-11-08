@@ -64,6 +64,26 @@ class SysKitViewModel(application: Application) : AndroidViewModel(application) 
     val integrityChecking: StateFlow<Boolean> = _integrityChecking.asStateFlow()
 
     private val _feedbackMessage = MutableStateFlow<String?>(null)
+
+    // ---- User options (persisted in syskit_settings) ----
+    private val settingsPrefs =
+        application.getSharedPreferences("syskit_settings", android.content.Context.MODE_PRIVATE)
+
+    private val _themeMode = MutableStateFlow(settingsPrefs.getString("theme_mode", "system") ?: "system")
+    val themeMode: StateFlow<String> = _themeMode.asStateFlow()
+
+    private val _terminalFontSp = MutableStateFlow(settingsPrefs.getInt("terminal_font_sp", 11))
+    val terminalFontSp: StateFlow<Int> = _terminalFontSp.asStateFlow()
+
+    fun setThemeMode(mode: String) {
+        settingsPrefs.edit().putString("theme_mode", mode).apply()
+        _themeMode.value = mode
+    }
+
+    fun setTerminalFontSp(size: Int) {
+        settingsPrefs.edit().putInt("terminal_font_sp", size).apply()
+        _terminalFontSp.value = size
+    }
     val feedbackMessage: StateFlow<String?> = _feedbackMessage.asStateFlow()
 
     private val _searchQuery = MutableStateFlow("")
@@ -185,12 +205,25 @@ class SysKitViewModel(application: Application) : AndroidViewModel(application) 
             val currentMode = _privilegeState.value.activeMode
             val res = privilegeManager.executeCommand(cmd.trim(), currentMode)
 
+            var finalRes = res
+            // Unprivileged shells can't touch SELinux, mounts, etc. If root is granted
+            // and the command clearly hit a permission wall, retry it through su.
+            if (res.isError && currentMode != ExecutionMode.ROOT &&
+                _privilegeState.value.rootGranted &&
+                res.output.contains("denied", ignoreCase = true)
+            ) {
+                finalRes = privilegeManager.executeCommand(cmd.trim(), ExecutionMode.ROOT)
+                if (!finalRes.isError) {
+                    finalRes = finalRes.copy(modeUsed = finalRes.modeUsed + " (retried with root)")
+                }
+            }
+
             val entry = TerminalEntry(
                 command = cmd.trim(),
-                output = res.output,
-                isError = res.isError,
-                exitCode = res.exitCode,
-                modeUsed = res.modeUsed
+                output = finalRes.output,
+                isError = finalRes.isError,
+                exitCode = finalRes.exitCode,
+                modeUsed = finalRes.modeUsed
             )
             _terminalEntries.value = _terminalEntries.value + entry
             _isExecuting.value = false

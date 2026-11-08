@@ -80,7 +80,9 @@ fun DashboardScreen(
             iconTint = NeonGreen
         ) {
             InfoRow("Model", "${systemInfo.manufacturer} ${systemInfo.deviceModel}")
-            InfoRow("Board / Hardware", systemInfo.board)
+            InfoRow("Codename", systemInfo.codename)
+            InfoRow("Hardware", systemInfo.hardware)
+            InfoRow("Bootloader", systemInfo.bootloader)
             InfoRow("Android Version", "Android ${systemInfo.androidVersion} (API ${systemInfo.apiLevel})")
             InfoRow("Security Patch", systemInfo.securityPatch)
             InfoRow("Build", systemInfo.buildNumber)
@@ -94,7 +96,8 @@ fun DashboardScreen(
             icon = Icons.Default.Memory,
             iconTint = BrightCyan
         ) {
-            InfoRow("SoC / Processor", systemInfo.cpuModel)
+            InfoRow("SoC / Processor", if (systemInfo.socName.isNotBlank()) "${systemInfo.socName} (${systemInfo.socRaw})" else systemInfo.socRaw)
+            InfoRow("Platform", systemInfo.platform)
             InfoRow("Architecture", systemInfo.cpuArch)
             InfoRow("Cores Active", "${systemInfo.coreCount} Cores")
             InfoRow("Kernel", systemInfo.kernelVersion.substringBefore("-android"))
@@ -116,6 +119,19 @@ fun DashboardScreen(
             InfoRow("Voltage", "${hardwareStats.batteryVoltageMv} mV")
             InfoRow("Chemistry", hardwareStats.batteryTechnology)
             InfoRow("Thermal Status", deepInfo.thermalStatus)
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Display & graphics
+        InfoCard(
+            title = "Display & graphics",
+            icon = Icons.Default.PhoneAndroid,
+            iconTint = BrightCyan
+        ) {
+            InfoRow("Resolution", deepInfo.displayResolution.ifBlank { "N/A" })
+            InfoRow("Refresh rate", deepInfo.refreshRateHz.ifBlank { "N/A" })
+            InfoRow("OpenGL ES", deepInfo.glEsVersion.ifBlank { "N/A" })
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -163,15 +179,8 @@ fun DashboardScreen(
             if (deepInfo.sensors.isEmpty()) {
                 Text("No sensors reported", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
             } else {
-                deepInfo.sensors.take(14).forEach { s ->
+                deepInfo.sensors.forEach { s ->
                     InfoRow(s.name, s.typeLabel + if (s.powerMA > 0f) " • ${s.powerMA} mA" else "")
-                }
-                if (deepInfo.sensors.size > 14) {
-                    Text(
-                        text = "+ ${deepInfo.sensors.size - 14} more sensors",
-                        fontSize = 11.sp,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
                 }
             }
         }

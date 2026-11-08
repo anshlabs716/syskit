@@ -1,0 +1,7 @@
+- Real SoC naming: shows "Google Tensor (gs101)" style names for Tensor, Snapdragon, Dimensity, Exynos and more — looked up per device, never hardcoded specs
+- New Codename / Hardware / Bootloader / Platform rows, plus fingerprint
+- All sensors listed now (no more 14-sensor cap)
+- New Display & graphics card: resolution, refresh rate, OpenGL ES version
+- Options tab: app theme (System/Dark/Light), console font size, about info
+- Console commands that hit "permission denied" auto-retry through root when root is granted — setenforce and friends now work from the terminal
+- Smooth crossfade between tabs; bugdroid ascii refined with face shading, feet and tail curl

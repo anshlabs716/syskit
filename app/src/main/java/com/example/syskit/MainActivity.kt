@@ -10,6 +10,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.animation.Crossfade
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
@@ -18,6 +20,7 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AdminPanelSettings
 import androidx.compose.material.icons.filled.Apps
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.VerifiedUser
 import androidx.compose.material.icons.filled.Dashboard
 import androidx.compose.material.icons.filled.NetworkCheck
@@ -53,6 +56,7 @@ import com.example.syskit.theme.SysKitTheme
 import com.example.syskit.ui.SysKitViewModel
 import com.example.syskit.ui.components.TopMetricsHeader
 import com.example.syskit.ui.screens.DashboardScreen
+import com.example.syskit.ui.screens.OptionsScreen
 import com.example.syskit.ui.screens.IntegrityScreen
 import com.example.syskit.ui.screens.NetworkScreen
 import com.example.syskit.ui.screens.PackageManagerScreen
@@ -64,7 +68,8 @@ enum class AppDestination(val title: String, val icon: ImageVector) {
     PACKAGES("Apps", Icons.Default.Apps),
     INTEGRITY("Integrity", Icons.Default.VerifiedUser),
     TERMINAL("Console", Icons.Default.Terminal),
-    NETWORK("Net", Icons.Default.NetworkCheck)
+    NETWORK("Net", Icons.Default.NetworkCheck),
+    OPTIONS("Options", Icons.Default.Settings)
 }
 
 class MainActivity : ComponentActivity() {
@@ -86,8 +91,28 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            SysKitTheme {
-                MainAppScreen(viewModel = viewModel)
+            // Theme mode is read straight from prefs so a change applies instantly.
+            val themeMode = remember {
+                mutableStateOf(
+                    getSharedPreferences("syskit_settings", MODE_PRIVATE)
+                        .getString("theme_mode", "system") ?: "system"
+                )
+            }
+            val darkTheme = when (themeMode.value) {
+                "dark" -> true
+                "light" -> false
+                else -> isSystemInDarkTheme()
+            }
+            SysKitTheme(darkTheme = darkTheme) {
+                MainAppScreen(
+                    viewModel = viewModel,
+                    themeMode = themeMode.value,
+                    onThemeMode = {
+                        getSharedPreferences("syskit_settings", MODE_PRIVATE)
+                            .edit().putString("theme_mode", it).apply()
+                        themeMode.value = it
+                    }
+                )
             }
         }
     }
@@ -101,7 +126,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainAppScreen(viewModel: SysKitViewModel) {
+fun MainAppScreen(
+    viewModel: SysKitViewModel,
+    themeMode: String,
+    onThemeMode: (String) -> Unit
+) {
     val privilegeState by viewModel.privilegeState.collectAsStateWithLifecycle()
     val systemInfo by viewModel.systemInfo.collectAsStateWithLifecycle()
     val hardwareStats by viewModel.hardwareStats.collectAsStateWithLifecycle()
@@ -115,6 +144,7 @@ fun MainAppScreen(viewModel: SysKitViewModel) {
     val deepInfo by viewModel.deepInfo.collectAsStateWithLifecycle()
     val playIntegrity by viewModel.playIntegrity.collectAsStateWithLifecycle()
     val integrityChecking by viewModel.integrityChecking.collectAsStateWithLifecycle()
+    val terminalFontSp by viewModel.terminalFontSp.collectAsStateWithLifecycle()
 
     var currentDestination by remember { mutableStateOf(AppDestination.DASHBOARD) }
     val snackbarHostState = remember { SnackbarHostState() }
@@ -184,7 +214,8 @@ fun MainAppScreen(viewModel: SysKitViewModel) {
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            when (currentDestination) {
+            Crossfade(targetState = currentDestination, label = "tab") { dest ->
+            when (dest) {
                 AppDestination.DASHBOARD -> {
                     DashboardScreen(
                         systemInfo = systemInfo,
@@ -232,8 +263,17 @@ fun MainAppScreen(viewModel: SysKitViewModel) {
                         privilegeState = privilegeState,
                         terminalEntries = terminalEntries,
                         isExecuting = isExecuting,
+                        terminalFontSp = terminalFontSp,
                         onExecuteCommand = { viewModel.executeTerminalCommand(it) },
                         onClearTerminal = { viewModel.clearTerminal() }
+                    )
+                }
+                AppDestination.OPTIONS -> {
+                    OptionsScreen(
+                        themeMode = themeMode,
+                        terminalFontSp = terminalFontSp,
+                        onThemeMode = onThemeMode,
+                        onTerminalFont = { viewModel.setTerminalFontSp(it) }
                     )
                 }
                 AppDestination.NETWORK -> {
@@ -247,6 +287,7 @@ fun MainAppScreen(viewModel: SysKitViewModel) {
                         isExecuting = isExecuting
                     )
                 }
+            }
             }
         }
     }

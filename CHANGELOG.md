@@ -2,6 +2,27 @@
 
 All notable changes to SysKit are documented here.
 
+## [1.0.6-android] - 2026-11-08
+
+### Added
+- SoC marketing names per device (Tensor / Snapdragon / Dimensity / Exynos /
+  Kirin lookups) shown alongside the raw id — "Google Tensor (gs101)".
+- Codename, Hardware, Platform, Bootloader and Fingerprint rows.
+- Display & graphics card: resolution, refresh rate, OpenGL ES version.
+- Options tab: theme mode (System / Dark / Light, persisted), console output
+  font size slider, about section with GitHub links.
+- Console auto-retries commands through `su` when root is granted and the
+  unprivileged run hits "permission denied" (fixes setenforce etc.).
+- Smooth crossfade transitions between tabs.
+
+### Fixed
+- Sensors list shows every sensor (the 14-item cap is gone).
+
+### Changed
+- Refined bugdroid ascii art in the console fetch.
+- versionCode 6 → 7.
+
+
 ## [1.0.5-android] - 2026-11-08
 
 ### Fixed

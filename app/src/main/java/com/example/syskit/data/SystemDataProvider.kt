@@ -37,7 +37,8 @@ import java.util.concurrent.TimeUnit
 class SystemDataProvider(private val context: Context) {
 
     suspend fun getSystemInfo(): SystemInfo = withContext(Dispatchers.IO) {
-        val cpuModel = getCpuModel()
+        val socRaw = getSocRaw()
+        val socName = socMarketingName(socRaw)
         val cpuArch = System.getProperty("os.arch") ?: Build.SUPPORTED_ABIS.firstOrNull() ?: "Unknown"
         val coreCount = Runtime.getRuntime().availableProcessors()
         val kernel = getKernelVersion()
@@ -46,14 +47,19 @@ class SystemDataProvider(private val context: Context) {
         SystemInfo(
             deviceModel = Build.MODEL,
             manufacturer = Build.MANUFACTURER.replaceFirstChar { it.uppercase() },
-            board = Build.BOARD,
+            codename = Build.DEVICE,
+            hardware = Build.HARDWARE,
             androidVersion = Build.VERSION.RELEASE,
             apiLevel = Build.VERSION.SDK_INT,
             securityPatch = Build.VERSION.SECURITY_PATCH ?: "N/A",
             buildNumber = Build.DISPLAY,
+            bootloader = Build.BOOTLOADER,
+            fingerprint = Build.FINGERPRINT,
+            socName = socName,
+            socRaw = socRaw,
+            platform = getProp("ro.board.platform"),
             kernelVersion = kernel,
             uptimeFormatted = uptime,
-            cpuModel = cpuModel,
             cpuArch = cpuArch,
             coreCount = coreCount,
             selinuxStatus = getSELinuxStatus()
@@ -220,6 +226,38 @@ class SystemDataProvider(private val context: Context) {
         )
     }
 
+    /** Marketing names for known SoC ids — looked up per device, never hardcoded specs. */
+    private val socMarketing = mapOf(
+        "gs101" to "Tensor", "gs201" to "Tensor G2", "zuma" to "Tensor G3", "zumapro" to "Tensor G4",
+        "raviole" to "Tensor", "slider" to "Tensor G2",
+        "sm8450" to "Snapdragon 8 Gen 1", "sm8475" to "Snapdragon 8+ Gen 1",
+        "sm8550" to "Snapdragon 8 Gen 2", "sm8650" to "Snapdragon 8 Gen 3", "sm8750" to "Snapdragon 8 Elite",
+        "sdm845" to "Snapdragon 845", "sm8250" to "Snapdragon 865", "sm7250" to "Snapdragon 765G",
+        "sm6350" to "Snapdragon 695", "sm6375" to "Snapdragon 778G", "qcs6490" to "Snapdragon 7c+",
+        "mt6893" to "Dimensity 1200", "mt6983" to "Dimensity 9000", "mt6985" to "Dimensity 9200",
+        "mt6989" to "Dimensity 9300", "mt6835" to "Dimensity 700",
+        "exynos2100" to "Exynos 2100", "s5e9925" to "Exynos 2200", "s5e9945" to "Exynos 2400",
+        "kirin9000" to "Kirin 9000", "unisoc t618" to "Unisoc T618"
+    )
+
+    private fun getSocRaw(): String {
+        if (Build.VERSION.SDK_INT >= 31) {
+            val model = Build.SOC_MODEL
+            if (!model.isNullOrBlank() && model != Build.UNKNOWN) return model
+        }
+        return getProp("ro.soc.model").ifEmpty {
+            getProp("ro.board.platform").ifEmpty { Build.HARDWARE }
+        }
+    }
+
+    private fun socMarketingName(raw: String): String {
+        if (raw.isBlank()) return ""
+        val key = raw.lowercase()
+        return socMarketing[key]
+            ?: socMarketing.entries.firstOrNull { key.contains(it.key) }?.value
+            ?: ""
+    }
+
     private fun getCpuModel(): String {
         // Official SoC fields first (API 31+): e.g. "Google gs101", not the board name.
         runCatching {
@@ -362,6 +400,21 @@ class SystemDataProvider(private val context: Context) {
             }
         }
         val verity = getProp("ro.boot.veritymode").ifEmpty { "Unknown" }
+        val display = runCatching {
+            val dm = context.getSystemService(android.hardware.display.DisplayManager::class.java)
+            val d = dm?.getDisplay(android.view.Display.DEFAULT_DISPLAY)
+            val mode = d?.supportedModes?.maxByOrNull { it.refreshRate }
+            Triple(
+                mode?.let { "${it.physicalWidth} x ${it.physicalHeight}" } ?: "",
+                mode?.refreshRate?.let { String.format(java.util.Locale.US, "%.0f Hz", it) } ?: "",
+                d?.hdrCapabilities?.supportedHdrTypes?.isNotEmpty() == true
+            )
+        }.getOrDefault(Triple("", "", false))
+        val glEs = runCatching {
+            val am = context.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
+            am?.deviceConfigurationInfo?.glEsVersion ?: ""
+        }.getOrDefault("")
+
         val emulator = getProp("ro.kernel.qemu") == "1" ||
             android.os.Build.FINGERPRINT.contains("generic", true) ||
             android.os.Build.MODEL.contains("Emulator", true) ||
@@ -375,7 +428,10 @@ class SystemDataProvider(private val context: Context) {
             verifiedBootState = verifiedBoot,
             verityMode = verity,
             isEmulator = emulator,
-            isDebuggable = (context.applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0
+            isDebuggable = (context.applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0,
+            displayResolution = display.first,
+            refreshRateHz = display.second,
+            glEsVersion = glEs
         )
     }
 

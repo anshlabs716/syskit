@@ -38,14 +38,19 @@ data class PrivilegeState(
 data class SystemInfo(
     val deviceModel: String = "",
     val manufacturer: String = "",
-    val board: String = "",
+    val codename: String = "",
+    val hardware: String = "",
     val androidVersion: String = "",
     val apiLevel: Int = 0,
     val securityPatch: String = "",
     val buildNumber: String = "",
+    val bootloader: String = "",
+    val fingerprint: String = "",
     val kernelVersion: String = "",
     val uptimeFormatted: String = "",
-    val cpuModel: String = "",
+    val socName: String = "",      // marketing name, e.g. "Google Tensor"
+    val socRaw: String = "",       // raw id, e.g. "gs101"
+    val platform: String = "",     // ro.board.platform
     val cpuArch: String = "",
     val coreCount: Int = 1,
     val selinuxStatus: String = ""
@@ -125,7 +130,10 @@ data class DeepDeviceInfo(
     val verifiedBootState: String = "Unknown",
     val verityMode: String = "Unknown",
     val isEmulator: Boolean = false,
-    val isDebuggable: Boolean = false
+    val isDebuggable: Boolean = false,
+    val displayResolution: String = "",
+    val refreshRateHz: String = "",
+    val glEsVersion: String = ""
 ) {
     val integrityPosture: String
         get() = when {
