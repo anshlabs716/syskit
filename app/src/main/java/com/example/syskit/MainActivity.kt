@@ -199,7 +199,9 @@ fun MainAppScreen(viewModel: SysKitViewModel) {
                         playIntegrity = playIntegrity,
                         integrityChecking = integrityChecking,
                         onRequestRoot = { viewModel.requestRoot() },
-                        onRequestShizuku = { viewModel.requestShizuku() },
+                        onRequestShizuku = {
+                            Shizuku.requestPermission(PrivilegeManager.SHIZUKU_REQUEST_CODE)
+                        },
                         onRefresh = { viewModel.refreshPrivileges() },
                         onSetMode = { viewModel.setExecutionMode(it) },
                         onCheckPlayIntegrity = { viewModel.checkPlayIntegrity() },

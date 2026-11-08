@@ -73,6 +73,7 @@ fun TerminalScreen(
     }
 
     val quickCommands = listOf(
+        "neofetch",
         "id",
         "uname -a",
         "df -h",

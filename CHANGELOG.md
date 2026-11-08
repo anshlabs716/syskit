@@ -2,6 +2,27 @@
 
 All notable changes to SysKit are documented here.
 
+## [1.0.4-android] - 2026-11-08
+
+### Added
+- `neofetch` / `fastfetch` / `fetch` in the Console renders a bugdroid with
+  model, OS, SoC, kernel, uptime, RAM, battery, SELinux, verified boot, root
+  and Shizuku status — generated locally since Android ships neither binary.
+- Canta-style debloat classification: Recommended / Advanced / Expert / Keep /
+  Unclassified badges on every package, plus vendor detection by package
+  prefix (Google, Samsung, Xiaomi/MIUI, Meta, OnePlus, AOSP, …).
+- `recommended` and `unsafe` filters in the package manager.
+
+### Fixed
+- The Shizuku authorize button never opened the permission dialog because the
+  request was made from the ViewModel; it is now requested from the Activity
+  context and the dialog actually appears.
+
+### Changed
+- Package cards are roomier: 48 dp icons, app name, package id, and a
+  version/SDK/vendor line, with recommendation badges on the right.
+
+
 ## [1.0.3-android] - 2026-11-08
 
 ### Added

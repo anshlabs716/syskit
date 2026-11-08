@@ -62,6 +62,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.syskit.model.PackageItem
@@ -109,6 +111,8 @@ fun PackageManagerScreen(
                 "SYSTEM" -> item.isSystemApp
                 "DISABLED" -> !item.isEnabled
                 "REMOVED" -> item.isDebloated
+                "RECOMMENDED" -> item.bloatLevel == "RECOMMENDED"
+                "UNSAFE" -> item.bloatLevel == "UNSAFE"
                 else -> true
             }
             matchesSearch && matchesFilter
@@ -357,15 +361,15 @@ fun PackageManagerScreen(
                 .horizontalScroll(rememberScrollState()),
             horizontalArrangement = Arrangement.spacedBy(6.dp)
         ) {
-            listOf("ALL", "USER", "SYSTEM", "DISABLED", "REMOVED").forEach { filter ->
+            listOf("ALL", "USER", "SYSTEM", "DISABLED", "REMOVED", "RECOMMENDED", "UNSAFE").forEach { filter ->
                 val selected = selectedFilter == filter
                 FilterChip(
                     selected = selected,
                     onClick = { onFilterChange(filter) },
                     label = {
                         Text(
-                            text = filter,
-                            fontSize = 10.sp,
+                            text = filter.lowercase(),
+                            fontSize = 11.sp,
                             fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
                         )
                     },
@@ -398,7 +402,7 @@ fun PackageManagerScreen(
                         .fillMaxWidth()
                         .clickable { selectedPackage = app },
                     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                    shape = RoundedCornerShape(14.dp)
+                    shape = RoundedCornerShape(16.dp)
                 ) {
                     val pm = LocalContext.current.packageManager
                     val appIconBitmap = remember(app.packageName) {
@@ -409,7 +413,7 @@ fun PackageManagerScreen(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(14.dp),
+                            .padding(16.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -418,72 +422,77 @@ fun PackageManagerScreen(
                                 ?: Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888).asImageBitmap(),
                             contentDescription = null,
                             contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(44.dp)
+                            modifier = Modifier.size(48.dp)
                         )
-                        Spacer(modifier = Modifier.width(10.dp))
+                        Spacer(modifier = Modifier.width(14.dp))
                         Column(modifier = Modifier.weight(1f)) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                Text(
-                                    text = app.appName,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 13.sp,
-                                    color = MaterialTheme.colorScheme.onSurface
-                                )
-                                Spacer(modifier = Modifier.width(6.dp))
-                                if (app.isDebloated) {
-                                    Box(
-                                        modifier = Modifier
-                                            .clip(RoundedCornerShape(4.dp))
-                                            .background(DangerRed.copy(alpha = 0.2f))
-                                            .padding(horizontal = 4.dp, vertical = 2.dp)
-                                    ) {
-                                        Text(
-                                            text = "REMOVED",
-                                            fontSize = 9.sp,
-                                            fontWeight = FontWeight.Bold,
-                                            color = DangerRed
-                                        )
-                                    }
-                                }
-                                if (!app.isEnabled) {
-                                    Box(
-                                        modifier = Modifier
-                                            .clip(RoundedCornerShape(4.dp))
-                                            .background(WarningAmber.copy(alpha = 0.2f))
-                                            .padding(horizontal = 4.dp, vertical = 2.dp)
-                                    ) {
-                                        Text(
-                                            text = "FROZEN",
-                                            fontSize = 9.sp,
-                                            fontWeight = FontWeight.Bold,
-                                            color = WarningAmber
-                                        )
-                                    }
-                                }
-                            }
+                            Text(
+                                text = app.appName,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 15.sp,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Spacer(modifier = Modifier.height(2.dp))
                             Text(
                                 text = app.packageName,
+                                fontFamily = FontFamily.Monospace,
+                                fontSize = 10.sp,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                            Spacer(modifier = Modifier.height(3.dp))
+                            Text(
+                                text = "v${app.versionName} • SDK ${app.targetSdkVersion}" +
+                                    if (app.vendor.isNotBlank()) " • ${app.vendor}" else "",
                                 fontSize = 10.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
+                            if (app.isDebloated || !app.isEnabled) {
+                                Spacer(modifier = Modifier.height(6.dp))
+                                Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                                    if (app.isDebloated) MiniBadge("REMOVED", DangerRed)
+                                    if (!app.isEnabled) MiniBadge("FROZEN", WarningAmber)
+                                }
+                            }
                         }
-
-                        Box(
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(4.dp))
-                                .background(if (app.isSystemApp) DangerRed.copy(alpha = 0.15f) else BrightCyan.copy(alpha = 0.15f))
-                                .padding(horizontal = 6.dp, vertical = 3.dp)
-                        ) {
-                            Text(
-                                text = if (app.isSystemApp) "SYS" else "USER",
-                                fontSize = 9.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = if (app.isSystemApp) DangerRed else BrightCyan
-                            )
-                        }
+                        Spacer(modifier = Modifier.width(8.dp))
+                        BloatBadge(app.bloatLevel)
                     }
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun MiniBadge(text: String, color: androidx.compose.ui.graphics.Color) {
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(5.dp))
+            .background(color.copy(alpha = 0.2f))
+            .padding(horizontal = 5.dp, vertical = 2.dp)
+    ) {
+        Text(text = text, fontSize = 9.sp, fontWeight = FontWeight.Bold, color = color)
+    }
+}
+
+/** Canta-style recommendation badge: Recommended / Advanced / Expert / Keep / Unclassified. */
+@Composable
+private fun BloatBadge(level: String) {
+    val (color, label) = when (level) {
+        "RECOMMENDED" -> NeonGreen to "Recommended"
+        "ADVANCED" -> WarningAmber to "Advanced"
+        "EXPERT" -> androidx.compose.ui.graphics.Color(0xFFFF9E64) to "Expert"
+        "UNSAFE" -> DangerRed to "Keep"
+        else -> MaterialTheme.colorScheme.onSurfaceVariant to "Unclassified"
+    }
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(999.dp))
+            .background(color.copy(alpha = 0.15f))
+            .padding(horizontal = 9.dp, vertical = 5.dp)
+    ) {
+        Text(text = label, fontSize = 10.sp, fontWeight = FontWeight.SemiBold, color = color)
     }
 }

@@ -142,7 +142,10 @@ class SysKitViewModel(application: Application) : AndroidViewModel(application) 
 
     fun loadPackages() {
         viewModelScope.launch {
-            _packages.value = dataProvider.getInstalledPackages()
+            _packages.value = dataProvider.getInstalledPackages().map { pkg ->
+                val b = com.example.syskit.engine.BloatCatalog.classify(pkg.packageName)
+                pkg.copy(bloatLevel = b.level.name, vendor = b.vendor)
+            }
         }
     }
 
@@ -164,6 +167,19 @@ class SysKitViewModel(application: Application) : AndroidViewModel(application) 
 
     fun executeTerminalCommand(cmd: String) {
         if (cmd.isBlank()) return
+        // Android has no neofetch/fastfetch binary — render our bugdroid instead.
+        if (cmd.trim().lowercase() in setOf("neofetch", "fastfetch", "fetch")) {
+            viewModelScope.launch {
+                _terminalEntries.value = _terminalEntries.value + TerminalEntry(
+                    command = cmd.trim(),
+                    output = com.example.syskit.engine.FetchArt.generate(
+                        _systemInfo.value, _hardwareStats.value, _deepInfo.value, _privilegeState.value
+                    ),
+                    modeUsed = "SysKit fetch"
+                )
+            }
+            return
+        }
         viewModelScope.launch {
             _isExecuting.value = true
             val currentMode = _privilegeState.value.activeMode

@@ -1,0 +1,4 @@
+- The console now draws a bugdroid with full system info when you type neofetch, fastfetch or fetch (Android ships neither binary, so SysKit answers locally)
+- Canta-style debloat badges on every package: Recommended / Advanced / Expert / Keep / Unclassified, with vendor detection (Google, Samsung, Xiaomi, Meta, AOSP…)
+- new recommended and unsafe filters, roomier package cards with version, SDK and vendor lines
+- Shizuku authorize button actually opens the permission dialog now (it was called from the wrong context and did nothing)

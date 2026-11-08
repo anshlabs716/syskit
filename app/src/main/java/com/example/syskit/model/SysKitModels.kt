@@ -74,7 +74,10 @@ data class PackageItem(
     val isEnabled: Boolean,
     val targetSdkVersion: Int,
     /** Uninstalled for user 0 via `pm uninstall --user 0` — still restorable. */
-    val isDebloated: Boolean = false
+    val isDebloated: Boolean = false,
+    /** Canta-style classification + detected vendor (engine/BloatCatalog). */
+    val bloatLevel: String = "UNKNOWN",
+    val vendor: String = ""
 )
 
 data class TerminalEntry(
