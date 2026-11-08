@@ -1,0 +1,5 @@
+- Canta-style debloater: uninstall system bloat for user 0 (pm uninstall --user 0) with one-tap restore (cmd package install-existing)
+- App icons in the package list, plus a REMOVED filter showing everything uninstalled for this user
+- Debloat actions are gated: the app tells you when Shizuku or Root is needed and takes you to the Privileges tab
+- Clear warnings before removing system apps
+- Target SDK 37 (Android 17)

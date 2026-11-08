@@ -120,23 +120,38 @@ class SystemDataProvider(private val context: Context) {
 
     suspend fun getInstalledPackages(): List<PackageItem> = withContext(Dispatchers.IO) {
         val pm = context.packageManager
-        val flags = PackageManager.GET_META_DATA
-        val installed = pm.getInstalledApplications(flags)
-        installed.map { appInfo ->
-            val isSystem = (appInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
-            val isEnabled = appInfo.enabled
-            val label = runCatching { pm.getApplicationLabel(appInfo).toString() }.getOrDefault(appInfo.packageName)
-            val ver = runCatching { pm.getPackageInfo(appInfo.packageName, 0).versionName ?: "1.0" }.getOrDefault("1.0")
+        // MATCH_UNINSTALLED_PACKAGES also returns packages that were removed for
+        // this user with `pm uninstall --user 0` so they can be restored.
+        val flags = PackageManager.GET_META_DATA or PackageManager.MATCH_UNINSTALLED_PACKAGES
+        val disabledByUser = PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER
 
-            PackageItem(
-                packageName = appInfo.packageName,
-                appName = label,
-                versionName = ver,
-                isSystemApp = isSystem,
-                isEnabled = isEnabled,
-                targetSdkVersion = appInfo.targetSdkVersion
-            )
-        }.sortedBy { it.appName.lowercase() }
+        pm.getInstalledApplications(flags)
+            .filter { appInfo ->
+                // Keep normal packages plus anything removed only for this user.
+                appInfo.sourceDir != null || runCatching {
+                    pm.getApplicationEnabledSetting(appInfo.packageName) == disabledByUser
+                }.getOrDefault(false)
+            }
+            .map { appInfo ->
+                val isSystem = (appInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+                val isEnabled = appInfo.enabled
+                val debloated = runCatching {
+                    pm.getApplicationEnabledSetting(appInfo.packageName) == disabledByUser
+                }.getOrDefault(false)
+                val label = runCatching { pm.getApplicationLabel(appInfo).toString() }.getOrDefault(appInfo.packageName)
+                val ver = runCatching { pm.getPackageInfo(appInfo.packageName, 0).versionName ?: "1.0" }.getOrDefault("1.0")
+
+                PackageItem(
+                    packageName = appInfo.packageName,
+                    appName = label,
+                    versionName = ver,
+                    isSystemApp = isSystem,
+                    isEnabled = isEnabled,
+                    targetSdkVersion = appInfo.targetSdkVersion,
+                    isDebloated = debloated
+                )
+            }
+            .sortedBy { it.appName.lowercase() }
     }
 
     suspend fun getNetworkDetails(): NetworkDetails = withContext(Dispatchers.IO) {

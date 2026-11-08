@@ -165,6 +165,34 @@ class SysKitViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     // App debloater / manager actions
+
+    private fun hasPrivilege(): Boolean =
+        _privilegeState.value.rootGranted || _privilegeState.value.shizukuGranted
+
+    private fun privilegeHint(): String =
+        if (_privilegeState.value.shizukuInstalled) "Debloating needs Shizuku running + authorized (see Privileges tab)"
+        else "Debloating needs Root or Shizuku (see Privileges tab)"
+
+    /** Canta-style: remove for user 0 without touching /system — restorable. */
+    fun uninstallPackage(packageName: String) {
+        viewModelScope.launch {
+            if (!hasPrivilege()) { _feedbackMessage.value = privilegeHint(); return@launch }
+            val res = privilegeManager.executeCommand("pm uninstall --user 0 $packageName", _privilegeState.value.activeMode)
+            _feedbackMessage.value = if (!res.isError) "Removed $packageName (restorable)" else "Failed: ${res.output.lines().firstOrNull()}"
+            loadPackages()
+        }
+    }
+
+    /** Bring back a user-0-removed package. */
+    fun restorePackage(packageName: String) {
+        viewModelScope.launch {
+            if (!hasPrivilege()) { _feedbackMessage.value = privilegeHint(); return@launch }
+            val res = privilegeManager.executeCommand("cmd package install-existing $packageName", _privilegeState.value.activeMode)
+            _feedbackMessage.value = if (!res.isError) "Restored $packageName" else "Failed: ${res.output.lines().firstOrNull()}"
+            loadPackages()
+        }
+    }
+
     fun freezePackage(packageName: String) {
         viewModelScope.launch {
             val cmd = "pm disable-user --user 0 $packageName"

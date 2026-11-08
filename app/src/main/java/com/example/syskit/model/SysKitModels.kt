@@ -72,7 +72,9 @@ data class PackageItem(
     val versionName: String,
     val isSystemApp: Boolean,
     val isEnabled: Boolean,
-    val targetSdkVersion: Int
+    val targetSdkVersion: Int,
+    /** Uninstalled for user 0 via `pm uninstall --user 0` — still restorable. */
+    val isDebloated: Boolean = false
 )
 
 data class TerminalEntry(

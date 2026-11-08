@@ -1,5 +1,10 @@
 package com.example.syskit.ui.screens
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -50,6 +55,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -61,17 +70,33 @@ import com.example.syskit.theme.DangerRed
 import com.example.syskit.theme.NeonGreen
 import com.example.syskit.theme.WarningAmber
 
+/** App icons come back as Drawables; adaptive icons draw fine onto a bitmap. */
+private fun Drawable.toImageBitmap(): ImageBitmap {
+    if (this is BitmapDrawable && bitmap != null) return bitmap.asImageBitmap()
+    val w = intrinsicWidth.takeIf { it > 0 } ?: 48
+    val h = intrinsicHeight.takeIf { it > 0 } ?: 48
+    val bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(bmp)
+    setBounds(0, 0, w, h)
+    draw(canvas)
+    return bmp.asImageBitmap()
+}
+
 @Composable
 fun PackageManagerScreen(
     packages: List<PackageItem>,
     searchQuery: String,
     selectedFilter: String,
+    privilegeReady: Boolean,
     onSearchChange: (String) -> Unit,
     onFilterChange: (String) -> Unit,
+    onOpenPrivileges: () -> Unit,
     onFreezePackage: (String) -> Unit,
     onUnfreezePackage: (String) -> Unit,
     onForceStopPackage: (String) -> Unit,
-    onClearPackageData: (String) -> Unit
+    onClearPackageData: (String) -> Unit,
+    onUninstallPackage: (String) -> Unit,
+    onRestorePackage: (String) -> Unit
 ) {
     var selectedPackage by remember { mutableStateOf<PackageItem?>(null) }
 
@@ -83,6 +108,7 @@ fun PackageManagerScreen(
                 "USER" -> !item.isSystemApp
                 "SYSTEM" -> item.isSystemApp
                 "DISABLED" -> !item.isEnabled
+                "REMOVED" -> item.isDebloated
                 else -> true
             }
             matchesSearch && matchesFilter
@@ -117,11 +143,57 @@ fun PackageManagerScreen(
                         fontSize = 11.sp
                     )
                     Text(
-                        text = "Status: ${if (app.isEnabled) "Active" else "Frozen / Disabled"} (${if (app.isSystemApp) "System App" else "User App"})",
+                        text = when {
+                            app.isDebloated -> "Status: Removed for this user (restorable)"
+                            app.isEnabled -> "Status: Active ${if (app.isSystemApp) "• System App" else "• User App"}"
+                            else -> "Status: Frozen / Disabled ${if (app.isSystemApp) "• System App" else "• User App"}"
+                        },
                         fontFamily = FontFamily.Monospace,
                         fontSize = 11.sp,
-                        color = if (app.isEnabled) NeonGreen else WarningAmber
+                        color = when {
+                            app.isDebloated -> DangerRed
+                            app.isEnabled -> NeonGreen
+                            else -> WarningAmber
+                        }
                     )
+
+                    Spacer(modifier = Modifier.height(6.dp))
+
+                    if (app.isDebloated) {
+                        Button(
+                            onClick = {
+                                onRestorePackage(app.packageName)
+                                selectedPackage = null
+                            },
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = ButtonDefaults.buttonColors(containerColor = NeonGreen.copy(alpha = 0.25f), contentColor = NeonGreen)
+                        ) {
+                            Icon(imageVector = Icons.Default.CheckCircle, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("Restore (install-existing)", fontFamily = FontFamily.Monospace)
+                        }
+                    } else {
+                        if (app.isSystemApp) {
+                            Text(
+                                text = "⚠ System app — removing it can break features. It stays restorable via install-existing.",
+                                fontFamily = FontFamily.Monospace,
+                                fontSize = 10.sp,
+                                color = WarningAmber
+                            )
+                        }
+                        Button(
+                            onClick = {
+                                onUninstallPackage(app.packageName)
+                                selectedPackage = null
+                            },
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = ButtonDefaults.buttonColors(containerColor = DangerRed.copy(alpha = 0.25f), contentColor = DangerRed)
+                        ) {
+                            Icon(imageVector = Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("Uninstall for user 0 (debloat)", fontFamily = FontFamily.Monospace)
+                        }
+                    }
 
                     Spacer(modifier = Modifier.height(6.dp))
 
@@ -212,6 +284,39 @@ fun PackageManagerScreen(
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
+        if (!privilegeReady) {
+            Spacer(modifier = Modifier.height(10.dp))
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = WarningAmber.copy(alpha = 0.12f)),
+                shape = RoundedCornerShape(10.dp)
+            ) {
+                Column(modifier = Modifier.padding(12.dp)) {
+                    Text(
+                        text = "⚠ Debloating needs Shizuku or Root",
+                        fontFamily = FontFamily.Monospace,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 12.sp,
+                        color = WarningAmber
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "Freeze / uninstall / restore run through Shizuku (ADB) or Root. Browse and search work without them.",
+                        fontFamily = FontFamily.Monospace,
+                        fontSize = 10.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Button(
+                        onClick = onOpenPrivileges,
+                        colors = ButtonDefaults.buttonColors(containerColor = WarningAmber.copy(alpha = 0.25f), contentColor = WarningAmber)
+                    ) {
+                        Text("Open Privileges", fontFamily = FontFamily.Monospace, fontSize = 12.sp)
+                    }
+                }
+            }
+        }
+
         Spacer(modifier = Modifier.height(12.dp))
 
         // Search bar
@@ -259,7 +364,7 @@ fun PackageManagerScreen(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(6.dp)
         ) {
-            listOf("ALL", "USER", "SYSTEM", "DISABLED").forEach { filter ->
+            listOf("ALL", "USER", "SYSTEM", "DISABLED", "REMOVED").forEach { filter ->
                 val selected = selectedFilter == filter
                 FilterChip(
                     selected = selected,
@@ -305,6 +410,12 @@ fun PackageManagerScreen(
                     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                     shape = RoundedCornerShape(8.dp)
                 ) {
+                    val pm = LocalContext.current.packageManager
+                    val appIconBitmap = remember(app.packageName) {
+                        val drawable = runCatching { pm.getApplicationIcon(app.packageName) }
+                            .getOrElse { runCatching { pm.defaultActivityIcon }.getOrNull() }
+                        drawable?.toImageBitmap()
+                    }
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -312,6 +423,14 @@ fun PackageManagerScreen(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+                        Image(
+                            bitmap = appIconBitmap
+                                ?: Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888).asImageBitmap(),
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier.size(40.dp)
+                        )
+                        Spacer(modifier = Modifier.width(10.dp))
                         Column(modifier = Modifier.weight(1f)) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Text(
@@ -322,6 +441,22 @@ fun PackageManagerScreen(
                                     color = MaterialTheme.colorScheme.onSurface
                                 )
                                 Spacer(modifier = Modifier.width(6.dp))
+                                if (app.isDebloated) {
+                                    Box(
+                                        modifier = Modifier
+                                            .clip(RoundedCornerShape(4.dp))
+                                            .background(DangerRed.copy(alpha = 0.2f))
+                                            .padding(horizontal = 4.dp, vertical = 2.dp)
+                                    ) {
+                                        Text(
+                                            text = "REMOVED",
+                                            fontFamily = FontFamily.Monospace,
+                                            fontSize = 9.sp,
+                                            fontWeight = FontWeight.Bold,
+                                            color = DangerRed
+                                        )
+                                    }
+                                }
                                 if (!app.isEnabled) {
                                     Box(
                                         modifier = Modifier

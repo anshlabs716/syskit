@@ -2,6 +2,21 @@
 
 All notable changes to SysKit are documented here.
 
+## [1.0.2-android] - 2026-11-08
+
+### Added
+- Canta-style debloater in the Android app (Kotlin): uninstall bloat for user 0
+  with `pm uninstall --user 0`, restore with `cmd package install-existing`.
+- App icons in the package manager; `REMOVED` filter for user-0-uninstalled apps.
+- Privilege gate: uninstall/restore/freeze explain when Shizuku or Root is
+  required and link straight to the Privileges tab.
+- System-app removal warnings in the confirm dialog.
+
+### Changed
+- Android APK targets SDK 37.
+- README shortened; clarified that the Android APK is written **only in Kotlin**.
+
+
 ## [1.0.0-java-lite] - 2026-08-18
 
 ### Added

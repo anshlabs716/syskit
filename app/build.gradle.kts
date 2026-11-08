@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace = "com.example.syskit"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.anshlabs716.syskit"
         minSdk = 26
-        targetSdk = 36
-        versionCode = 2
-        versionName = "2.0.1"
+        targetSdk = 37
+        versionCode = 3
+        versionName = "1.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

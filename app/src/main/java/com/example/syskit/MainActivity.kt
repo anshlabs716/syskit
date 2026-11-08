@@ -214,12 +214,16 @@ fun MainAppScreen(viewModel: SysKitViewModel) {
                         packages = packages,
                         searchQuery = searchQuery,
                         selectedFilter = selectedFilter,
+                        privilegeReady = privilegeState.rootGranted || privilegeState.shizukuGranted,
                         onSearchChange = { viewModel.setSearchQuery(it) },
                         onFilterChange = { viewModel.setFilter(it) },
+                        onOpenPrivileges = { currentDestination = AppDestination.PRIVILEGE },
                         onFreezePackage = { viewModel.freezePackage(it) },
                         onUnfreezePackage = { viewModel.unfreezePackage(it) },
                         onForceStopPackage = { viewModel.forceStopPackage(it) },
-                        onClearPackageData = { viewModel.clearPackageData(it) }
+                        onClearPackageData = { viewModel.clearPackageData(it) },
+                        onUninstallPackage = { viewModel.uninstallPackage(it) },
+                        onRestorePackage = { viewModel.restorePackage(it) }
                     )
                 }
                 AppDestination.TERMINAL -> {
