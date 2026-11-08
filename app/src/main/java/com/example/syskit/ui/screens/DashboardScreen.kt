@@ -75,7 +75,7 @@ fun DashboardScreen(
 
         // Device Specs Card
         InfoCard(
-            title = "DEVICE IDENTIFICATION",
+            title = "Device identification",
             icon = Icons.Default.PhoneAndroid,
             iconTint = NeonGreen
         ) {
@@ -90,14 +90,14 @@ fun DashboardScreen(
 
         // CPU & Kernel Card
         InfoCard(
-            title = "PROCESSOR & KERNEL",
+            title = "Processor & kernel",
             icon = Icons.Default.Memory,
             iconTint = BrightCyan
         ) {
             InfoRow("SoC / Processor", systemInfo.cpuModel)
             InfoRow("Architecture", systemInfo.cpuArch)
             InfoRow("Cores Active", "${systemInfo.coreCount} Cores")
-            InfoRow("Kernel", systemInfo.kernelVersion)
+            InfoRow("Kernel", systemInfo.kernelVersion.substringBefore("-android"))
             InfoRow("SELinux Mode", systemInfo.selinuxStatus)
             InfoRow("System Uptime", systemInfo.uptimeFormatted)
         }
@@ -106,7 +106,7 @@ fun DashboardScreen(
 
         // Battery Telemetry Card
         InfoCard(
-            title = "BATTERY & POWER",
+            title = "Battery & power",
             icon = Icons.Default.DeveloperBoard,
             iconTint = WarningAmber
         ) {
@@ -122,7 +122,7 @@ fun DashboardScreen(
 
         // Live CPU cores (DevCheck-style)
         InfoCard(
-            title = "CPU CORES (LIVE)",
+            title = "CPU cores (live)",
             icon = Icons.Default.Memory,
             iconTint = BrightCyan
         ) {
@@ -139,7 +139,7 @@ fun DashboardScreen(
 
         // Cameras
         InfoCard(
-            title = "CAMERAS",
+            title = "Cameras",
             icon = Icons.Default.PhoneAndroid,
             iconTint = ElectricBlue
         ) {
@@ -156,7 +156,7 @@ fun DashboardScreen(
 
         // Sensors
         InfoCard(
-            title = "SENSORS (${deepInfo.sensors.size})",
+            title = "Sensors (${deepInfo.sensors.size})",
             icon = Icons.Default.Shield,
             iconTint = NeonGreen
         ) {

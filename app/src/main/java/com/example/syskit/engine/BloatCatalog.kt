@@ -54,7 +54,12 @@ object BloatCatalog {
         "com.google.android.gsf.login", "com.google.android.backup",
         "com.google.android.configupdater", "com.google.android.partnersetup",
         "com.samsung.android.launcher", "com.sec.android.app.launcher",
-        "com.miui.home", "com.google.android.launcher"
+        "com.miui.home", "com.google.android.launcher",
+        "com.google.android.permissioncontroller", "com.google.android.documentsui",
+        "com.google.android.networkstack.tethering", "com.google.android.networkstack",
+        "com.google.android.mediaprovider", "com.google.android.ext.services",
+        "com.google.android.ext.adservices.api", "com.google.android.modulemetadata",
+        "com.google.android.setupwizard", "com.google.android.apps.miphone.aiai"
     )
 
     /** Works, but app views / TTS / voice features can break. */
@@ -84,7 +89,13 @@ object BloatCatalog {
         "com.samsung.android.messaging", "com.samsung.android.smartswitchassistant",
         "com.sec.android.app.popupcalculator", "com.sec.android.app.clockpackage",
         "com.miui.videoplayer", "com.miui.weather2", "com.miui.compass",
-        "com.android.stk", "com.android.egg", "com.android.htmlviewer"
+        "com.android.stk", "com.android.egg", "com.android.htmlviewer",
+        "com.google.android.apps.turbo", "com.google.android.apps.safetyhub",
+        "com.google.android.apps.nbu.files", "com.google.android.apps.wallpaper",
+        "com.google.android.apps.restore", "com.google.android.apps.recorder",
+        "com.google.android.apps.googlevoice", "com.google.android.vending",
+        "com.google.android.videos", "com.google.android.feedback",
+        "com.google.android.printservice.recommendation"
     )
 
     private val vendorPrefixes = listOf(
@@ -111,15 +122,13 @@ object BloatCatalog {
             pkg in recommended -> BloatLevel.RECOMMENDED
             pkg in expert -> BloatLevel.EXPERT
             pkg in advanced -> BloatLevel.ADVANCED
-            // prefix heuristics for well-known families not in the exact lists
+            // prefix heuristics — only where we're genuinely confident
             pkg.startsWith("com.facebook.") || pkg.startsWith("com.instagram.") -> BloatLevel.RECOMMENDED
             pkg.startsWith("com.google.android.gms") -> BloatLevel.UNSAFE
             pkg.startsWith("com.android.providers") -> BloatLevel.UNSAFE
-            pkg.startsWith("com.google.android.webview") -> BloatLevel.EXPERT
+            pkg.startsWith("com.google.android.webview") ||
+                pkg.startsWith("com.google.android.trichrome") -> BloatLevel.EXPERT
             pkg.startsWith("com.google.android.apps.") -> BloatLevel.ADVANCED
-            pkg.startsWith("com.samsung.android.app") -> BloatLevel.ADVANCED
-            pkg.startsWith("com.miui.") -> BloatLevel.ADVANCED
-            pkg.startsWith("com.android.") -> BloatLevel.EXPERT
             else -> BloatLevel.UNKNOWN
         }
         return BloatInfo(level, vendor)

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Compose draws everything; the system theme only needs NoActionBar
+         (otherwise it draws a duplicate app-label title bar) and a dark
+         window background so launch never flashes white. -->
+    <style name="Theme.SysKit" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/window_bg</item>
+        <item name="android:statusBarColor">@color/window_bg</item>
+        <item name="android:navigationBarColor">@color/window_bg</item>
+    </style>
+</resources>

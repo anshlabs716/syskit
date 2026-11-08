@@ -24,6 +24,22 @@ object PlayIntegrityChecker {
 
     private const val PACKAGE_NAME = "com.anshlabs716.syskit"
 
+    /** Maps raw Play Integrity API errors to one plain sentence — no URL dumps. */
+    private fun friendlyError(raw: String): String {
+        val code = Regex("\\((-?\\d+)\\)").findAll(raw)
+            .mapNotNull { it.groupValues[1].toIntOrNull() }
+            .firstOrNull() ?: 0
+        return when (code) {
+            -1 -> "Google Play Services is missing or broken — Play Integrity can't run on this device"
+            -2 -> "Google Play Store is missing or unofficial — Play Integrity needs the real Play Store"
+            -3 -> "Network error while contacting Google — check your connection"
+            -4 -> "The installed Play Store is too old — update it via Google"
+            -5, -6, -7 -> "Play Integrity is not available for this app build on this device"
+            -8 -> "Too many requests — try again in a moment"
+            else -> "Play Integrity unavailable on this device"
+        }
+    }
+
     suspend fun check(context: Context): PlayIntegrityResult = withContext(Dispatchers.IO) {
         // 1. Ask Google Play Services for an integrity token (needs GMS/DroidGuard).
         val token = runCatching {
@@ -41,7 +57,7 @@ object PlayIntegrityChecker {
             return@withContext PlayIntegrityResult(
                 checked = true,
                 success = false,
-                errorMessage = "Needs Google Play Services (DroidGuard): ${e.message ?: "unavailable on this device"}"
+                errorMessage = friendlyError(e.message ?: "")
             )
         }
 

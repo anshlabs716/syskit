@@ -221,6 +221,25 @@ class SystemDataProvider(private val context: Context) {
     }
 
     private fun getCpuModel(): String {
+        // Official SoC fields first (API 31+): e.g. "Google gs101", not the board name.
+        runCatching {
+            if (Build.VERSION.SDK_INT >= 31) {
+                val model = Build.SOC_MODEL
+                val mfg = Build.SOC_MANUFACTURER
+                if (!model.isNullOrBlank() && model != Build.UNKNOWN) {
+                    return if (!mfg.isNullOrBlank() && mfg != Build.UNKNOWN) "$mfg $model" else model
+                }
+            }
+        }
+        runCatching {
+            val prop = Runtime.getRuntime().exec(arrayOf("getprop", "ro.soc.model"))
+                .inputStream.bufferedReader().readText().trim()
+            if (prop.isNotEmpty()) {
+                val mfg = Runtime.getRuntime().exec(arrayOf("getprop", "ro.soc.manufacturer"))
+                    .inputStream.bufferedReader().readText().trim()
+                return if (mfg.isNotEmpty()) "$mfg $prop" else prop
+            }
+        }
         return runCatching {
             val cpuinfo = File("/proc/cpuinfo")
             if (cpuinfo.exists()) {
@@ -234,7 +253,9 @@ class SystemDataProvider(private val context: Context) {
                     }
                 }
             }
-            Build.HARDWARE
+            val platform = Runtime.getRuntime().exec(arrayOf("getprop", "ro.board.platform"))
+                .inputStream.bufferedReader().readText().trim()
+            platform.ifEmpty { Build.HARDWARE }
         }.getOrDefault(Build.HARDWARE)
     }
 
@@ -251,12 +272,20 @@ class SystemDataProvider(private val context: Context) {
     fun getSELinuxStatusPublic(): String = getSELinuxStatus()
 
     private fun getSELinuxStatus(): String {
+        // The kernel flag is world-readable and doesn't depend on getenforce
+        // being resolvable from the app process.
+        runCatching {
+            when (File("/sys/fs/selinux/enforce").readText().trim()) {
+                "1" -> return "Enforcing"
+                "0" -> return "Permissive"
+            }
+        }
         return runCatching {
-            val p = Runtime.getRuntime().exec(arrayOf("getenforce"))
+            val p = Runtime.getRuntime().exec("/system/bin/getenforce")
             val res = BufferedReader(InputStreamReader(p.inputStream)).readLine()
-            p.waitFor(1, TimeUnit.SECONDS)
+            p.waitFor(2, TimeUnit.SECONDS)
             p.destroy()
-            res?.trim() ?: "Unknown"
+            res?.trim()?.ifEmpty { "Unknown" } ?: "Unknown"
         }.getOrDefault("Unknown")
     }
 

@@ -34,8 +34,11 @@ class PrivilegeManager(private val context: Context) {
 
     suspend fun inspectPrivileges(): PrivilegeState = withContext(Dispatchers.IO) {
         val suPath = findSuBinary()
-        val rootAvail = suPath.isNotBlank()
-        val rootMgr = if (rootAvail) detectRootManager() else RootManager.NONE
+        val installedManager = detectInstalledManager()
+        val rootAvail = suPath.isNotBlank() || installedManager != RootManager.NONE
+        val rootMgr = if (rootAvail) {
+            if (installedManager != RootManager.NONE) installedManager else detectRootManager()
+        } else RootManager.NONE
         val rootGranted = if (rootAvail) verifyRootAccess() else false
 
         val shizukuInstalled = isPackageInstalled("moe.shizuku.privileged.api")
@@ -73,7 +76,18 @@ class PrivilegeManager(private val context: Context) {
         return ""
     }
 
+    private val managerPackages = listOf(
+        "com.topjohnwu.magisk" to RootManager.MAGISK,
+        "io.github.huskydg.magisk" to RootManager.MAGISK,
+        "me.weishu.kernelsu" to RootManager.KERNEL_SU,
+        "me.bmax.apatch" to RootManager.APATCH
+    )
+
+    private fun detectInstalledManager(): RootManager =
+        managerPackages.firstOrNull { isPackageInstalled(it.first) }?.second ?: RootManager.NONE
+
     private fun detectRootManager(): RootManager {
+        detectInstalledManager().takeIf { it != RootManager.NONE }?.let { return it }
         runCatching {
             val p = Runtime.getRuntime().exec(arrayOf("su", "-v"))
             val reader = BufferedReader(InputStreamReader(p.inputStream))

@@ -200,7 +200,8 @@ fun TerminalScreen(
                             fontFamily = FontFamily.Monospace,
                             fontSize = 11.sp,
                             color = if (entry.isError) DangerRed else MaterialTheme.colorScheme.onSurface,
-                            lineHeight = 16.sp
+                            lineHeight = 16.sp,
+                            softWrap = entry.modeUsed != "SysKit fetch"
                         )
                     }
                 }

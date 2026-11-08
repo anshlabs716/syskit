@@ -23,6 +23,7 @@ import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.ErrorOutline
+import androidx.compose.material.icons.filled.HelpOutline
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.RestartAlt
 import androidx.compose.material.icons.filled.Security
@@ -79,37 +80,62 @@ fun IntegrityScreen(
             .verticalScroll(rememberScrollState())
             .padding(16.dp)
     ) {
-        // ---- Hero verdict ----
-        val rooted = privilegeState.rootGranted
+        // ---- Hero verdict: distinguishes "rooted" from "rooted but access not granted" ----
+        val heroTitle = when {
+            privilegeState.rootGranted -> "Device is rooted"
+            privilegeState.rootAvailable -> "Rooted — access not granted"
+            else -> "Device is not rooted"
+        }
+        val heroSub = when {
+            privilegeState.rootGranted ->
+                privilegeState.rootManager.displayName + " • full superuser access" +
+                    if (privilegeState.shizukuGranted) " • Shizuku active" else ""
+            privilegeState.rootAvailable ->
+                privilegeState.rootManager.displayName + " detected — allow SysKit in its manager"
+            else ->
+                "No su binary or root manager found" +
+                    if (privilegeState.shizukuGranted) " • Shizuku active" else ""
+        }
+        val heroAccent = when {
+            privilegeState.rootGranted -> NeonGreen
+            privilegeState.rootAvailable -> WarningAmber
+            else -> MaterialTheme.colorScheme.onSurfaceVariant
+        }
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(
-                containerColor = if (rooted) NeonGreen.copy(alpha = 0.10f)
-                else MaterialTheme.colorScheme.surface
+                containerColor = when {
+                    privilegeState.rootGranted -> NeonGreen.copy(alpha = 0.10f)
+                    privilegeState.rootAvailable -> WarningAmber.copy(alpha = 0.10f)
+                    else -> MaterialTheme.colorScheme.surface
+                }
             ),
             shape = RoundedCornerShape(16.dp)
         ) {
             Column(modifier = Modifier.padding(18.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
-                        imageVector = if (rooted) Icons.Default.Verified else Icons.Default.Security,
+                        imageVector = when {
+                            privilegeState.rootGranted -> Icons.Default.Verified
+                            privilegeState.rootAvailable -> Icons.Default.Warning
+                            else -> Icons.Default.Security
+                        },
                         contentDescription = null,
-                        tint = if (rooted) NeonGreen else MaterialTheme.colorScheme.onSurfaceVariant,
+                        tint = heroAccent,
                         modifier = Modifier.size(28.dp)
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     Column {
                         Text(
-                            text = if (rooted) "Device is rooted" else "Device is not rooted",
+                            text = heroTitle,
                             fontWeight = FontWeight.Bold,
                             fontSize = 17.sp,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = privilegeState.rootManager.displayName +
-                                if (privilegeState.shizukuGranted) " • Shizuku active" else "",
+                            text = heroSub,
                             fontSize = 12.sp,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            color = heroAccent.copy(alpha = 0.85f)
                         )
                     }
                 }
@@ -124,9 +150,13 @@ fun IntegrityScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                VerdictChip("Basic", playIntegrity.basicIntegrity, Modifier.weight(1f))
-                VerdictChip("Device", playIntegrity.deviceIntegrity, Modifier.weight(1f))
-                VerdictChip("Strong", playIntegrity.strongIntegrity, Modifier.weight(1f))
+                // Neutral until a check actually succeeds — red ✗ before any check is misleading.
+                VerdictChip("Basic", playIntegrity.basicIntegrity,
+                    pending = !playIntegrity.success, modifier = Modifier.weight(1f))
+                VerdictChip("Device", playIntegrity.deviceIntegrity,
+                    pending = !playIntegrity.success, modifier = Modifier.weight(1f))
+                VerdictChip("Strong", playIntegrity.strongIntegrity,
+                    pending = !playIntegrity.success, modifier = Modifier.weight(1f))
             }
 
             Spacer(modifier = Modifier.height(10.dp))
@@ -152,8 +182,8 @@ fun IntegrityScreen(
                     )
                 }
                 playIntegrity.checked -> {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(Icons.Default.ErrorOutline, null, tint = WarningAmber, modifier = Modifier.size(14.dp))
+                    Row(verticalAlignment = Alignment.Top) {
+                        Icon(Icons.Default.ErrorOutline, null, tint = WarningAmber, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
                             text = playIntegrity.errorMessage,
@@ -328,17 +358,25 @@ fun IntegrityScreen(
 }
 
 @Composable
-private fun VerdictChip(label: String, passed: Boolean, modifier: Modifier = Modifier) {
-    val color = if (passed) NeonGreen else DangerRed
+private fun VerdictChip(label: String, passed: Boolean, pending: Boolean = false, modifier: Modifier = Modifier) {
+    val color = when {
+        pending -> MaterialTheme.colorScheme.onSurfaceVariant
+        passed -> NeonGreen
+        else -> DangerRed
+    }
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(12.dp))
-            .background(color.copy(alpha = 0.12f))
+            .background(if (pending) MaterialTheme.colorScheme.surfaceVariant else color.copy(alpha = 0.12f))
             .padding(vertical = 10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(
-            imageVector = if (passed) Icons.Default.CheckCircle else Icons.Default.Cancel,
+            imageVector = when {
+                pending -> Icons.Default.HelpOutline
+                passed -> Icons.Default.CheckCircle
+                else -> Icons.Default.Cancel
+            },
             contentDescription = null,
             tint = color,
             modifier = Modifier.size(20.dp)

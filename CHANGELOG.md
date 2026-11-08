@@ -2,6 +2,29 @@
 
 All notable changes to SysKit are documented here.
 
+## [1.0.5-android] - 2026-11-08
+
+### Fixed
+- Duplicate "SysKit" title bar: the manifest had no theme, so the system drew
+  a default action bar above the app's own header. The app now uses a
+  NoActionBar theme with a dark window background.
+- SoC / Processor showed the board name (e.g. "raven"); it now uses
+  `Build.SOC_MODEL` / `ro.soc.model` (e.g. "Google gs101").
+- SELinux showed "Unknown" on working devices; the status now reads
+  `/sys/fs/selinux/enforce` directly with a `getenforce` fallback.
+- neofetch art scrambled on narrow screens; the logo is padded to a fixed
+  width, info lines are length-capped, and fetch output never word-wraps.
+- Bloat tags misfired (blanket "Expert" for all com.android.*); heuristics are
+  now conservative and more Pixel/Google packages are curated explicitly.
+- Play Integrity errors dumped raw API text + documentation URLs; they are now
+  one plain sentence, and verdict chips stay neutral until a check succeeds.
+
+### Added
+- Root detection now distinguishes "rooted" from "rooted but access not
+  granted", and detects Magisk / KernelSU / APatch by installed app (with
+  proper `<queries>` visibility), even when su access is denied.
+
+
 ## [1.0.4-android] - 2026-11-08
 
 ### Added

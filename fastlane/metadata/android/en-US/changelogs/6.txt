@@ -1,0 +1,7 @@
+- Duplicate title bar removed: the app no longer draws two "SysKit" headers
+- Real SoC info now (e.g. "Google gs101") instead of the board name
+- SELinux status reads the kernel flag directly — no more "Unknown" on working devices
+- Root detection separates "rooted" from "rooted but access not granted" (detects Magisk / KernelSU / APatch by app, works without su access)
+- neofetch art re-aligned with hard line lengths — no more scrambling
+- Bloat tags reworked: far fewer wrong "Expert" labels, honest Unclassified
+- Play Integrity errors are one clean sentence now, and the verdict chips stay neutral until a check actually runs
