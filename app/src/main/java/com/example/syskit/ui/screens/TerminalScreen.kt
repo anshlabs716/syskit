@@ -175,7 +175,6 @@ fun TerminalScreen(
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(8.dp))
                 .background(MaterialTheme.colorScheme.surface)
-                .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(8.dp))
                 .padding(10.dp)
         ) {
             LazyColumn(

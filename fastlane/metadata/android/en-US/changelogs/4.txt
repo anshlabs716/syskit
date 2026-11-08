@@ -1,0 +1,6 @@
+- New Integrity tab: real root checker, Google Play Integrity verdicts (Basic / Device / Strong), and a plain-language device posture report (verified boot, dm-verity, SELinux, emulator detection)
+- SELinux buttons fixed — they did the opposite of their label, and the app now re-reads the real mode instead of claiming success
+- Redesigned interface: clean typography instead of terminal-monospace everywhere, softer colours, no harsh borders
+- Compact top bar — no more wasted space, with live Battery / RAM / Storage chips
+- DevCheck-depth system info: per-core CPU frequencies (live), full sensor list, camera resolutions & apertures
+- Packages tab uncrammed: scrollable filters, roomier cards, bigger icons

@@ -1,6 +1,12 @@
 package com.example.syskit.data
 
 import android.app.ActivityManager
+import android.hardware.Sensor
+import android.hardware.SensorManager
+import android.hardware.camera2.CameraCharacteristics
+import android.hardware.camera2.CameraManager
+import android.os.PowerManager
+import android.os.Build
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -10,7 +16,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.wifi.WifiManager
 import android.os.BatteryManager
-import android.os.Build
 import android.os.Environment
 import android.os.StatFs
 import android.os.SystemClock
@@ -243,6 +248,8 @@ class SystemDataProvider(private val context: Context) {
         }.getOrDefault(System.getProperty("os.version") ?: "Unknown")
     }
 
+    fun getSELinuxStatusPublic(): String = getSELinuxStatus()
+
     private fun getSELinuxStatus(): String {
         return runCatching {
             val p = Runtime.getRuntime().exec(arrayOf("getenforce"))
@@ -260,5 +267,125 @@ class SystemDataProvider(private val context: Context) {
         val minutes = (seconds % 3600) / 60
         val secs = seconds % 60
         return if (days > 0) "${days}d ${hours}h ${minutes}m" else "${hours}h ${minutes}m ${secs}s"
+    }
+
+    // ---- DevCheck-style deep info ----
+
+    suspend fun getDeepDeviceInfo(): com.example.syskit.model.DeepDeviceInfo = withContext(Dispatchers.IO) {
+        val sensors = runCatching {
+            val sm = context.getSystemService(Context.SENSOR_SERVICE) as? SensorManager
+            sm?.getSensorList(Sensor.TYPE_ALL)?.map {
+                com.example.syskit.model.SensorItem(
+                    name = it.name,
+                    vendor = it.vendor,
+                    typeLabel = sensorTypeName(it.type),
+                    powerMA = it.power
+                )
+            } ?: emptyList()
+        }.getOrDefault(emptyList())
+
+        val cameras = runCatching {
+            val cm = context.getSystemService(Context.CAMERA_SERVICE) as? CameraManager
+            cm?.cameraIdList?.mapNotNull { id ->
+                runCatching {
+                    val chars = cm.getCameraCharacteristics(id)
+                    val facing = when (chars.get(CameraCharacteristics.LENS_FACING)) {
+                        CameraCharacteristics.LENS_FACING_BACK -> "Back"
+                        CameraCharacteristics.LENS_FACING_FRONT -> "Front"
+                        CameraCharacteristics.LENS_FACING_EXTERNAL -> "External"
+                        else -> "Unknown"
+                    }
+                    val res = chars.get(CameraCharacteristics.SENSOR_INFO_PIXEL_ARRAY_SIZE)
+                    val apertures = chars.get(CameraCharacteristics.LENS_INFO_AVAILABLE_APERTURES)
+                        ?.joinToString("/") { String.format(java.util.Locale.US, "%.1f", it) } ?: "N/A"
+                    com.example.syskit.model.CameraItem(
+                        id = id,
+                        facing = facing,
+                        maxResolution = res?.let { "${it.width.toInt()} x ${it.height.toInt()}" } ?: "N/A",
+                        apertures = apertures
+                    )
+                }.getOrNull()
+            }?.filterNotNull() ?: emptyList()
+        }.getOrDefault(emptyList())
+
+        val coreFreqs = readCpuCoreFreqsMHz()
+
+        val pm = context.getSystemService(Context.POWER_SERVICE) as? PowerManager
+        val thermal = if (Build.VERSION.SDK_INT >= 30) {
+            when (pm?.currentThermalStatus) {
+                PowerManager.THERMAL_STATUS_NONE -> "None (cool)"
+                PowerManager.THERMAL_STATUS_LIGHT -> "Light"
+                PowerManager.THERMAL_STATUS_MODERATE -> "Moderate"
+                PowerManager.THERMAL_STATUS_SEVERE -> "Severe"
+                PowerManager.THERMAL_STATUS_CRITICAL -> "Critical"
+                PowerManager.THERMAL_STATUS_EMERGENCY -> "Emergency"
+                PowerManager.THERMAL_STATUS_SHUTDOWN -> "Shutdown imminent"
+                else -> "Unknown"
+            }
+        } else "Needs Android 11+"
+
+        val verifiedBoot = getProp("ro.boot.verifiedbootstate").let {
+            when (it) {
+                "green" -> "Green (locked, certified)"
+                "yellow" -> "Yellow (locked, custom OS)"
+                "orange" -> "Orange (bootloader unlocked)"
+                else -> it.ifEmpty { "Unknown" }
+            }
+        }
+        val verity = getProp("ro.boot.veritymode").ifEmpty { "Unknown" }
+        val emulator = getProp("ro.kernel.qemu") == "1" ||
+            android.os.Build.FINGERPRINT.contains("generic", true) ||
+            android.os.Build.MODEL.contains("Emulator", true) ||
+            android.os.Build.MODEL.contains("sdk_gphone", true)
+
+        com.example.syskit.model.DeepDeviceInfo(
+            sensors = sensors,
+            cameras = cameras,
+            cpuCoreFreqsMHz = coreFreqs,
+            thermalStatus = thermal,
+            verifiedBootState = verifiedBoot,
+            verityMode = verity,
+            isEmulator = emulator,
+            isDebuggable = (context.applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0
+        )
+    }
+
+    fun readCpuCoreFreqsMHz(): List<Int> {
+        val freqs = mutableListOf<Int>()
+        var core = 0
+        while (core < 16) {
+            val f = runCatching {
+                java.io.File("/sys/devices/system/cpu/cpu$core/cpufreq/scaling_cur_freq")
+                    .readText().trim().toLong() / 1000
+            }.getOrNull() ?: break
+            freqs.add(f.toInt())
+            core++
+        }
+        return freqs
+    }
+
+    private fun getProp(key: String): String = runCatching {
+        Runtime.getRuntime().exec(arrayOf("getprop", key)).inputStream
+            .bufferedReader().readText().trim()
+    }.getOrDefault("")
+
+    private fun sensorTypeName(type: Int): String = when (type) {
+        Sensor.TYPE_ACCELEROMETER -> "Accelerometer"
+        Sensor.TYPE_GYROSCOPE -> "Gyroscope"
+        Sensor.TYPE_MAGNETIC_FIELD -> "Magnetometer"
+        Sensor.TYPE_LIGHT -> "Light"
+        Sensor.TYPE_PROXIMITY -> "Proximity"
+        Sensor.TYPE_PRESSURE -> "Barometer"
+        Sensor.TYPE_AMBIENT_TEMPERATURE -> "Ambient temp"
+        Sensor.TYPE_RELATIVE_HUMIDITY -> "Humidity"
+        Sensor.TYPE_STEP_COUNTER -> "Step counter"
+        Sensor.TYPE_STEP_DETECTOR -> "Step detector"
+        Sensor.TYPE_SIGNIFICANT_MOTION -> "Significant motion"
+        Sensor.TYPE_GRAVITY -> "Gravity"
+        Sensor.TYPE_LINEAR_ACCELERATION -> "Linear accel"
+        Sensor.TYPE_ROTATION_VECTOR -> "Rotation vector"
+        Sensor.TYPE_ORIENTATION -> "Orientation"
+        Sensor.TYPE_HEART_RATE -> "Heart rate"
+        else -> "Type $type"
     }
 }

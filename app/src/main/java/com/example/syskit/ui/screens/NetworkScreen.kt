@@ -1,7 +1,6 @@
 package com.example.syskit.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -41,7 +40,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -75,14 +73,12 @@ fun NetworkScreen(
             Column {
                 Text(
                     text = "NETWORK TOOLS",
-                    fontFamily = FontFamily.Monospace,
                     fontWeight = FontWeight.Black,
                     fontSize = 18.sp,
                     color = MaterialTheme.colorScheme.primary
                 )
                 Text(
                     text = "Connectivity diagnostics, DNS, and ICMP Ping",
-                    fontFamily = FontFamily.Monospace,
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -102,8 +98,7 @@ fun NetworkScreen(
         // Connection Summary Card
         Card(
             modifier = Modifier
-                .fillMaxWidth()
-                .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(12.dp)),
+                .fillMaxWidth(),
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             shape = RoundedCornerShape(12.dp)
         ) {
@@ -126,7 +121,6 @@ fun NetworkScreen(
                     Spacer(modifier = Modifier.width(10.dp))
                     Text(
                         text = "ACTIVE INTERFACE",
-                        fontFamily = FontFamily.Monospace,
                         fontWeight = FontWeight.Bold,
                         fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onSurface
@@ -151,8 +145,7 @@ fun NetworkScreen(
         // Ping Utility Card
         Card(
             modifier = Modifier
-                .fillMaxWidth()
-                .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(12.dp)),
+                .fillMaxWidth(),
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             shape = RoundedCornerShape(12.dp)
         ) {
@@ -175,7 +168,6 @@ fun NetworkScreen(
                     Spacer(modifier = Modifier.width(10.dp))
                     Text(
                         text = "ICMP PING TOOL",
-                        fontFamily = FontFamily.Monospace,
                         fontWeight = FontWeight.Bold,
                         fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onSurface
@@ -194,7 +186,7 @@ fun NetworkScreen(
                         modifier = Modifier
                             .weight(1f)
                             .testTag("ping_target_input"),
-                        label = { Text("Host / IP Address", fontFamily = FontFamily.Monospace, fontSize = 11.sp) },
+                        label = { Text("Host / IP Address", fontSize = 11.sp) },
                         singleLine = true,
                         shape = RoundedCornerShape(8.dp),
                         colors = OutlinedTextFieldDefaults.colors(
@@ -224,7 +216,7 @@ fun NetworkScreen(
                         } else {
                             Icon(imageVector = Icons.Default.PlayArrow, contentDescription = null, modifier = Modifier.size(16.dp))
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("Ping", fontFamily = FontFamily.Monospace, fontWeight = FontWeight.Bold)
+                            Text("Ping", fontWeight = FontWeight.Bold)
                         }
                     }
                 }

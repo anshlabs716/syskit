@@ -18,7 +18,7 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AdminPanelSettings
 import androidx.compose.material.icons.filled.Apps
-import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.VerifiedUser
 import androidx.compose.material.icons.filled.Dashboard
 import androidx.compose.material.icons.filled.NetworkCheck
 import androidx.compose.material.icons.filled.Terminal
@@ -42,7 +42,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -54,18 +53,16 @@ import com.example.syskit.theme.SysKitTheme
 import com.example.syskit.ui.SysKitViewModel
 import com.example.syskit.ui.components.TopMetricsHeader
 import com.example.syskit.ui.screens.DashboardScreen
+import com.example.syskit.ui.screens.IntegrityScreen
 import com.example.syskit.ui.screens.NetworkScreen
 import com.example.syskit.ui.screens.PackageManagerScreen
-import com.example.syskit.ui.screens.PowerToolsScreen
-import com.example.syskit.ui.screens.PrivilegeScreen
 import com.example.syskit.ui.screens.TerminalScreen
 import rikka.shizuku.Shizuku
 
 enum class AppDestination(val title: String, val icon: ImageVector) {
     DASHBOARD("System", Icons.Default.Dashboard),
-    PRIVILEGE("Pairing", Icons.Default.AdminPanelSettings),
-    POWER("Tools", Icons.Default.Build),
     PACKAGES("Apps", Icons.Default.Apps),
+    INTEGRITY("Integrity", Icons.Default.VerifiedUser),
     TERMINAL("Console", Icons.Default.Terminal),
     NETWORK("Net", Icons.Default.NetworkCheck)
 }
@@ -115,6 +112,9 @@ fun MainAppScreen(viewModel: SysKitViewModel) {
     val feedbackMessage by viewModel.feedbackMessage.collectAsStateWithLifecycle()
     val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()
     val selectedFilter by viewModel.selectedFilter.collectAsStateWithLifecycle()
+    val deepInfo by viewModel.deepInfo.collectAsStateWithLifecycle()
+    val playIntegrity by viewModel.playIntegrity.collectAsStateWithLifecycle()
+    val integrityChecking by viewModel.integrityChecking.collectAsStateWithLifecycle()
 
     var currentDestination by remember { mutableStateOf(AppDestination.DASHBOARD) }
     val snackbarHostState = remember { SnackbarHostState() }
@@ -138,7 +138,7 @@ fun MainAppScreen(viewModel: SysKitViewModel) {
             TopMetricsHeader(
                 privilegeState = privilegeState,
                 hardwareStats = hardwareStats,
-                onPrivilegeClick = { currentDestination = AppDestination.PRIVILEGE }
+                onPrivilegeClick = { currentDestination = AppDestination.INTEGRITY }
             )
         },
         bottomBar = {
@@ -164,7 +164,7 @@ fun MainAppScreen(viewModel: SysKitViewModel) {
                         label = {
                             Text(
                                 text = dest.title,
-                                fontFamily = FontFamily.Monospace,
+
                                 fontSize = 10.sp,
                                 color = if (selected) NeonGreen else MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -188,24 +188,23 @@ fun MainAppScreen(viewModel: SysKitViewModel) {
                 AppDestination.DASHBOARD -> {
                     DashboardScreen(
                         systemInfo = systemInfo,
-                        hardwareStats = hardwareStats
+                        hardwareStats = hardwareStats,
+                        deepInfo = deepInfo
                     )
                 }
-                AppDestination.PRIVILEGE -> {
-                    PrivilegeScreen(
+                AppDestination.INTEGRITY -> {
+                    IntegrityScreen(
                         privilegeState = privilegeState,
+                        deepInfo = deepInfo,
+                        playIntegrity = playIntegrity,
+                        integrityChecking = integrityChecking,
                         onRequestRoot = { viewModel.requestRoot() },
                         onRequestShizuku = { viewModel.requestShizuku() },
                         onRefresh = { viewModel.refreshPrivileges() },
-                        onSetMode = { viewModel.setExecutionMode(it) }
-                    )
-                }
-                AppDestination.POWER -> {
-                    PowerToolsScreen(
-                        privilegeState = privilegeState,
+                        onSetMode = { viewModel.setExecutionMode(it) },
+                        onCheckPlayIntegrity = { viewModel.checkPlayIntegrity() },
                         onReboot = { viewModel.reboot(it) },
                         onTrimCaches = { viewModel.trimCaches() },
-                        onResetBattery = { viewModel.resetBatteryStats() },
                         onSetSELinux = { viewModel.setSELinux(it) }
                     )
                 }
@@ -217,7 +216,7 @@ fun MainAppScreen(viewModel: SysKitViewModel) {
                         privilegeReady = privilegeState.rootGranted || privilegeState.shizukuGranted,
                         onSearchChange = { viewModel.setSearchQuery(it) },
                         onFilterChange = { viewModel.setFilter(it) },
-                        onOpenPrivileges = { currentDestination = AppDestination.PRIVILEGE },
+                        onOpenPrivileges = { currentDestination = AppDestination.INTEGRITY },
                         onFreezePackage = { viewModel.freezePackage(it) },
                         onUnfreezePackage = { viewModel.unfreezePackage(it) },
                         onForceStopPackage = { viewModel.forceStopPackage(it) },

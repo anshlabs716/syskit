@@ -5,8 +5,9 @@ import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -60,7 +61,6 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -123,23 +123,20 @@ fun PackageManagerScreen(
                 Column {
                     Text(
                         text = app.appName,
-                        fontFamily = FontFamily.Monospace,
                         fontWeight = FontWeight.Bold,
                         fontSize = 15.sp
                     )
                     Text(
                         text = app.packageName,
-                        fontFamily = FontFamily.Monospace,
                         fontSize = 11.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             },
             text = {
-                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(
                         text = "Version: ${app.versionName} • Target SDK: ${app.targetSdkVersion}",
-                        fontFamily = FontFamily.Monospace,
                         fontSize = 11.sp
                     )
                     Text(
@@ -148,7 +145,6 @@ fun PackageManagerScreen(
                             app.isEnabled -> "Status: Active ${if (app.isSystemApp) "• System App" else "• User App"}"
                             else -> "Status: Frozen / Disabled ${if (app.isSystemApp) "• System App" else "• User App"}"
                         },
-                        fontFamily = FontFamily.Monospace,
                         fontSize = 11.sp,
                         color = when {
                             app.isDebloated -> DangerRed
@@ -170,13 +166,12 @@ fun PackageManagerScreen(
                         ) {
                             Icon(imageVector = Icons.Default.CheckCircle, contentDescription = null, modifier = Modifier.size(16.dp))
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("Restore (install-existing)", fontFamily = FontFamily.Monospace)
+                            Text("Restore (install-existing)")
                         }
                     } else {
                         if (app.isSystemApp) {
                             Text(
                                 text = "⚠ System app — removing it can break features. It stays restorable via install-existing.",
-                                fontFamily = FontFamily.Monospace,
                                 fontSize = 10.sp,
                                 color = WarningAmber
                             )
@@ -191,7 +186,7 @@ fun PackageManagerScreen(
                         ) {
                             Icon(imageVector = Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(16.dp))
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("Uninstall for user 0 (debloat)", fontFamily = FontFamily.Monospace)
+                            Text("Uninstall for user 0 (debloat)")
                         }
                     }
 
@@ -208,7 +203,7 @@ fun PackageManagerScreen(
                         ) {
                             Icon(imageVector = Icons.Default.AcUnit, contentDescription = null, modifier = Modifier.size(16.dp))
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("Freeze / Disable (pm disable)", fontFamily = FontFamily.Monospace)
+                            Text("Freeze / Disable (pm disable)")
                         }
                     } else {
                         Button(
@@ -221,7 +216,7 @@ fun PackageManagerScreen(
                         ) {
                             Icon(imageVector = Icons.Default.CheckCircle, contentDescription = null, modifier = Modifier.size(16.dp))
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("Unfreeze / Enable (pm enable)", fontFamily = FontFamily.Monospace)
+                            Text("Unfreeze / Enable (pm enable)")
                         }
                     }
 
@@ -234,7 +229,7 @@ fun PackageManagerScreen(
                     ) {
                         Icon(imageVector = Icons.Default.Stop, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Force Stop (am force-stop)", fontFamily = FontFamily.Monospace)
+                        Text("Force Stop (am force-stop)")
                     }
 
                     Button(
@@ -247,16 +242,17 @@ fun PackageManagerScreen(
                     ) {
                         Icon(imageVector = Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Clear Data & Cache (pm clear)", fontFamily = FontFamily.Monospace)
+                        Text("Clear Data & Cache (pm clear)")
                     }
                 }
             },
             confirmButton = {},
             dismissButton = {
                 TextButton(onClick = { selectedPackage = null }) {
-                    Text("Close", fontFamily = FontFamily.Monospace)
+                    Text("Close")
                 }
             },
+            shape = RoundedCornerShape(20.dp),
             containerColor = MaterialTheme.colorScheme.surface,
             textContentColor = MaterialTheme.colorScheme.onSurface,
             titleContentColor = MaterialTheme.colorScheme.onSurface
@@ -272,14 +268,12 @@ fun PackageManagerScreen(
     ) {
         Text(
             text = "PACKAGE MANAGER",
-            fontFamily = FontFamily.Monospace,
             fontWeight = FontWeight.Black,
             fontSize = 18.sp,
             color = MaterialTheme.colorScheme.primary
         )
         Text(
             text = "App Ops, Debloater, and Process Freeze",
-            fontFamily = FontFamily.Monospace,
             fontSize = 12.sp,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -294,7 +288,6 @@ fun PackageManagerScreen(
                 Column(modifier = Modifier.padding(12.dp)) {
                     Text(
                         text = "⚠ Debloating needs Shizuku or Root",
-                        fontFamily = FontFamily.Monospace,
                         fontWeight = FontWeight.Bold,
                         fontSize = 12.sp,
                         color = WarningAmber
@@ -302,7 +295,6 @@ fun PackageManagerScreen(
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = "Freeze / uninstall / restore run through Shizuku (ADB) or Root. Browse and search work without them.",
-                        fontFamily = FontFamily.Monospace,
                         fontSize = 10.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -311,7 +303,7 @@ fun PackageManagerScreen(
                         onClick = onOpenPrivileges,
                         colors = ButtonDefaults.buttonColors(containerColor = WarningAmber.copy(alpha = 0.25f), contentColor = WarningAmber)
                     ) {
-                        Text("Open Privileges", fontFamily = FontFamily.Monospace, fontSize = 12.sp)
+                        Text("Open Privileges", fontSize = 12.sp)
                     }
                 }
             }
@@ -329,7 +321,6 @@ fun PackageManagerScreen(
             placeholder = {
                 Text(
                     text = "Search package or app name...",
-                    fontFamily = FontFamily.Monospace,
                     fontSize = 12.sp
                 )
             },
@@ -359,9 +350,11 @@ fun PackageManagerScreen(
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Filter pills
+        // Filter pills (scrollable so they never squeeze)
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .horizontalScroll(rememberScrollState()),
             horizontalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             listOf("ALL", "USER", "SYSTEM", "DISABLED", "REMOVED").forEach { filter ->
@@ -372,7 +365,6 @@ fun PackageManagerScreen(
                     label = {
                         Text(
                             text = filter,
-                            fontFamily = FontFamily.Monospace,
                             fontSize = 10.sp,
                             fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
                         )
@@ -389,7 +381,6 @@ fun PackageManagerScreen(
 
         Text(
             text = "${filtered.size} packages found (tap to manage)",
-            fontFamily = FontFamily.Monospace,
             fontSize = 11.sp,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -399,16 +390,15 @@ fun PackageManagerScreen(
         // Package list
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(6.dp)
+            verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             items(filtered, key = { it.packageName }) { app ->
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(8.dp))
                         .clickable { selectedPackage = app },
                     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                    shape = RoundedCornerShape(8.dp)
+                    shape = RoundedCornerShape(14.dp)
                 ) {
                     val pm = LocalContext.current.packageManager
                     val appIconBitmap = remember(app.packageName) {
@@ -419,7 +409,7 @@ fun PackageManagerScreen(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(12.dp),
+                            .padding(14.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -428,14 +418,13 @@ fun PackageManagerScreen(
                                 ?: Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888).asImageBitmap(),
                             contentDescription = null,
                             contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(40.dp)
+                            modifier = Modifier.size(44.dp)
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Column(modifier = Modifier.weight(1f)) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Text(
                                     text = app.appName,
-                                    fontFamily = FontFamily.Monospace,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 13.sp,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -450,7 +439,6 @@ fun PackageManagerScreen(
                                     ) {
                                         Text(
                                             text = "REMOVED",
-                                            fontFamily = FontFamily.Monospace,
                                             fontSize = 9.sp,
                                             fontWeight = FontWeight.Bold,
                                             color = DangerRed
@@ -466,7 +454,6 @@ fun PackageManagerScreen(
                                     ) {
                                         Text(
                                             text = "FROZEN",
-                                            fontFamily = FontFamily.Monospace,
                                             fontSize = 9.sp,
                                             fontWeight = FontWeight.Bold,
                                             color = WarningAmber
@@ -476,7 +463,6 @@ fun PackageManagerScreen(
                             }
                             Text(
                                 text = app.packageName,
-                                fontFamily = FontFamily.Monospace,
                                 fontSize = 10.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -490,7 +476,6 @@ fun PackageManagerScreen(
                         ) {
                             Text(
                                 text = if (app.isSystemApp) "SYS" else "USER",
-                                fontFamily = FontFamily.Monospace,
                                 fontSize = 9.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = if (app.isSystemApp) DangerRed else BrightCyan

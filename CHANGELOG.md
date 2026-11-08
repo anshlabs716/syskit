@@ -2,6 +2,27 @@
 
 All notable changes to SysKit are documented here.
 
+## [1.0.3-android] - 2026-11-08
+
+### Added
+- Integrity tab (replaces Pairing + Tools): root checker, Google Play Integrity
+  verdicts (Basic / Device / Strong / Virtual) via the official Play Integrity
+  client, device posture (verified boot, dm-verity, SELinux, emulator,
+  debuggable), privilege setup and system actions in one place.
+- DevCheck-depth dashboard: live per-core CPU frequencies, full sensor list,
+  camera resolutions and apertures, thermal status.
+- Compact top bar with live Battery / RAM / Storage chips.
+
+### Fixed
+- SELinux buttons did the opposite of their label, and the app claimed success
+  without root; it now re-reads the real mode and reports the truth.
+
+### Changed
+- Interface redesigned: clean sans typography (monospace only in the console
+  and for package ids), calmer palette, no hard borders, uncrammed package list.
+- Six tabs merged into five (System, Apps, Integrity, Console, Net).
+
+
 ## [1.0.2-android] - 2026-11-08
 
 ### Added

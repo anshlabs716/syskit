@@ -1,7 +1,6 @@
 package com.example.syskit.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,7 +33,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,7 +46,8 @@ import com.example.syskit.theme.WarningAmber
 @Composable
 fun DashboardScreen(
     systemInfo: SystemInfo,
-    hardwareStats: HardwareStats
+    hardwareStats: HardwareStats,
+    deepInfo: com.example.syskit.model.DeepDeviceInfo
 ) {
     val scrollState = rememberScrollState()
 
@@ -61,15 +60,13 @@ fun DashboardScreen(
             .testTag("dashboard_screen")
     ) {
         Text(
-            text = "SYSTEM OVERVIEW",
-            fontFamily = FontFamily.Monospace,
-            fontWeight = FontWeight.Black,
-            fontSize = 18.sp,
-            color = MaterialTheme.colorScheme.primary
+            text = "System overview",
+            fontWeight = FontWeight.Bold,
+            fontSize = 20.sp,
+            color = MaterialTheme.colorScheme.onSurface
         )
         Text(
-            text = "Hardware diagnostics, kernel, and system telemetry",
-            fontFamily = FontFamily.Monospace,
+            text = "Hardware, kernel and live telemetry",
             fontSize = 12.sp,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -109,7 +106,7 @@ fun DashboardScreen(
 
         // Battery Telemetry Card
         InfoCard(
-            title = "BATTERY HEALTH & POWER",
+            title = "BATTERY & POWER",
             icon = Icons.Default.DeveloperBoard,
             iconTint = WarningAmber
         ) {
@@ -118,6 +115,65 @@ fun DashboardScreen(
             InfoRow("Temperature", "${hardwareStats.batteryTempCelsius} °C")
             InfoRow("Voltage", "${hardwareStats.batteryVoltageMv} mV")
             InfoRow("Chemistry", hardwareStats.batteryTechnology)
+            InfoRow("Thermal Status", deepInfo.thermalStatus)
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Live CPU cores (DevCheck-style)
+        InfoCard(
+            title = "CPU CORES (LIVE)",
+            icon = Icons.Default.Memory,
+            iconTint = BrightCyan
+        ) {
+            if (deepInfo.cpuCoreFreqsMHz.isEmpty()) {
+                Text("Per-core frequencies unavailable on this device", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            } else {
+                deepInfo.cpuCoreFreqsMHz.forEachIndexed { i, mhz ->
+                    InfoRow("Core $i", "$mhz MHz")
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Cameras
+        InfoCard(
+            title = "CAMERAS",
+            icon = Icons.Default.PhoneAndroid,
+            iconTint = ElectricBlue
+        ) {
+            if (deepInfo.cameras.isEmpty()) {
+                Text("No camera information available", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            } else {
+                deepInfo.cameras.forEach { cam ->
+                    InfoRow("Camera ${cam.id} (${cam.facing})", "${cam.maxResolution} • f/${cam.apertures}")
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Sensors
+        InfoCard(
+            title = "SENSORS (${deepInfo.sensors.size})",
+            icon = Icons.Default.Shield,
+            iconTint = NeonGreen
+        ) {
+            if (deepInfo.sensors.isEmpty()) {
+                Text("No sensors reported", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            } else {
+                deepInfo.sensors.take(14).forEach { s ->
+                    InfoRow(s.name, s.typeLabel + if (s.powerMA > 0f) " • ${s.powerMA} mA" else "")
+                }
+                if (deepInfo.sensors.size > 14) {
+                    Text(
+                        text = "+ ${deepInfo.sensors.size - 14} more sensors",
+                        fontSize = 11.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
         }
     }
 }
@@ -131,8 +187,7 @@ fun InfoCard(
 ) {
     Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(12.dp)),
+            .fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         shape = RoundedCornerShape(12.dp)
     ) {
@@ -155,7 +210,6 @@ fun InfoCard(
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
                     text = title,
-                    fontFamily = FontFamily.Monospace,
                     fontWeight = FontWeight.Bold,
                     fontSize = 13.sp,
                     color = MaterialTheme.colorScheme.onSurface,
@@ -180,13 +234,11 @@ fun InfoRow(label: String, value: String) {
     ) {
         Text(
             text = label,
-            fontFamily = FontFamily.Monospace,
             fontSize = 11.sp,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
         Text(
             text = if (value.isBlank()) "N/A" else value,
-            fontFamily = FontFamily.Monospace,
             fontWeight = FontWeight.SemiBold,
             fontSize = 12.sp,
             color = MaterialTheme.colorScheme.onSurface

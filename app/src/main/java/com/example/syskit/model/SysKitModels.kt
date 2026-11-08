@@ -97,3 +97,59 @@ data class NetworkDetails(
     val wifiSsid: String = "N/A",
     val wifiLinkSpeed: String = "N/A"
 )
+
+// ---- Integrity / deep device info ----
+
+data class SensorItem(
+    val name: String,
+    val vendor: String,
+    val typeLabel: String,
+    val powerMA: Float
+)
+
+data class CameraItem(
+    val id: String,
+    val facing: String,
+    val maxResolution: String,
+    val apertures: String
+)
+
+data class DeepDeviceInfo(
+    val sensors: List<SensorItem> = emptyList(),
+    val cameras: List<CameraItem> = emptyList(),
+    val cpuCoreFreqsMHz: List<Int> = emptyList(),
+    val thermalStatus: String = "Unknown",
+    val verifiedBootState: String = "Unknown",
+    val verityMode: String = "Unknown",
+    val isEmulator: Boolean = false,
+    val isDebuggable: Boolean = false
+) {
+    val integrityPosture: String
+        get() = when {
+            verifiedBootState.equals("green", true) && verityMode.contains("enforcing", true) -> "Verified boot clean"
+            verifiedBootState.equals("yellow", true) -> "Locked bootloader, custom OS"
+            verifiedBootState.equals("orange", true) -> "Bootloader unlocked"
+            else -> "Unknown boot state"
+        }
+}
+
+data class PlayIntegrityResult(
+    val checked: Boolean = false,
+    val success: Boolean = false,
+    val appRecognitionVerdict: String = "",
+    val deviceVerdicts: List<String> = emptyList(),
+    val licensingVerdict: String = "",
+    val errorMessage: String = ""
+) {
+    val basicIntegrity: Boolean get() = deviceVerdicts.any { it.contains("BASIC", true) }
+    val deviceIntegrity: Boolean get() = deviceVerdicts.any { it.contains("MEETS_DEVICE", true) }
+    val strongIntegrity: Boolean get() = deviceVerdicts.any { it.contains("STRONG", true) }
+    val virtualIntegrity: Boolean get() = deviceVerdicts.any { it.contains("VIRTUAL", true) }
+}
+
+data class RootCheckResult(
+    val rooted: Boolean = false,
+    val suBinary: String = "",
+    val managers: List<String> = emptyList(),
+    val suTestPassed: Boolean = false
+)

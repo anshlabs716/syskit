@@ -54,6 +54,15 @@ class SysKitViewModel(application: Application) : AndroidViewModel(application) 
     private val _isExecuting = MutableStateFlow(false)
     val isExecuting: StateFlow<Boolean> = _isExecuting.asStateFlow()
 
+    private val _deepInfo = MutableStateFlow(com.example.syskit.model.DeepDeviceInfo())
+    val deepInfo: StateFlow<com.example.syskit.model.DeepDeviceInfo> = _deepInfo.asStateFlow()
+
+    private val _playIntegrity = MutableStateFlow(com.example.syskit.model.PlayIntegrityResult())
+    val playIntegrity: StateFlow<com.example.syskit.model.PlayIntegrityResult> = _playIntegrity.asStateFlow()
+
+    private val _integrityChecking = MutableStateFlow(false)
+    val integrityChecking: StateFlow<Boolean> = _integrityChecking.asStateFlow()
+
     private val _feedbackMessage = MutableStateFlow<String?>(null)
     val feedbackMessage: StateFlow<String?> = _feedbackMessage.asStateFlow()
 
@@ -74,6 +83,7 @@ class SysKitViewModel(application: Application) : AndroidViewModel(application) 
             _systemInfo.value = dataProvider.getSystemInfo()
             _hardwareStats.value = dataProvider.getHardwareStats()
             _networkDetails.value = dataProvider.getNetworkDetails()
+            _deepInfo.value = dataProvider.getDeepDeviceInfo()
             loadPackages()
         }
     }
@@ -91,6 +101,9 @@ class SysKitViewModel(application: Application) : AndroidViewModel(application) 
             while (isActive) {
                 delay(3000)
                 _hardwareStats.value = dataProvider.getHardwareStats()
+                _deepInfo.value = _deepInfo.value.copy(
+                    cpuCoreFreqsMHz = dataProvider.readCpuCoreFreqsMHz()
+                )
             }
         }
     }
@@ -130,6 +143,14 @@ class SysKitViewModel(application: Application) : AndroidViewModel(application) 
     fun loadPackages() {
         viewModelScope.launch {
             _packages.value = dataProvider.getInstalledPackages()
+        }
+    }
+
+    fun checkPlayIntegrity() {
+        viewModelScope.launch {
+            _integrityChecking.value = true
+            _playIntegrity.value = com.example.syskit.engine.PlayIntegrityChecker.check(getApplication())
+            _integrityChecking.value = false
         }
     }
 
@@ -246,10 +267,14 @@ class SysKitViewModel(application: Application) : AndroidViewModel(application) 
         viewModelScope.launch {
             val cmd = if (permissive) "setenforce 0" else "setenforce 1"
             val res = privilegeManager.executeCommand(cmd, ExecutionMode.ROOT)
-            _feedbackMessage.value = if (!res.isError) {
-                "SELinux set to ${if (permissive) "Permissive" else "Enforcing"}"
+            // Always re-read the real mode: without root the command silently fails
+            // and the old UI claimed success (the "buttons are opposite" bug).
+            val actual = dataProvider.getSELinuxStatusPublic()
+            val wanted = if (permissive) "Permissive" else "Enforcing"
+            _feedbackMessage.value = if (!res.isError && actual.equals(wanted, ignoreCase = true)) {
+                "SELinux is now $actual"
             } else {
-                "SELinux change requires Root (su)"
+                "Couldn't change SELinux — still $actual (root required)"
             }
             refreshPrivileges()
             _systemInfo.value = dataProvider.getSystemInfo()
